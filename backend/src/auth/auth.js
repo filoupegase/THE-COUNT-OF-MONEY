@@ -1,6 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-// const User = require('../models/user'); TODO Need to create a user moder
+const User = require('../models/user');
 
 // User signup
 passport.use('signup',
