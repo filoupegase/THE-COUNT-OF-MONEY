@@ -1,6 +1,7 @@
 import * as React from 'react';
 import DiamondIcon from '@mui/icons-material/Diamond';
 import { Box, Typography } from "@mui/material";
+import ButtonBasicIcon from "../../../_common/component/Button/ButtonBasicIcon";
 
 const NavHeader = () => {
     return (
@@ -11,6 +12,7 @@ const NavHeader = () => {
                     Money</Typography>
             </Box>
             <Box>
+                <ButtonBasicIcon />
             </Box>
         </>
     )
