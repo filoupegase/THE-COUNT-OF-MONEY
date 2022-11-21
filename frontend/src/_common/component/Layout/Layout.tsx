@@ -1,12 +1,12 @@
 import React, { PropsWithChildren } from 'react';
-import Container from '@mui/material/Container';
+import { Container, styled } from '@mui/material';
+import Header from "../Header";
 
 
 const Layout = ({ children }: PropsWithChildren) => {
     return (
         <>
-            <div style={ { position: "relative", height: '71px', background: 'white' } }>
-            </div>
+            <StickyHeader />
             <Container>
                 <div style={ { position: "relative", height: '600px' } }>
                     { children }
@@ -14,6 +14,13 @@ const Layout = ({ children }: PropsWithChildren) => {
             </Container>
         </>
     )
-}
+};
+
+const StickyHeader = styled(Header)(() => ({
+        position: "sticky",
+        top: 0
+    })
+);
+
 
 export default Layout;
