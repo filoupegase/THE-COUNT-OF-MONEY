@@ -24,7 +24,7 @@ const LoginHeader = () => {
                     <Button label='sign up' variant='contained' />
                 </Box>
             </Box>
-            <DialogLayout title='No Title beleck' open={ open } onClose={ handleClickLogin } />
+            <DialogLayout title='No_Title_beleck' open={ open } onClose={ handleClickLogin } />
         </>
     )
 };
