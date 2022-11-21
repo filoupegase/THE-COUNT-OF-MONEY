@@ -8,9 +8,9 @@ type Button = {
     variant: string;
 };
 
-const Button = ({ label, variant }: Button) => {
+const Button = ({ label, variant, onClick }: Button) => {
     return (
-        <CustomButton variant={ variant } disableElevation>
+        <CustomButton onClick={ onClick } variant={ variant } disableElevation>
             { label }
         </CustomButton>
     )
