@@ -12,6 +12,9 @@ const theme = createTheme({
         fontFamily: [
             'Inter', '-apple-system', 'BlinkMacSystemFont', 'segoe ui', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'
         ].join(',')
+    },
+    components: {
+
     }
 });
 
