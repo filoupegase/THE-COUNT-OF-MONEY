@@ -18,5 +18,29 @@ router.post('/auth/signup/', passport.authenticate('signup', {session: false}),
   }
 );
 
+// Login
+router.post('/auth/login/', async (req, res, next) => {
+  passport.authenticate('login', async (err, user, info) => {
+      try {
+        if (err || !user) {
+          console.log(err);
+          const error = new Error('An Error occurred');
+          return next(error);
+        }
+        req.login(user, {session: false}, async (error) => {
+            if (error) return next(error);
+            const body = {_id: user._id, email: user.email};
+            const token = jwt.sign({user: body}, 'MY_SECRET_KEY'); //TODO create .env file and store secret key there
+
+            return res.json({token});
+          }
+        );
+      } catch (error) {
+        return next(error);
+      }
+    }
+  )(req, res, next);
+});
+
 
 module.exports = router;
