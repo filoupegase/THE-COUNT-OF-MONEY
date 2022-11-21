@@ -15,8 +15,10 @@ const theme = createTheme({
         },
     },
     components: {
+        // Name of the component
         MuiButtonBase: {
-            defaultProps: {}
+            // The props to change the default for.
+            defaultProps: {}// No exemple yet 💣!
         }
     }
 });

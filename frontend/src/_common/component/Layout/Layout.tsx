@@ -2,6 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import { Container, styled } from '@mui/material';
 import Header from "../Header";
 import LoginHeader from "../../../business/Header/LoginHeader";
+import NavHeader from "../../../business/Header/NavHeader";
 
 
 const Layout = ({ children }: PropsWithChildren) => {
@@ -10,8 +11,8 @@ const Layout = ({ children }: PropsWithChildren) => {
             <StickyHeader>
                 <LoginHeader />
             </StickyHeader>
-
             <StickyHeader>
+                <NavHeader />
             </StickyHeader>
             <Container>
                 <div style={ { height: '600px' } }>

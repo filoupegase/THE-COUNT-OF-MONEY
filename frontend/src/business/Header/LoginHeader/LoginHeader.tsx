@@ -4,7 +4,7 @@ import Button from "../../../_common/component/Button";
 
 const LoginHeader = () => {
     return (
-        <Box sx={ { display: 'flex', justifyContent: 'space-between', alignItems: 'center' } }>
+        <>
             <Box>
             </Box>
             <Box sx={ { display: 'flex', alignItems: 'center' } }>
@@ -17,7 +17,7 @@ const LoginHeader = () => {
                     <Button label='sign up' variant='contained' />
                 </Box>
             </Box>
-        </Box>
+        </>
     )
 };
 
