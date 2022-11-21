@@ -1,6 +1,8 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('../models/user');
+const UserModel = require('../models/user');
+
+// TODO
 
 // User signup
 passport.use('signup',
@@ -10,7 +12,7 @@ passport.use('signup',
     },
     async (email, password, done) => {
       try {
-        const user = await User.create({email, password});
+        const user = await UserModel.create({email, password});
         return done(null, user);
       } catch (error) {
         done(error);
@@ -39,6 +41,25 @@ passport.use('login',
         return done(null, user, {message: 'Logged in Successfully'});
       } catch (error) {
         return done(error);
+      }
+    }
+  )
+);
+
+const JWTstrategy = require('passport-jwt').Strategy;
+const ExtractJWT = require('passport-jwt').ExtractJwt;
+
+passport.use(
+  new JWTstrategy(
+    {
+      secretOrKey: 'MY_SECRET_KEY', //TODO same value as routes.js
+      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken()
+    },
+    async (token, done) => {
+      try {
+        return done(null, token.user);
+      } catch (error) {
+        done(error);
       }
     }
   )
