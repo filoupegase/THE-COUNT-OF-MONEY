@@ -10,7 +10,6 @@ passport.use('signup',
     }, async (req, email, password, done) => {
       try {
         // Verify if the email has a good format
-        console.log("email: " + email);
         if (!email.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/))
           throw new Error("Email has a bad format")
 
