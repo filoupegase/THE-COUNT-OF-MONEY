@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 
-mongoose.connect('mongodb://cuicui:cuicui@localhost:27017/', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.connection.on('error', error => console.log(error));
 mongoose.promise = global.Promise;
 
