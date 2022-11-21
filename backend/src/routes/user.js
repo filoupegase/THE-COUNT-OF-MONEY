@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
+// Import the user controller
+const userController = require('../controllers/user');
+
 router.get('/profile', (req, res, next) => {
-  res.json({
-    message: 'You made it to the secure route',
-    user: req.user
-  });
+  userController.getUserProfile(req, res);
 });
 
 module.exports = router;
