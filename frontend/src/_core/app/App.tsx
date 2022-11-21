@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Layout from "../../_common/component/Layout";
 import { Box } from '@mui/material';
+import DataGrid from "../../_common/component/DataGrid";
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
             height: '1200px'
         } }>
             <Layout>
+                <DataGrid />
             </Layout>
         </Box>
     );

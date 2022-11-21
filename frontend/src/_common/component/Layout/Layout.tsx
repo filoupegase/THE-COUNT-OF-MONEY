@@ -7,6 +7,7 @@ const Layout = ({ children }: PropsWithChildren) => {
     return (
         <>
             <StickyHeader />
+            <StickyHeader />
             <Container>
                 <div style={ { position: "relative", height: '600px' } }>
                     { children }
