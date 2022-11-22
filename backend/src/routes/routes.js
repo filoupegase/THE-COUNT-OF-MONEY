@@ -29,8 +29,8 @@ router.post('/auth/login/', async (req, res, next) => {
         }
         req.login(user, {session: false}, async (error) => {
             if (error) return next(error);
-            const body = {_id: user._id, email: user.email};
-            const token = jwt.sign({user: body}, 'MY_SECRET_KEY'); //TODO create .env file and store secret key there
+            const body = {_id: user._id, email: user.email, username: user.username,  roles: user.roles};
+            const token = jwt.sign({user: body}, 'MY_SECRET_KEY', {expiresIn: '1h'}); //TODO create .env file and store secret key there
 
             return res.json({token});
           }

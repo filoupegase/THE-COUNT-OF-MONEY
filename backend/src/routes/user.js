@@ -1,11 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-// Import the user controller
-const userController = require('../controllers/user');
-
 router.get('/profile', (req, res, next) => {
-  userController.getUserProfile(req, res);
+  res.json(req.user);
 });
 
 module.exports = router;
