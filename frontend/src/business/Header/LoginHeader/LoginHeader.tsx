@@ -3,6 +3,7 @@ import { Box, DialogContent, Divider, Tabs, Tab, Typography } from "@mui/materia
 import Button from "../../../_common/component/Button";
 import DialogLayout from "../../../_common/component/Dialog/DialogLayout";
 import DialogActions from "../../../_common/component/Dialog/DialogActions";
+import LoginForm from "../../Dialog/LogInForm";
 
 
 interface TabPanelProps {
@@ -23,7 +24,7 @@ function TabPanel(props: TabPanelProps) {
             { ...other }
         >
             { value === index && (
-                <Box sx={ { p: 3 } }>
+                <Box sx={ { pt: 3, pb: 3 } }>
                     { children }
                 </Box>
             ) }
@@ -57,7 +58,7 @@ const LoginHeader = () => {
                 <img style={ { marginRight: 12 } } height={ 20 } width={ 20 } alt='diamond logo'
                      src={ 'https://s2.coinmarketcap.com/static/cloud/img/loyalty-program/diamond-icon.svg' } />
                 <Box sx={ { mr: 1 } }>
-                    <Button onClick={ handleClickLogin } label='login' variant='outlined' />
+                    <Button onClick={ handleClickLogin } label='log in' variant='outlined' />
                 </Box>
                 <Box>
                     <Button onClick={ handleClickSignUp } label='sign up' variant='contained' />
@@ -66,14 +67,14 @@ const LoginHeader = () => {
             <DialogLayout open={ open } onClose={ handleClickLogin }>
                 <DialogContent>
                     <Tabs value={ value } onChange={ handleChangeTab } centered>
-                        <Tab label="Item One" />
-                        <Tab label="Item Two" />
+                        <Tab label="Log In" />
+                        <Tab label="Sign Up" />
                     </Tabs>
                     <TabPanel value={ value } index={ 0 }>
-                        Item One
+                        <LoginForm />
                     </TabPanel>
                     <TabPanel value={ value } index={ 1 }>
-                        <Typography>Salut deuuuuuuuuux</Typography>
+                        <Typography>Sign Up</Typography>
                     </TabPanel>
                     <Divider>OR</Divider>
                 </DialogContent>

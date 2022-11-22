@@ -15,6 +15,13 @@ const theme = createTheme({
         },
     },
     components: {
+        MuiOutlinedInput: {
+            styleOverrides: {
+                root: {
+                    width: '100%'
+                }
+            }
+        },
         MuiDivider: {
             styleOverrides: {
                 wrapper: {
