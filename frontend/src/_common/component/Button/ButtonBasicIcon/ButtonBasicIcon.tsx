@@ -6,7 +6,7 @@ const ButtonBasicIcon = () => {
     return (
         <CustomBasicButton startIcon={ <StarIcon
             sx={ (theme) => ({
-                color: theme.palette.grey[400]
+                color: '#a6b0c3'
             }) } />
         }>Watchlist</CustomBasicButton>
     )
