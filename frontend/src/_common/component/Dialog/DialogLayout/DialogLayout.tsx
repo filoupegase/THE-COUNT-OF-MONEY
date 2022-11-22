@@ -15,13 +15,16 @@ function CustomDialogTitle(props: DialogTitleProps) {
 
     function isT() {
         if (isTitle) {
-            return 2;
+            return 2
+        } else {
+            return 0
         }
     }
 
     return (
         <DialogTitle
             sx={ {
+                p: isT(),
                 m: 0,
                 mb: isT(),
                 textAlign: 'center',
@@ -73,7 +76,7 @@ const DialogLayout = ({ title, onClose, open, children }: DialogLayoutProps) => 
 
 const CustomDialog = styled(Dialog)(() => ({
     '& .MuiPaper-root': { height: 'auto', minWidth: 470 },
-    '& .MuiDialogContent-root': { padding: '25px 45px 6px 45px' },
+    '& .MuiDialogContent-root': { padding: '15px 45px 6px 45px' },
     '& .MuiDialogActions-root': { padding: '20px 45px 25px 45px' },
 }));
 
