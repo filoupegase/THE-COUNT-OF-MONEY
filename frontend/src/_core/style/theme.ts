@@ -15,6 +15,13 @@ const theme = createTheme({
         },
     },
     components: {
+        MuiDivider: {
+            styleOverrides: {
+                wrapper: {
+                    fontWeight: 500
+                }
+            }
+        },
         MuiButton: {
             styleOverrides: {
                 root: {

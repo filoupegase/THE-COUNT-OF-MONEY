@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Box } from "@mui/material";
+import { Box, DialogContent, Divider } from "@mui/material";
 import Button from "../../../_common/component/Button";
 import DialogLayout from "../../../_common/component/Dialog/DialogLayout";
+import DialogActions from "../../../_common/component/Dialog/DialogActions";
 
 const LoginHeader = () => {
-    const [open, setOpen] = useState<boolean>(false)
+    const [open, setOpen] = useState<boolean>(true)
 
     const handleClickLogin = () => {
         setOpen(!open);
@@ -24,7 +25,14 @@ const LoginHeader = () => {
                     <Button label='sign up' variant='contained' />
                 </Box>
             </Box>
-            <DialogLayout title='No_Title_beleck' open={ open } onClose={ handleClickLogin } />
+            <DialogLayout title='No_Title_beleck' open={ open } onClose={ handleClickLogin }>
+                <DialogContent>
+                    saltu
+                    <Divider>OR</Divider>
+                </DialogContent>
+                <DialogActions>
+                </DialogActions>
+            </DialogLayout>
         </>
     )
 };
