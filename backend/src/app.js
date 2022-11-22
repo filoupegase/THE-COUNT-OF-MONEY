@@ -3,7 +3,10 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 
-mongoose.connect(`mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}`, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(`mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 mongoose.connection.on('error', error => console.log(error));
 mongoose.promise = global.Promise;
 
@@ -11,6 +14,9 @@ require('./auth/auth');
 
 const routes = require('./routes/routes');
 const userRoutes = require('./routes/user');
+const adminRoutes = require('./routes/admin');
+const isAdmin = require("./auth/roles");
+
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
@@ -18,6 +24,16 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use('/api', routes);
 
 app.use('/api/user', passport.authenticate('jwt', {session: false}), userRoutes);
+
+// App.use for the admin, verify the token and check if the user is an admin and then use the admin routes
+// app.use('/api/admin', passport.authenticate('jwt', {session: false}), function (req, res, next) {
+//     if (req.user.roles.includes('admin'))
+//       return next();
+//     return res.status(401).send('Unauthorized');
+//   }
+//   , adminRoutes);
+
+app.use('/api/admin', passport.authenticate('jwt', {session: false}), isAdmin, adminRoutes);
 
 app.use(function (err, req, res, next) {
   res.status(err.status || 500);
