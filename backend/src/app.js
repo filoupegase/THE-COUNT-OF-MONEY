@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/api', routes);
 
-app.use('/user', passport.authenticate('jwt', {session: false}), userRoutes);
+app.use('/api/user', passport.authenticate('jwt', {session: false}), userRoutes);
 
 app.use(function (err, req, res, next) {
   res.status(err.status || 500);
