@@ -25,14 +25,6 @@ app.use('/api', routes);
 
 app.use('/api/user', passport.authenticate('jwt', {session: false}), userRoutes);
 
-// App.use for the admin, verify the token and check if the user is an admin and then use the admin routes
-// app.use('/api/admin', passport.authenticate('jwt', {session: false}), function (req, res, next) {
-//     if (req.user.roles.includes('admin'))
-//       return next();
-//     return res.status(401).send('Unauthorized');
-//   }
-//   , adminRoutes);
-
 app.use('/api/admin', passport.authenticate('jwt', {session: false}), isAdmin, adminRoutes);
 
 app.use(function (err, req, res, next) {
