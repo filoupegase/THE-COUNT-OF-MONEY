@@ -15,9 +15,11 @@ const SmashContainer = ({ children }: PropsWithChildren) => {
     padding-right: 24px;
     justify-content: flex-start;
     padding-left: 24px;
-    @media (max-width: 1000px) {
+    margin-top: 40px;
+    @media (max-width: 1070px) {
     flex-direction: column;
-    padding: 0;}}`);
+    align-items: center;
+    }}`);
 
     return (
         <BoxContainer>

@@ -15,7 +15,16 @@ const theme = createTheme({
         },
     },
     components: {
-        // Name of the component
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    padding: '5px 20px'
+                },
+                startIcon: {
+                    marginRight: 6
+                }
+            },
+        },
         MuiButtonBase: {
             // The props to change the default for.
             defaultProps: {}// No exemple yet 💣!

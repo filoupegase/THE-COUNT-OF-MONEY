@@ -14,10 +14,10 @@ const Footer = () => {
                     flexDirection: 'column',
                     justifyContent: 'center'
                 } }>
-                    <Typography>
-                        Be the first to know about <span>crypto news every day</span>
+                    <Typography sx={ { fontWeight: 300, mb: 1 } } variant='h5'>
+                        Be the first to know about <span style={ { fontWeight: 500 } }>crypto news every day</span>
                     </Typography>
-                    <Typography>
+                    <Typography variant='body1'>
                         Get crypto analysis, news and updates right to your inbox! Sign up here so you don&apos;t miss a
                         single
                         newsletter.
