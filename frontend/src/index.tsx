@@ -1,19 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './_core/app/App';
+import App from './_core/app';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './_core/style/theme';
-import { Button } from "@mui/material";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
+
 root.render(
     <React.StrictMode>
         <ThemeProvider theme={ theme }>
             <App />
-            <Button color={ "primary" }>Salut</Button>
         </ThemeProvider>
     </React.StrictMode>
 );
