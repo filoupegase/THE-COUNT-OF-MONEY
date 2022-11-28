@@ -7,8 +7,7 @@ import {
     InputLabel,
     OutlinedInput,
     InputAdornment,
-    IconButton,
-    TextField as MuiTextField
+    IconButton
 } from "@mui/material";
 import Button from "../../../_common/component/Button";
 import Visibility from '@mui/icons-material/Visibility';
@@ -54,41 +53,50 @@ const LoginForm = () => {
 
     return (
         <>
-            <TextField fullWidth
-                       onChange={ handleChangeDescription }
-                       id="email-form"
-                       label="Email Address"
-                       variant="outlined"
-                       value={ value }
-                       type='email'
-            />
-            <FormControl sx={ { width: '100%' } } variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                <CustomOutlinedInput
-                    id="outlined-adornment-password"
-                    type={ values.showPassword ? 'text' : 'password' }
-                    value={ values.password }
-                    onChange={ handleChange('password') }
-                    endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={ handleClickShowPassword }
-                                onMouseDown={ handleMouseDownPassword }
-                                edge="end"
-                            >
-                                { values.showPassword ? <VisibilityOff /> : <Visibility /> }
-                            </IconButton>
-                        </InputAdornment>
-                    }
-                    label="Password"
-                    fullWidth
-                />
-            </FormControl>
-            <Button onClick={ () => console.log('salut') } label='log in' variant='contained' />
-            {/*<TextField*/ }
-            {/*    name='email' onChange={ (e) => handleChange(e) }*/ }
-            {/*    variant='Email' />*/ }
+            <Box sx={ { pt: 2 } }>
+                <form>
+                    <TextField fullWidth
+                               onChange={ handleChangeDescription }
+                               id="email-form"
+                               label="Email Address"
+                               variant="outlined"
+                               value={ value }
+                               type='email'
+                    />
+                    <FormControl sx={ { width: '100%', mt: 2 } } variant="outlined">
+                        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                        <CustomOutlinedInput
+                            id="outlined-adornment-password"
+                            type={ values.showPassword ? 'text' : 'password' }
+                            value={ values.password }
+                            onChange={ handleChange('password') }
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={ handleClickShowPassword }
+                                        onMouseDown={ handleMouseDownPassword }
+                                        edge="end"
+                                    >
+                                        { values.showPassword ? <VisibilityOff /> : <Visibility /> }
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                            label="Password"
+                            fullWidth
+                        />
+                    </FormControl>
+                    <Box sx={ { mt: 2 } }>
+                        <Button onClick={ () => console.log('salut') } label='log in' variant='contained' />
+                    </Box>
+                </form>
+            </Box>
+            {/*<TextField*/
+            }
+            {/*    name='email' onChange={ (e) => handleChange(e) }*/
+            }
+            {/*    variant='Email' />*/
+            }
 
         </>
     )
