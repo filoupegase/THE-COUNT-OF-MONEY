@@ -70,6 +70,10 @@ passport.use(
     },
     async (token, done) => {
       try {
+        const user = await UserModel.findById(token.user._id);
+        if (!user) {
+          return done(null, false, {message: 'User not found'});
+        }
         return done(null, token.user);
       } catch (error) {
         done(error);
