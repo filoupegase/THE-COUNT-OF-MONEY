@@ -7,12 +7,12 @@ import {
     InputLabel,
     OutlinedInput,
     InputAdornment,
-    IconButton
+    IconButton,
+    styled
 } from "@mui/material";
 import Button from "../../../_common/component/Button";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { styled } from "@mui/material/styles";
 
 interface State {
     amount: string;
@@ -51,10 +51,16 @@ const LoginForm = () => {
         event.preventDefault();
     };
 
+    const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log('email :', emailValue);
+        console.log('password :', values.password);
+    };
+
     return (
         <>
             <Box sx={ { pt: 4 } }>
-                <form>
+                <form onSubmit={ handleLoginSubmit }>
                     <TextField fullWidth
                                onChange={ handleChangeDescription }
                                id="email-form"
@@ -87,17 +93,10 @@ const LoginForm = () => {
                         />
                     </FormControl>
                     <Box sx={ { mt: 4 } }>
-                        <Button onClick={ () => console.log('salut') } label='log in' variant='contained' />
+                        <Button type='submit' label='log in' variant='contained' />
                     </Box>
                 </form>
             </Box>
-            {/*<TextField*/
-            }
-            {/*    name='email' onChange={ (e) => handleChange(e) }*/
-            }
-            {/*    variant='Email' />*/
-            }
-
         </>
     )
 };

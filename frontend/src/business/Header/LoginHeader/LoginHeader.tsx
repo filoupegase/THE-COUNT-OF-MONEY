@@ -33,7 +33,7 @@ function TabPanel(props: TabPanelProps) {
 }
 
 const LoginHeader = () => {
-    const [open, setOpen] = useState<boolean>(false);
+    const [open, setOpen] = useState<boolean>(true);
     const [value, setValue] = React.useState<number>(0);
 
     const handleClickLogin = () => {
@@ -58,10 +58,10 @@ const LoginHeader = () => {
                 <img style={ { marginRight: 12 } } height={ 20 } width={ 20 } alt='diamond logo'
                      src={ 'https://s2.coinmarketcap.com/static/cloud/img/loyalty-program/diamond-icon.svg' } />
                 <Box sx={ { mr: 1 } }>
-                    <Button onClick={ handleClickLogin } label='log in' variant='outlined' />
+                    <Button type='button' onClick={ handleClickLogin } label='log in' variant='outlined' />
                 </Box>
                 <Box>
-                    <Button onClick={ handleClickSignUp } label='sign up' variant='contained' />
+                    <Button type='button' onClick={ handleClickSignUp } label='sign up' variant='contained' />
                 </Box>
             </Box>
             <DialogLayout open={ open } onClose={ handleClickLogin }>

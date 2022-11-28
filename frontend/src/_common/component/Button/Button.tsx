@@ -6,11 +6,12 @@ type Button = {
     label: string;
     disabled?: boolean;
     variant: string;
+    type: string;
 };
 
-const Button = ({ label, variant, onClick }: Button) => {
+const Button = ({ label, variant, onClick, type }: Button) => {
     return (
-        <CustomButton onClick={ onClick } variant={ variant } disableElevation>
+        <CustomButton type={ type } onClick={ onClick } variant={ variant } disableElevation>
             { label }
         </CustomButton>
     )
