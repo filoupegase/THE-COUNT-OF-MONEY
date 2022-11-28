@@ -13,6 +13,8 @@ import {
 import Button from "../../../_common/component/Button";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useAppDispatch } from "../../../_core/store/hooks";
+import { login } from '../../../_core/store/reducers/User/userSlice';
 
 interface State {
     amount: string;
@@ -23,6 +25,7 @@ interface State {
 }
 
 const LoginForm = () => {
+    const dispatch = useAppDispatch();
     const [emailValue, setEmailValue] = useState<string>('');
     const [values, setValues] = useState<State>({
         amount: '',
@@ -53,6 +56,7 @@ const LoginForm = () => {
 
     const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        dispatch(login());
         console.log('email :', emailValue);
         console.log('password :', values.password);
     };
