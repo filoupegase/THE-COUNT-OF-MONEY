@@ -3,7 +3,7 @@ import Layout from "../../_common/component/Layout";
 import { Box } from '@mui/material';
 import DataGrid from "../../_common/component/DataGrid";
 import { useAppSelector, useAppDispatch } from '../store/hooks';
-import { increment, decrement, incrementByAmount } from "../store/CounterSliceReducers/counterSlice";
+import { increment, decrement, incrementByAmount } from "../store/reducers/CounterSlice/counterSlice";
 
 function App() {
     const count = useAppSelector((state) => state.counter.value);

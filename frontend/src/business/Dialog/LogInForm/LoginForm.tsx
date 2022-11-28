@@ -23,6 +23,7 @@ interface State {
 }
 
 const LoginForm = () => {
+    const [emailValue, setEmailValue] = useState<string>('');
     const [values, setValues] = useState<State>({
         amount: '',
         password: '',
@@ -30,10 +31,9 @@ const LoginForm = () => {
         weightRange: '',
         showPassword: false,
     });
-    const [value, setValue] = useState<string>('');
 
     const handleChangeDescription: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-        setValue(e.target.value);
+        setEmailValue(e.target.value);
     };
 
     const handleChange = (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +60,7 @@ const LoginForm = () => {
                                id="email-form"
                                label="Email Address"
                                variant="outlined"
-                               value={ value }
+                               value={ emailValue }
                                type='email'
                     />
                     <FormControl sx={ { width: '100%', mt: 2 } } variant="outlined">
@@ -86,7 +86,7 @@ const LoginForm = () => {
                             fullWidth
                         />
                     </FormControl>
-                    <Box sx={ { mt: 2 } }>
+                    <Box sx={ { mt: 4 } }>
                         <Button onClick={ () => console.log('salut') } label='log in' variant='contained' />
                     </Box>
                 </form>
