@@ -15,6 +15,7 @@ require('./auth/auth');
 const routes = require('./routes/routes');
 const userRoutes = require('./routes/user');
 const adminRoutes = require('./routes/admin');
+const cryptoRoutes = require('./routes/crypto');
 const isAdmin = require("./auth/roles");
 
 
@@ -26,6 +27,8 @@ app.use('/api', routes);
 app.use('/api/user', passport.authenticate('jwt', {session: false}), userRoutes);
 
 app.use('/api/admin', passport.authenticate('jwt', {session: false}), isAdmin, adminRoutes);
+
+app.use('/api/crypto', cryptoRoutes);
 
 app.use(function (err, req, res, next) {
   res.status(err.status || 500);
