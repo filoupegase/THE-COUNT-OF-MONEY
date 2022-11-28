@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 mongoose.connect(`mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}`, {
   useNewUrlParser: true,
@@ -20,6 +21,8 @@ const isAdmin = require("./auth/roles");
 
 
 const app = express();
+app.use(cors());
+
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/api', routes);
