@@ -53,7 +53,7 @@ const LoginForm = () => {
 
     return (
         <>
-            <Box sx={ { pt: 2 } }>
+            <Box sx={ { pt: 4 } }>
                 <form>
                     <TextField fullWidth
                                onChange={ handleChangeDescription }
@@ -63,7 +63,7 @@ const LoginForm = () => {
                                value={ emailValue }
                                type='email'
                     />
-                    <FormControl sx={ { width: '100%', mt: 2 } } variant="outlined">
+                    <FormControl sx={ { width: '100%', mt: 4 } } variant="outlined">
                         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                         <CustomOutlinedInput
                             id="outlined-adornment-password"
