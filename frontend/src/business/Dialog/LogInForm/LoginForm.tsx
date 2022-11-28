@@ -14,7 +14,9 @@ import Button from "../../../_common/component/Button";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useAppDispatch } from "../../../_core/store/hooks";
-import { login } from '../../../_core/store/reducers/User/userSlice';
+//import { login, get } from '../../../_core/store/reducers/User/userSlice';
+import { UserState } from '../../../_core/store/reducers/User/userState';
+import axios from "axios";
 
 interface State {
     amount: string;
@@ -56,18 +58,30 @@ const LoginForm = () => {
 
     const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(login());
-        console.log('email :', emailValue);
-        console.log('password :', values.password);
+        const payload = {
+            email: emailValue,
+            password: values.password
+        } as UserState;
     };
+
+    const get = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        axios.get('http://localhost:4000/api/')
+            .then((res) => {
+                console.log('nico', res);
+            })
+            .catch(err => {
+                console.error(err);
+            })
+    }
 
     return (
         <>
             <Box sx={ { pt: 4 } }>
-                <form onSubmit={ handleLoginSubmit }>
+                <form onSubmit={ get }>
                     <TextField fullWidth
                                onChange={ handleChangeDescription }
-                               id="email-form"
+                               id="email"
                                label="Email Address"
                                variant="outlined"
                                value={ emailValue }
@@ -76,7 +90,7 @@ const LoginForm = () => {
                     <FormControl sx={ { width: '100%', mt: 4 } } variant="outlined">
                         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                         <CustomOutlinedInput
-                            id="outlined-adornment-password"
+                            id="password"
                             type={ values.showPassword ? 'text' : 'password' }
                             value={ values.password }
                             onChange={ handleChange('password') }
