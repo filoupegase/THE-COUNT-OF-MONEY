@@ -76,7 +76,7 @@ const LoginForm = () => {
                                value={ emailValue }
                                type='email'
                     />
-                    <FormControl sx={ { width: '100%', mt: 4 } } variant="outlined">
+                    <FormControl sx={ { width: '100%', mt: 2 } } variant="outlined">
                         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                         <CustomOutlinedInput
                             id="password"
