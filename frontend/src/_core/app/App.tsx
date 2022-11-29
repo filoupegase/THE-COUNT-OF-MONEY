@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Box, styled } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { useAppSelector, useAppDispatch } from '../store/hooks';
-import { increment, decrement, incrementByAmount } from "../store/reducers/CounterSlice/counterSlice";
+import { useAppSelector, useAppDispatch } from '../_store/hooks';
+import { increment, decrement, incrementByAmount } from "../_store/reducers/CounterSlice/counterSlice";
 import Layout from "../../_common/component/Layout";
 import Home from '../home';
 

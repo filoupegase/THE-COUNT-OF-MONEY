@@ -13,9 +13,9 @@ import {
 //import Button from "../../../_common/component/Button";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { useAppDispatch } from "../../../_core/store/hooks";
-import { UserState } from '../../../_core/store/reducers/User/userState';
-import { login } from "../../../_core/store/reducers/User/userSlice";
+import { useAppDispatch } from "../../../_core/_store/hooks";
+import { UserState } from '../../../_core/_store/reducers/User/userState';
+import { login } from "../../../_core/_store/reducers/User/userSlice";
 
 interface State {
     amount: string;

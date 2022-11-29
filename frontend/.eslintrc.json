@@ -21,6 +21,7 @@
   ],
   "rules": {
     "no-console": "off",
-    "react/jsx-key": "error"
+    "react/jsx-key": "error",
+    "@typescript-eslint/ban-ts-comment": "off"
   }
 }
