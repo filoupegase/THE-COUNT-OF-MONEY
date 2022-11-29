@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useState } from "react";
+import React, { useState } from 'react';
 import {
     Box,
     TextField,
@@ -14,9 +13,8 @@ import Button from "../../../_common/component/Button";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useAppDispatch } from "../../../_core/store/hooks";
-//import { login, get } from '../../../_core/store/reducers/User/userSlice';
 import { UserState } from '../../../_core/store/reducers/User/userState';
-import axios from "axios";
+import { login } from "../../../_core/store/reducers/User/userSlice";
 
 interface State {
     amount: string;
@@ -62,23 +60,13 @@ const LoginForm = () => {
             email: emailValue,
             password: values.password
         } as UserState;
+        dispatch(login(payload));
     };
-
-    const get = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        axios.get('http://localhost:4000/api/')
-            .then((res) => {
-                console.log('nico', res);
-            })
-            .catch(err => {
-                console.error(err);
-            })
-    }
 
     return (
         <>
             <Box sx={ { pt: 4 } }>
-                <form onSubmit={ get }>
+                <form onSubmit={ handleLoginSubmit }>
                     <TextField fullWidth
                                onChange={ handleChangeDescription }
                                id="email"
