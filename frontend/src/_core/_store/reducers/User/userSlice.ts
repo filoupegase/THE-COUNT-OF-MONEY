@@ -8,21 +8,21 @@ export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        login: (state, action: PayloadAction<any>) => {
-            axiosClient.post('auth/login/', qs.stringify(action.payload))
-                .then((res) => {
-                    console.log(res.data.token);
-                    const token = res.data.token;
-                })
-                .catch(error => {
-                    console.error(error);
-                })
-        },
+        // login: (state, action: PayloadAction<any>) => {
+        //     axiosClient.post('auth/login/', qs.stringify(action.payload))
+        //         .then((res) => {
+        //             console.log(res.data.token);
+        //             const token = res.data.token;
+        //         })
+        //         .catch(error => {
+        //             console.error(error);
+        //         })
+        // },
         logout: () => initialState
     }
 });
 
-export const { login } = userSlice.actions;
+//export const { login } = userSlice.actions;
 
 export const selectUser = (state: RootState) => state.user;
 
