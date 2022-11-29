@@ -6,10 +6,7 @@ router.get('/profile', (req, res, next) => {
   res.json(req.user);
 });
 
-// Post update user information
 router.post('/', (req, res, next) => {
-  console.log("Update user information");
-  // The user can't update is password here
   if (req.body.password)
     delete req.body.password;
   UserModel.findByIdAndUpdate(req.user, req.body, {new: true}, (err, user) => {
@@ -19,6 +16,28 @@ router.post('/', (req, res, next) => {
     }
     return res.status(200).send(user);
   });
+});
+
+// Init the user table if it's empty 
+UserModel.countDocuments({}, (err, count) => {
+  if (err) {
+    console.log(err);
+  } else if (count === 0) {
+    const admin = new UserModel({
+      username: 'admin',
+      email: 'admin@localhost',
+      password: 'admin123',
+      roles: ['user', 'admin']
+    });
+
+    const user = new UserModel({
+      username: 'user',
+      email: 'user@localhost',
+      password: 'user123'
+    });
+    admin.save();
+    user.save();
+  }
 });
 
 module.exports = router;

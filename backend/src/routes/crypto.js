@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const coinMarketCap = require('../crypto/coinmarketcap');
+const {getSettings} = require("../controller/settings");
 
 /**
  * Get the data from the API of coinmarketcap
@@ -23,7 +24,7 @@ router.get('/', async (req, res, next) => {
  * @param next
  */
 router.get('/popular', async (req, res, next) => {
-  let limit = 10; // TODO use the value set by the admin
+  const limit = await getSettings().then(settings => settings.popularCryptos);
   try {
     const data = await coinMarketCap.getCoinmarketcapData(`/v1/cryptocurrency/listings/latest?limit=${limit}`);
     res.json(data);
