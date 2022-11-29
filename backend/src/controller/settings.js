@@ -1,4 +1,3 @@
-// Controller for settings
 const Settings = require('../models/settings');
 
 exports.getSettings = () => {
