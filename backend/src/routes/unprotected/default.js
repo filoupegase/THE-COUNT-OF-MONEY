@@ -20,6 +20,7 @@ router.post('/auth/signup/', passport.authenticate('signup', {session: false}),
 
 // Login
 router.post('/auth/login/', async (req, res, next) => {
+  console.log("== Login ==");
   passport.authenticate('login', async (err, user, info) => {
       try {
         if (err || !user) {
@@ -31,7 +32,6 @@ router.post('/auth/login/', async (req, res, next) => {
             if (error) return next(error);
             const body = {_id: user._id, email: user.email, username: user.username,  roles: user.roles};
             const token = jwt.sign({user: body}, process.env.JWT_SECRET);
-
             return res.json({token});
           }
         );

@@ -7,16 +7,16 @@ const isAdmin = require("./auth/roles");
 
 
 // Unprotected routes
-router.use('/', require("./routes/default"));
-router.use('/crypto', require("./routes/crypto"));
-router.use('/rss', require("./routes/rss"));
+router.use('/', require("./routes/unprotected/default")); // Default routes TODO Remake this
+router.use('/crypto', require("./routes/crypto")); // Crypto routes accessable by everyone
 
-
-// User protected routes
-router.use('/user', passport.authenticate("jwt", {session: false}), require("./routes/user"));
+// User protected routes, just check the jwt
+router.use('/user', passport.authenticate('jwt', {session: false}), require('./routes/user'));
+// router.use("/user", passport.authenticate("jwt", {session: false}), require("./routes/user"));
 
 // Admin protected routes
-router.use('/admin', passport.authenticate('jwt', {session: false}), isAdmin, require('./routes/admin'));
+router.use('/admin', passport.authenticate('jwt', {session: false}), isAdmin, require('./routes/admin/admin'));
+router.use('/admin/rss', passport.authenticate('jwt', {session: false}), isAdmin, require('./routes/admin/rss'));
 router.use('/settings', passport.authenticate('jwt', {session: false}), isAdmin, require('./routes/settings'));
 
 module.exports = router;
