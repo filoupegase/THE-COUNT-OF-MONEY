@@ -11,7 +11,13 @@ mongoose.connect(`mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD
 mongoose.connection.on('error', error => console.log(error));
 mongoose.promise = global.Promise;
 
+// Initialize passport for the authentication
 require('./auth/auth');
+
+// Initialize the database with some default values (if empty)
+mongoose.connection.on('connected', async () => {
+  await require('./controller/init');
+});
 
 const app = express();
 app.use(cors());
