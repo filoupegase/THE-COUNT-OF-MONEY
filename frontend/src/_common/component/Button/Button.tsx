@@ -19,7 +19,7 @@ const Button = ({ label, variant, onClick, type }: Button) => {
 
 const CustomButton = styled(MuiButton)(() => ({
     width: "100%",
-    padding: '10px 20px'
+    padding: '5px 20px'
 }));
 
 export default Button;

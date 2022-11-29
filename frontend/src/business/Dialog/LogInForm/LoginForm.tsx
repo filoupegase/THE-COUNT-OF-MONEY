@@ -7,9 +7,10 @@ import {
     OutlinedInput,
     InputAdornment,
     IconButton,
-    styled
+    styled,
+    Button
 } from "@mui/material";
-import Button from "../../../_common/component/Button";
+//import Button from "../../../_common/component/Button";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useAppDispatch } from "../../../_core/store/hooks";
@@ -99,7 +100,9 @@ const LoginForm = () => {
                         />
                     </FormControl>
                     <Box sx={ { mt: 4 } }>
-                        <Button type='submit' label='log in' variant='contained' />
+                        <CustomMuiButton type='submit' variant="contained" disableElevation>
+                            log In
+                        </CustomMuiButton>
                     </Box>
                 </form>
             </Box>
@@ -111,6 +114,11 @@ const CustomOutlinedInput = styled(OutlinedInput)(() => ({
     '& .MuiInputBase-root': {
         width: '100%'
     }
+}));
+
+const CustomMuiButton = styled(Button)(() => ({
+    width: "100%",
+    padding: '11px 20px'
 }));
 
 export default LoginForm;
