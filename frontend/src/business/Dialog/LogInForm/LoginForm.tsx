@@ -13,8 +13,7 @@ import {
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useAppDispatch, useAppSelector } from "../../../_core/_store/store";
-import { authActions } from "../../../_core/_store/services/auth/slice";
-import { AuthState } from "../../../_core/_store/services/auth/authState";
+import { LoginFormInterface } from '../../../_core/domaine/domaine';
 
 interface State {
     amount: string;
@@ -58,15 +57,13 @@ const LoginForm = () => {
     const loginPayload = {
         email: emailValue,
         password: values.password
-    } as AuthState;
+    } as LoginFormInterface;
 
-    const logIn = () => appDispatch(authActions.login(loginPayload));
+    //const logIn = () => appDispatch(authActions.login(loginPayload));
 
     const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (emailValue.length < 0 || values.password.length < 0) {
-            logIn();
-        }
+        //logIn();
     };
 
     return (
