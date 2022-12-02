@@ -33,7 +33,7 @@ function TabPanel(props: TabPanelProps) {
 }
 
 const LoginHeader = () => {
-    const [open, setOpen] = useState<boolean>(false);
+    const [open, setOpen] = useState<boolean>(true);
     const [value, setValue] = React.useState<number>(0);
 
     const handleClickLogin = () => {

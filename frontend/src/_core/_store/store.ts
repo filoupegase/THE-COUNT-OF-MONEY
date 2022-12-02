@@ -7,7 +7,8 @@ import {
     ListenerEffectAPI,
     addListener,
 } from '@reduxjs/toolkit'
-import { counterSlice } from './services/counter/slice'
+import { counterSlice } from './services/counter/slice';
+import { authSlice } from './services/auth/slice';
 import userReducer from "./reducers/User/userSlice";
 
 const listenerMiddlewareInstance = createListenerMiddleware({
@@ -17,6 +18,7 @@ const listenerMiddlewareInstance = createListenerMiddleware({
 const store = configureStore({
     reducer: {
         [counterSlice.name]: counterSlice.reducer,
+        [authSlice.name]: authSlice.reducer,
         user: userReducer,
     },
     middleware: (gDM) => gDM().prepend(listenerMiddlewareInstance.middleware),
@@ -35,8 +37,7 @@ export type AppListenerEffectAPI = ListenerEffectAPI<RootState, AppDispatch>
 export type AppStartListening = TypedStartListening<RootState, AppDispatch>
 export type AppAddListener = TypedAddListener<RootState, AppDispatch>
 
-export const startAppListening =
-    listenerMiddlewareInstance.startListening as AppStartListening
+export const startAppListening = listenerMiddlewareInstance.startListening as AppStartListening
 export const addAppListener = addListener as AppAddListener
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`

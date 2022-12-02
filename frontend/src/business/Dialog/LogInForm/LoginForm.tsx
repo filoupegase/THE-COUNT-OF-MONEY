@@ -12,8 +12,9 @@ import {
 } from "@mui/material";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
-//import { login } from "../../../_core/_store/reducers/User/userSlice";
+import { useAppDispatch, useAppSelector } from "../../../_core/_store/store";
+import { authActions } from "../../../_core/_store/services/auth/slice";
+import { AuthState } from "../../../_core/_store/services/auth/authState";
 
 interface State {
     amount: string;
@@ -24,6 +25,8 @@ interface State {
 }
 
 const LoginForm = () => {
+    const auth = useAppSelector((state) => state.auth);
+    const appDispatch = useAppDispatch();
     const [emailValue, setEmailValue] = useState<string>('');
     const [values, setValues] = useState<State>({
         amount: '',
@@ -52,13 +55,18 @@ const LoginForm = () => {
         event.preventDefault();
     };
 
+    const loginPayload = {
+        email: emailValue,
+        password: values.password
+    } as AuthState;
+
+    const logIn = () => appDispatch(authActions.login(loginPayload));
+
     const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // const payload = {
-        //     email: emailValue,
-        //     password: values.password
-        // } as UserState;
-        //dispatch(login(payload));
+        if (emailValue.length < 0 || values.password.length < 0) {
+            logIn();
+        }
     };
 
     return (
