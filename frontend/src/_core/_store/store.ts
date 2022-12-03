@@ -9,7 +9,7 @@ import {
 } from '@reduxjs/toolkit'
 import { counterSlice } from './services/counter/slice';
 import { authSlice } from './services/auth/slice';
-import userReducer from "./reducers/User/userSlice";
+import { userSlice } from './services/user/slice';
 
 const listenerMiddlewareInstance = createListenerMiddleware({
     onError: () => console.error,
@@ -19,7 +19,7 @@ const store = configureStore({
     reducer: {
         [counterSlice.name]: counterSlice.reducer,
         [authSlice.name]: authSlice.reducer,
-        user: userReducer,
+        [userSlice.name]: userSlice.reducer
     },
     middleware: (gDM) => gDM().prepend(listenerMiddlewareInstance.middleware),
 });

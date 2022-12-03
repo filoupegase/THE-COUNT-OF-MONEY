@@ -1,13 +1,29 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, MenuItem, Divider, ListItemIcon, Box, Typography } from '@mui/material';
 import Person from '@mui/icons-material/Person';
 import Logout from '@mui/icons-material/Logout';
-import { useAppDispatch } from "../../../_core/_store/store";
+import { useAppDispatch, useAppSelector } from "../../../_core/_store/store";
 import { logout } from "../../../_core/_store/services/auth/slice";
+import { fetchUserProfile } from "../../../_core/_store/services/user/slice";
+
+interface UserInfo {
+    email: string;
+    username: string;
+    _id: string;
+    roles: null;
+}
 
 const AvatarProfile = () => {
+    const { userInfo } = useAppSelector((state) =>
+        state.user);
+    const [user, setUser] = useState<UserInfo>({
+        email: '',
+        username: '',
+        _id: '',
+        roles: null,
+    });
     const appDispatch = useAppDispatch();
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -18,6 +34,16 @@ const AvatarProfile = () => {
         setAnchorEl(null);
     };
 
+    useEffect(() => {
+        appDispatch(fetchUserProfile());
+    }, [appDispatch]);
+
+    useEffect(() => {
+        if (userInfo) {
+            setUser(userInfo);
+        }
+    });
+    
     return (
         <>
             <img
@@ -66,8 +92,8 @@ const AvatarProfile = () => {
                         style={ { marginRight: 12 } }
                     />
                     <Box>
-                        <Typography variant='h6'>Name</Typography>
-                        <Typography variant='body2'>fakeEmail@yahoo.com</Typography>
+                        <Typography variant='h6'>{ user.username }</Typography>
+                        <Typography variant='body2'>{ user.email }</Typography>
                     </Box>
                 </MenuItem>
                 <Divider />

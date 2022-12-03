@@ -15,7 +15,7 @@ export const initialState = {
     success: false,
 }
 
-export const logIn = createAsyncThunk('user/login',
+export const logIn = createAsyncThunk('auth/login',
     async ({ email, password }: LoginFormInterface,
            { rejectWithValue }) => {
         try {

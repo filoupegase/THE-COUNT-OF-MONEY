@@ -53,10 +53,6 @@ const LoginHeader = () => {
         setValue(newValue);
     };
 
-    useEffect(() => {
-        console.log('render');
-    }, []);
-
     return (
         <>
             <Box>
