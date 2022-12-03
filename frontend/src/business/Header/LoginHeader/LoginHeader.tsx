@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, DialogContent, Divider, Tabs, Tab, Typography } from "@mui/material";
 import Button from "../../../_common/component/Button";
 import DialogLayout from "../../../_common/component/Dialog/DialogLayout";
 import DialogActions from "../../../_common/component/Dialog/DialogActions";
 import LoginForm from "../../Dialog/LogInForm";
+import { useAppSelector } from "../../../_core/_store/store";
+import AvatarProfile from "../../../_common/component/AvatarProfile";
 
 
 interface TabPanelProps {
@@ -33,7 +35,8 @@ function TabPanel(props: TabPanelProps) {
 }
 
 const LoginHeader = () => {
-    const [open, setOpen] = useState<boolean>(true);
+    const { userToken } = useAppSelector((state) => state.auth);
+    const [open, setOpen] = useState<boolean>(false);
     const [value, setValue] = React.useState<number>(0);
 
     const handleClickLogin = () => {
@@ -50,37 +53,54 @@ const LoginHeader = () => {
         setValue(newValue);
     };
 
+    useEffect(() => {
+        console.log('render');
+    }, []);
+
     return (
         <>
             <Box>
             </Box>
-            <Box sx={ { display: 'flex', alignItems: 'center' } }>
-                <img style={ { marginRight: 12 } } height={ 20 } width={ 20 } alt='diamond logo'
+            <Box sx={ { display: 'flex', alignItems: 'center', '& hr': { mr: 1.5, ml: 1.5 } } }>
+                <img height={ 20 } width={ 20 } alt='diamond logo'
                      src={ 'https://s2.coinmarketcap.com/static/cloud/img/loyalty-program/diamond-icon.svg' } />
-                <Box sx={ { mr: 1 } }>
-                    <Button type='button' onClick={ handleClickLogin } label='log in' variant='outlined' />
-                </Box>
-                <Box>
-                    <Button type='button' onClick={ handleClickSignUp } label='sign up' variant='contained' />
-                </Box>
+                <Divider orientation="vertical" variant="middle" flexItem />
+                { !userToken &&
+                    <>
+                        <Box sx={ { mr: 1 } }>
+                            <Button type='button' onClick={ handleClickLogin } label='log in' variant='outlined' />
+                        </Box>
+                        <Box>
+                            <Button type='button' onClick={ handleClickSignUp } label='sign up' variant='contained' />
+                        </Box>
+                    </>
+                }
+                { userToken &&
+                    <>
+                        <AvatarProfile />
+                    </>
+                }
             </Box>
-            <DialogLayout open={ open } onClose={ handleClickLogin }>
-                <DialogContent>
-                    <Tabs value={ value } onChange={ handleChangeTab } centered>
-                        <Tab label="Log In" />
-                        <Tab label="Sign Up" />
-                    </Tabs>
-                    <TabPanel value={ value } index={ 0 }>
-                        <LoginForm />
-                    </TabPanel>
-                    <TabPanel value={ value } index={ 1 }>
-                        <Typography>Sign Up</Typography>
-                    </TabPanel>
-                    <Divider>OR</Divider>
-                </DialogContent>
-                <DialogActions>
-                </DialogActions>
-            </DialogLayout>
+            {
+                open && !userToken &&
+                <DialogLayout open={ open } onClose={ handleClickLogin }>
+                    <DialogContent>
+                        <Tabs value={ value } onChange={ handleChangeTab } centered>
+                            <Tab label="Log In" />
+                            <Tab label="Sign Up" />
+                        </Tabs>
+                        <TabPanel value={ value } index={ 0 }>
+                            <LoginForm />
+                        </TabPanel>
+                        <TabPanel value={ value } index={ 1 }>
+                            <Typography>Sign Up</Typography>
+                        </TabPanel>
+                        <Divider>OR</Divider>
+                    </DialogContent>
+                    <DialogActions>
+                    </DialogActions>
+                </DialogLayout>
+            }
         </>
     )
 };

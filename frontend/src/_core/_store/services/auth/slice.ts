@@ -15,7 +15,7 @@ export const initialState = {
     success: false,
 }
 
-export const logIn = createAsyncThunk('users/login',
+export const logIn = createAsyncThunk('user/login',
     async ({ email, password }: LoginFormInterface,
            { rejectWithValue }) => {
         try {
@@ -40,7 +40,15 @@ export const logIn = createAsyncThunk('users/login',
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {},
+    reducers: {
+        logout: (state) => {
+            localStorage.removeItem('userToken');
+            state.loading = false;
+            state.userInfo = null;
+            state.userToken = null;
+            state.error = null;
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(logIn.pending, (state) => {
             state.loading = true
@@ -50,7 +58,6 @@ export const authSlice = createSlice({
             state.loading = false
             state.userInfo = payload
             state.userToken = payload.token
-            console.log(state.userToken);
         });
         builder.addCase(logIn.rejected, (state, { payload }) => {
             state.loading = false
@@ -60,4 +67,4 @@ export const authSlice = createSlice({
     }
 });
 
-export const authActions = authSlice.actions;
+export const { logout } = authSlice.actions;
