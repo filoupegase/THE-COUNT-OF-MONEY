@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import {
     Box,
     TextField,
@@ -8,8 +8,8 @@ import {
     InputAdornment,
     IconButton,
     styled,
-    Button
 } from "@mui/material";
+import { LoadingButton } from '@mui/lab'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useAppDispatch, useAppSelector } from "../../../_core/_store/store";
@@ -25,12 +25,8 @@ interface State {
 }
 
 const LoginForm = () => {
-    const { loading, error, userToken } = useAppSelector((state) => state.auth);
+    const { loading } = useAppSelector((state) => state.auth);
     const appDispatch = useAppDispatch();
-
-    console.log(userToken);
-
-
     const [emailValue, setEmailValue] = useState<string>('');
     const [values, setValues] = useState<State>({
         amount: '',
@@ -59,9 +55,8 @@ const LoginForm = () => {
         event.preventDefault();
     };
 
-    const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleLoginSubmit = (e: FormEvent) => {
         e.preventDefault();
-        // @ts-ignore
         appDispatch(logIn({
             email: emailValue,
             password: values.password
@@ -104,7 +99,12 @@ const LoginForm = () => {
                         />
                     </FormControl>
                     <Box sx={ { mt: 4 } }>
-                        <CustomMuiButton type='submit' variant="contained" disableElevation>
+                        <CustomMuiButton
+                            type='submit'
+                            variant="contained"
+                            disableElevation
+                            loading={ loading }
+                        >
                             log In
                         </CustomMuiButton>
                     </Box>
@@ -120,7 +120,7 @@ const CustomOutlinedInput = styled(OutlinedInput)(() => ({
     }
 }));
 
-const CustomMuiButton = styled(Button)(() => ({
+const CustomMuiButton = styled(LoadingButton)(() => ({
     width: "100%",
     padding: '11px 20px'
 }));
