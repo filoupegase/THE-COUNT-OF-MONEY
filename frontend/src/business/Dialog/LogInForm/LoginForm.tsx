@@ -14,6 +14,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useAppDispatch, useAppSelector } from "../../../_core/_store/store";
 import { LoginFormInterface } from '../../../_core/domaine/domaine';
+import { logIn } from '../../../_core/_store/services/auth/slice';
 
 interface State {
     amount: string;
@@ -24,8 +25,12 @@ interface State {
 }
 
 const LoginForm = () => {
-    const auth = useAppSelector((state) => state.auth);
+    const { loading, error, userToken } = useAppSelector((state) => state.auth);
     const appDispatch = useAppDispatch();
+
+    console.log(userToken);
+
+
     const [emailValue, setEmailValue] = useState<string>('');
     const [values, setValues] = useState<State>({
         amount: '',
@@ -54,16 +59,13 @@ const LoginForm = () => {
         event.preventDefault();
     };
 
-    const loginPayload = {
-        email: emailValue,
-        password: values.password
-    } as LoginFormInterface;
-
-    //const logIn = () => appDispatch(authActions.login(loginPayload));
-
     const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        //logIn();
+        // @ts-ignore
+        appDispatch(logIn({
+            email: emailValue,
+            password: values.password
+        } as LoginFormInterface));
     };
 
     return (
