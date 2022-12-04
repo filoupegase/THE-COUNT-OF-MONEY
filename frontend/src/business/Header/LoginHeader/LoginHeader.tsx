@@ -6,6 +6,7 @@ import DialogActions from "../../../_common/component/Dialog/DialogActions";
 import LoginForm from "../../Dialog/LogInForm";
 import { useAppSelector } from "../../../_core/_store/store";
 import AvatarProfile from "../../../_common/component/AvatarProfile";
+import ButtonLogInExtern from "../../../_common/component/Button/ButtonLogInExtern";
 
 
 interface TabPanelProps {
@@ -36,7 +37,7 @@ function TabPanel(props: TabPanelProps) {
 
 const LoginHeader = () => {
     const { userToken } = useAppSelector((state) => state.auth);
-    const [open, setOpen] = useState<boolean>(false);
+    const [open, setOpen] = useState<boolean>(true);
     const [value, setValue] = React.useState<number>(0);
 
     const handleClickLogin = () => {
@@ -92,6 +93,7 @@ const LoginHeader = () => {
                             <Typography>Sign Up</Typography>
                         </TabPanel>
                         <Divider>OR</Divider>
+                        <ButtonLogInExtern />
                     </DialogContent>
                     <DialogActions>
                     </DialogActions>

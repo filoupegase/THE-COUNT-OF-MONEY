@@ -5,7 +5,7 @@ type Button = {
     onClick?: () => void,
     label: string;
     disabled?: boolean;
-    variant: string;
+    variant: 'contained' | 'outlined';
     type: string;
 };
 
