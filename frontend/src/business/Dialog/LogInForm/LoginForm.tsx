@@ -76,7 +76,7 @@ const LoginForm = () => {
     return (
         <Box sx={ { pt: 0 } }>
             <form onSubmit={ handleLoginSubmit }>
-                <TextField
+                <CustomTextField
                     error={ inputError }
                     fullWidth
                     onChange={ handleChangeDescription }
@@ -107,7 +107,7 @@ const LoginForm = () => {
                                 </IconButton>
                             </InputAdornment>
                         }
-                        label={ inputError ? 'Error' : "Password" }
+                        label="Password"
                         fullWidth
                     />
                 </FormControl>
@@ -130,9 +130,18 @@ const LoginForm = () => {
     )
 };
 
-const CustomOutlinedInput = styled(OutlinedInput)(() => ({
+const CustomTextField = styled(TextField)(({ theme }) => ({
+    '& .MuiInputBase-root.Mui-error': {
+        backgroundColor: `${ theme.palette.error.light }`,
+    }
+}));
+
+const CustomOutlinedInput = styled(OutlinedInput)(({ theme }) => ({
     '& .MuiInputBase-root': {
         width: '100%'
+    },
+    '&.Mui-error': {
+        backgroundColor: `${ theme.palette.error.light }`,
     }
 }));
 

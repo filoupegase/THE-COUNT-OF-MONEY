@@ -5,6 +5,10 @@ const theme = createTheme({
         primary: {
             main: '#3861fb',
         },
+        error: {
+            main: '#E95D5D',
+            light: '#fdefef'
+        },
     },
     typography: {
         fontFamily: [
