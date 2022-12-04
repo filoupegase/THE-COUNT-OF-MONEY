@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Box, DialogContent, Divider, Tabs, Tab, Typography } from "@mui/material";
+import React, { useState } from 'react';
+import { Box, DialogContent, Divider, Tabs, Tab, Typography, styled } from "@mui/material";
 import Button from "../../../_common/component/Button";
 import DialogLayout from "../../../_common/component/Dialog/DialogLayout";
 import DialogActions from "../../../_common/component/Dialog/DialogActions";
@@ -82,8 +82,8 @@ const LoginHeader = () => {
                 <DialogLayout open={ open } onClose={ handleClickLogin }>
                     <DialogContent>
                         <Tabs value={ value } onChange={ handleChangeTab } centered>
-                            <Tab label="Log In" />
-                            <Tab label="Sign Up" />
+                            <StyledTab label="Log In" />
+                            <StyledTab label="Sign Up" />
                         </Tabs>
                         <TabPanel value={ value } index={ 0 }>
                             <LoginForm />
@@ -100,5 +100,11 @@ const LoginHeader = () => {
         </>
     )
 };
+
+const StyledTab = styled(Tab)(() => ({
+    textTransform: 'none',
+    fontSize: 20,
+    fontWeight: 600
+}));
 
 export default LoginHeader;
