@@ -110,7 +110,9 @@ const LoginHeader = () => {
                             <Typography>Sign Up</Typography>
                         </TabPanel>
                         <Divider>OR</Divider>
-                        <ButtonLogInExtern />
+                        <Box sx={ { pt: 3 } }>
+                            <ButtonLogInExtern />
+                        </Box>
                     </DialogContent>
                     <DialogActions>
                     </DialogActions>

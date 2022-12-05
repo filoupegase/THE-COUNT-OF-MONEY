@@ -1,13 +1,12 @@
 import * as React from 'react';
-import { Box, styled, Button } from "@mui/material";
+import { styled, Button } from "@mui/material";
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 
 const ButtonLogInExtern = () => {
     return (
-        <Box sx={ { pt: 2 } }>
-            <CustomLogInExtern startIcon={ <GitHubIcon /> } variant='outlined' type='text'>Github</CustomLogInExtern>
-        </Box>
+        <CustomLogInExtern startIcon={ <GitHubIcon style={ { fontSize: 24 } } /> } variant='outlined'
+                           type='text'>Github</CustomLogInExtern>
     )
 };
 

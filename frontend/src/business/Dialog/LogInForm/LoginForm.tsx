@@ -74,7 +74,7 @@ const LoginForm = () => {
     }, [error]);
 
     return (
-        <Box sx={ { pt: 0 } }>
+        <>
             <form onSubmit={ handleLoginSubmit }>
                 <CustomTextField
                     error={ inputError }
@@ -112,8 +112,8 @@ const LoginForm = () => {
                     />
                 </FormControl>
                 { inputError &&
-                    <Typography color='error' sx={ { mt: 1, fontWeight: 300, fontSize: '0.90rem' } }>Email or Password
-                        Invalid</Typography>
+                    <Typography color='error' sx={ { mt: 1, fontWeight: 300, fontSize: '0.90rem' } }>
+                        Email or Password Invalid</Typography>
                 }
                 <Box sx={ { mt: 3 } }>
                     <CustomMuiButton
@@ -126,7 +126,7 @@ const LoginForm = () => {
                     </CustomMuiButton>
                 </Box>
             </form>
-        </Box>
+        </>
     )
 };
 
@@ -148,7 +148,7 @@ const CustomOutlinedInput = styled(OutlinedInput)(({ theme }) => ({
 const CustomMuiButton = styled(LoadingButton)(() => ({
     width: "100%",
     padding: '11px 20px',
-    fontSize: 20
+    fontSize: 18
 }));
 
 export default LoginForm;
