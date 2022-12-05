@@ -46,52 +46,32 @@ RssModel.find({}, (err, rssFeeds) => {
     console.log(err);
   } else if (rssFeeds.length === 0) {
     const rssFeed1 = new RssModel({
-      name: 'Actualités Altcoins',
-      link: 'https://coinacademy.fr/actu/altcoins?feed=gn',
-      state: true
-    });
-    const rssFeed2 = new RssModel({
       name: 'Actualités Bitcoin',
       link: 'https://coinacademy.fr/actu/bitcoin?feed=gn',
       state: true
     });
-    const rssFeed3 = new RssModel({
+    const rssFeed2 = new RssModel({
       name: 'Actualités Ethereum',
       link: 'https://coinacademy.fr/actu/ethereum?feed=gn',
       state: true
     });
-    const rssFeed4 = new RssModel({
+    const rssFeed3 = new RssModel({
       name: 'Actualités Fiscalité',
       link: 'https://coinacademy.fr/actu/fiscalite?feed=gn',
       state: true
     });
-    const rssFeed5 = new RssModel({
+    const rssFeed4 = new RssModel({
       name: 'Actualités Mining',
       link: 'https://coinacademy.fr/actu/mining?feed=gn',
-      state: true
+      state: false
     });
-    const rssFeed6 = new RssModel({
-      name: 'Actualités NFT',
-      link: 'https://coinacademy.fr/actu/nft?feed=gn',
-      state: true
-    });
-    const rssFeed7 = new RssModel({
-      name: 'Actualités Play-to-Earn',
-      link: 'https://coinacademy.fr/actu/play-to-earn?feed=gn',
-      state: true
-    });
-    const rssFeed8 = new RssModel({
-      name: 'Actualités Régulation',
-      link: 'https://coinacademy.fr/actu/regulation?feed=gn',
-      state: true
-    });
-    const rssFeed9 = new RssModel({
+    const rssFeed5 = new RssModel({
       name: 'Coin Hebdo – Récap de la semaine',
       link: 'https://coinacademy.fr/actu/coin-hebdo?feed=gn',
       state: true
     });
     // Save all the rss feeds at once
-    RssModel.insertMany([rssFeed1, rssFeed2, rssFeed3, rssFeed4, rssFeed5, rssFeed6, rssFeed7, rssFeed8, rssFeed9], (err, docs) => {
+    RssModel.insertMany([rssFeed1, rssFeed2, rssFeed3, rssFeed4, rssFeed5], (err, docs) => {
       if (err) {
         console.log(err);
       } else {
