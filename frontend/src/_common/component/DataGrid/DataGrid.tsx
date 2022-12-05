@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Typography } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 
 type DataGridCmpProps = {
@@ -22,6 +22,17 @@ const DataGridCmp = ({ data }: DataGridCmpProps) => {
 
     return (
         <>
+            <Box>
+                <img
+                    height={ 25 }
+                    width={ 25 }
+                    alt='user logged'
+                    src={ 'https://s2.coinmarketcap.com/static/img/coins/64x64/1.png' }
+                    style={ { cursor: 'pointer' } }
+                />
+                <Typography>Bitcon</Typography>
+                <Typography>BTC</Typography>
+            </Box>
             <div style={ { marginTop: 40 } }></div>
             <DataGrid
                 autoHeight
