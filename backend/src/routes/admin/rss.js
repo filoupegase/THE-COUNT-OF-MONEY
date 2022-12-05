@@ -23,7 +23,8 @@ router.get('/:id', rssController.getRssFeed);
 // Add a new rss feed
 router.post('/', rssController.createRssFeed)
 
-// Update an rss feed
+// Update an rss feed state
+router.put('/:id', rssController.changeRssFeedState);
 
 // Delete an rss feed
 router.delete('/:id', rssController.deleteRssFeed);
