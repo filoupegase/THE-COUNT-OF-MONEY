@@ -9,10 +9,10 @@ const isAdmin = require("./auth/roles");
 // Unprotected routes
 router.use('/', require("./routes/unprotected/default")); // Default routes TODO Remake this
 router.use('/crypto', require("./routes/crypto")); // Crypto routes accessable by everyone
+router.use('/rss', require("./routes/rss")); // RSS routes accessable by everyone')
 
 // User protected routes, just check the jwt
 router.use('/user', passport.authenticate('jwt', {session: false}), require('./routes/user'));
-// router.use("/user", passport.authenticate("jwt", {session: false}), require("./routes/user"));
 
 // Admin protected routes
 router.use('/admin', passport.authenticate('jwt', {session: false}), isAdmin, require('./routes/admin/admin'));
