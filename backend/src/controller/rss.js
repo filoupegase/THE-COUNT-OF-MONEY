@@ -28,7 +28,6 @@ exports.getRssFeedsStateTrue = () => {
     });
 }
 
-
 // Get a single rss feed by id
 exports.getRssFeed = (req, res, next) => {
   Rss.findById(req.params.id, (err, rssFeed) => {
@@ -43,6 +42,12 @@ exports.getRssFeed = (req, res, next) => {
 // Create a new rss feed
 exports.createRssFeed = (req, res, next) => {
   const rssFeed = new Rss(req.body);
+
+  if (!rssFeed.link.startsWith('http')) {
+    res.status(400);
+    return next(new Error('The link must be an url'));
+  }
+
   rssFeed.save((err, newRssFeed) => {
     if (err) {
       res.status(500);
@@ -52,7 +57,16 @@ exports.createRssFeed = (req, res, next) => {
   });
 }
 
-// Update an rss feed
+// Change the state of an rss feed
+exports.changeRssFeedState = (req, res, next) => {
+  Rss.findByIdAndUpdate(req.params.id, {state: req.body.state}, {new: true}, (err, updatedRssFeed) => {
+    if (err) {
+      res.status(500);
+      return next(err);
+    }
+    return res.status(200).send(updatedRssFeed);
+  });
+}
 
 // Delete an rss feed
 exports.deleteRssFeed = (req, res, next) => {
