@@ -20,7 +20,6 @@ router.post('/auth/signup/', passport.authenticate('signup', {session: false}),
 
 // Login
 router.post('/auth/login/', async (req, res, next) => {
-  console.log("== Login ==");
   passport.authenticate('login', async (err, user, info) => {
       try {
         if (err || !user) {
