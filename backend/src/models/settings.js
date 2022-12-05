@@ -20,15 +20,5 @@ const settingsSchema = new Schema({
 
 const Settings = mongoose.model('Settings', settingsSchema);
 
-// Init the settings if they don't exist
-Settings.findOne({}, (err, settings) => {
-  if (err) {
-    console.log(err);
-  } else if (!settings) {
-    const newSettings = new Settings();
-    newSettings.save();
-  }
-});
-
 module.exports = Settings;
 

@@ -26,6 +26,7 @@ router.get('/', async (req, res, next) => {
 router.get('/popular', async (req, res, next) => {
   const limit = await getSettings().then(settings => settings.popularCryptos);
   try {
+    console.log(limit);
     const data = await coinMarketCap.getCoinmarketcapData(`/v1/cryptocurrency/listings/latest?limit=${limit}`);
     res.json(data);
   } catch (err) {
