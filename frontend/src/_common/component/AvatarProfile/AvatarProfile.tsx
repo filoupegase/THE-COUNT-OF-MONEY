@@ -14,8 +14,7 @@ interface UserInfo {
 }
 
 const AvatarProfile = () => {
-    const { userInfo } = useAppSelector((state) =>
-        state.user);
+    const { userInfo } = useAppSelector((state) => state.user);
     const [user, setUser] = useState<UserInfo>({
         email: '',
         username: '',
@@ -43,7 +42,7 @@ const AvatarProfile = () => {
             setUser(userInfo);
         }
     });
-    
+
     return (
         <>
             <img

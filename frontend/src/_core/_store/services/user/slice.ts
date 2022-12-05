@@ -15,7 +15,7 @@ export const initialState = {
 export const fetchUserProfile = createAsyncThunk('user/profile',
     async (arg, { getState, rejectWithValue }) => {
         try {
-            // @ts-ignore
+            // @ts-ignores
             const { auth } = getState();
             const config = {
                 headers: {

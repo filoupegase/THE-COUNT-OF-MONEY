@@ -56,6 +56,7 @@ export const authSlice = createSlice({
         });
         builder.addCase(logIn.fulfilled, (state, { payload }) => {
             state.loading = false
+            state.success = true
             state.userInfo = payload
             state.userToken = payload.token
         });

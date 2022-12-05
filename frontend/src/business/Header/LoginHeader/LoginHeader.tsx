@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, DialogContent, Divider, Tabs, Tab, Typography, styled } from "@mui/material";
+import { Box, DialogContent, Divider, Tabs, Tab, Typography, styled, Alert } from "@mui/material";
 import Button from "../../../_common/component/Button";
 import DialogLayout from "../../../_common/component/Dialog/DialogLayout";
 import DialogActions from "../../../_common/component/Dialog/DialogActions";
@@ -7,6 +7,7 @@ import LoginForm from "../../Dialog/LogInForm";
 import { useAppSelector } from "../../../_core/_store/store";
 import AvatarProfile from "../../../_common/component/AvatarProfile";
 import ButtonLogInExtern from "../../../_common/component/Button/ButtonLogInExtern";
+import Snackbar from '@mui/material/Snackbar';
 
 
 interface TabPanelProps {
@@ -36,9 +37,10 @@ function TabPanel(props: TabPanelProps) {
 }
 
 const LoginHeader = () => {
-    const { userToken } = useAppSelector((state) => state.auth);
+    const { userToken, success } = useAppSelector((state) => state.auth);
     const [open, setOpen] = useState<boolean>(true);
     const [value, setValue] = React.useState<number>(0);
+    const [openSnackBar, set0penSnackBar] = useState<boolean>(true);
 
     const handleClickLogin = () => {
         setOpen(!open);
@@ -53,6 +55,14 @@ const LoginHeader = () => {
     const handleChangeTab = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
+
+    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        set0penSnackBar(false);
+    };
+
 
     return (
         <>
@@ -75,6 +85,13 @@ const LoginHeader = () => {
                 { userToken &&
                     <>
                         <AvatarProfile />
+                        { openSnackBar && success &&
+                            <Snackbar open={ openSnackBar } autoHideDuration={ 3000 } onClose={ handleClose }>
+                                <Alert severity="success" sx={ { width: '100%' } }>
+                                    This is a success message!
+                                </Alert>
+                            </Snackbar>
+                        }
                     </>
                 }
             </Box>
