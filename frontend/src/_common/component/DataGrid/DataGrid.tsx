@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { styled } from '@mui/material';
 import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 
 const rows: GridRowsProp = [
@@ -16,9 +15,9 @@ const rows: GridRowsProp = [
 ];
 
 const columns: GridColDef[] = [
-    { field: "id", headerName: "#", hide: false },
+    { field: "id", headerName: "#", hide: false, },
     { field: "name", headerName: "Name", width: 150 },
-    { field: "price", headerName: "Price", width: 150 }
+    { field: "price", headerName: "Price", width: 150 },
 ];
 
 const DataGridCmp = () => {
@@ -26,13 +25,19 @@ const DataGridCmp = () => {
     return (
         <>
             <div style={ { marginTop: 40 } }></div>
-            <CustomDataGrid rows={ rows } columns={ columns } />
+            <div style={ {
+                display: 'flex',
+            } }>
+                <DataGrid
+                    autoHeight
+                    rows={ rows }
+                    columns={ columns }
+                    getRowId={ (row) => row.id }
+                />
+            </div>
         </>
     )
 };
 
-const CustomDataGrid = styled(DataGrid)(() => ({
-    border: "none"
-}));
 
 export default DataGridCmp;

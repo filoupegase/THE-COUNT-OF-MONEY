@@ -1,4 +1,6 @@
 import { createTheme } from '@mui/material/styles';
+// When using TypeScript 4.x and above
+import type {} from '@mui/x-data-grid/themeAugmentation';
 
 const theme = createTheme({
     palette: {
@@ -19,6 +21,16 @@ const theme = createTheme({
         },
     },
     components: {
+        // Use `MuiDataGrid` on DataGrid, DataGridPro and DataGridPremium
+        MuiDataGrid: {
+            styleOverrides: {
+                root: {
+                    border: 'none',
+                    background: 'white',
+                    borderRadius: 5
+                },
+            },
+        },
         MuiOutlinedInput: {
             styleOverrides: {
                 root: {

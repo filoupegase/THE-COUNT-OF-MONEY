@@ -16,7 +16,7 @@ const Layout = ({ children }: PropsWithChildren) => {
                 <NavHeader />
             </Header>
             <Container>
-                <div style={ { height: '600px' } }>
+                <div>
                     { children }
                 </div>
             </Container>
