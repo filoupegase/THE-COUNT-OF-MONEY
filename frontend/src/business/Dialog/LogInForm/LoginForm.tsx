@@ -148,7 +148,7 @@ const CustomOutlinedInput = styled(OutlinedInput)(({ theme }) => ({
 const CustomMuiButton = styled(LoadingButton)(() => ({
     width: "100%",
     padding: '11px 20px',
-    fontSize: 17
+    fontSize: 20
 }));
 
 export default LoginForm;

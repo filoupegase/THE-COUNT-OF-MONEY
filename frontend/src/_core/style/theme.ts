@@ -1,9 +1,12 @@
 import { createTheme } from '@mui/material/styles';
-// When using TypeScript 4.x and above
 import type {} from '@mui/x-data-grid/themeAugmentation';
 
 const theme = createTheme({
     palette: {
+        common: {
+            black: '#000',
+            white: '#fff'
+        },
         primary: {
             main: '#3861fb',
         },
@@ -21,7 +24,6 @@ const theme = createTheme({
         },
     },
     components: {
-        // Use `MuiDataGrid` on DataGrid, DataGridPro and DataGridPremium
         MuiDataGrid: {
             styleOverrides: {
                 root: {

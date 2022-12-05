@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Typography } from '@mui/material';
-import { DataGrid, GridColDef, GridValueGetterParams, GridRenderCellParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 
 const rows = [
     { id: 1, name: "Hello", price: "World" },
@@ -14,11 +14,6 @@ const rows = [
     { id: 9, name: "MUI Base", price: "is amazing" },
     { id: 10, name: "MUI Base", price: "is amazing" }
 ];
-
-function getFullName(params: GridValueGetterParams) {
-    return `${ params.row.name || '' } ${ params.row.price || '' }`;
-}
-
 
 const columns: GridColDef[] = [
     { field: "id", headerName: "#", hide: false, },
