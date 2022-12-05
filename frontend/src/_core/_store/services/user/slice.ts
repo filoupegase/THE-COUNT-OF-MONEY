@@ -57,5 +57,3 @@ export const userSlice = createSlice({
         });
     }
 });
-
-//export const {} = userSlice.actions;

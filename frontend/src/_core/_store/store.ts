@@ -7,9 +7,9 @@ import {
     ListenerEffectAPI,
     addListener,
 } from '@reduxjs/toolkit'
-import { counterSlice } from './services/counter/slice';
 import { authSlice } from './services/auth/slice';
 import { userSlice } from './services/user/slice';
+import { cryptoSlice } from "./services/crypto/slice";
 
 const listenerMiddlewareInstance = createListenerMiddleware({
     onError: () => console.error,
@@ -17,9 +17,9 @@ const listenerMiddlewareInstance = createListenerMiddleware({
 
 const store = configureStore({
     reducer: {
-        [counterSlice.name]: counterSlice.reducer,
         [authSlice.name]: authSlice.reducer,
-        [userSlice.name]: userSlice.reducer
+        [userSlice.name]: userSlice.reducer,
+        [cryptoSlice.name]: cryptoSlice.reducer
     },
     middleware: (gDM) => gDM().prepend(listenerMiddlewareInstance.middleware),
 });
@@ -36,7 +36,6 @@ export type AppListenerEffectAPI = ListenerEffectAPI<RootState, AppDispatch>
 // @see https://redux-toolkit.js.org/api/createListenerMiddleware#typescript-usage
 export type AppStartListening = TypedStartListening<RootState, AppDispatch>
 export type AppAddListener = TypedAddListener<RootState, AppDispatch>
-
 export const startAppListening = listenerMiddlewareInstance.startListening as AppStartListening
 export const addAppListener = addListener as AppAddListener
 

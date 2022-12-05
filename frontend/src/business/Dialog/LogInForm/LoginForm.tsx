@@ -16,6 +16,8 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useAppDispatch, useAppSelector } from "../../../_core/_store/store";
 import { LoginFormInterface } from '../../../_core/domaine/domaine';
 import { logIn } from '../../../_core/_store/services/auth/slice';
+import { Simulate } from "react-dom/test-utils";
+import load = Simulate.load;
 
 interface State {
     amount: string;

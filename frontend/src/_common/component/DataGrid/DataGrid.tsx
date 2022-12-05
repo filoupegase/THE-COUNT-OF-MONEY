@@ -2,40 +2,30 @@ import * as React from 'react';
 import { Typography } from '@mui/material';
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 
-const rows = [
-    { id: 1, name: "Hello", price: "World" },
-    { id: 2, name: "MUI X", price: "is awesome" },
-    { id: 3, name: "Material UI", price: "is amazing" },
-    { id: 4, name: "MUI", price: "" },
-    { id: 5, name: "Joy UI", price: "is awesome" },
-    { id: 6, name: "MUI Base", price: "is amazing" },
-    { id: 7, name: "MUI", price: "12332" },
-    { id: 8, name: "Joy UI", price: "is awesome" },
-    { id: 9, name: "MUI Base", price: "is amazing" },
-    { id: 10, name: "MUI Base", price: "is amazing" }
-];
+type DataGridCmpProps = {
+    data: any;
+}
 
 const columns: GridColDef[] = [
     { field: "id", headerName: "#", hide: false, },
     {
-        field: "name",
-        headerName: "Name",
-        width: 150,
+        field: "name", headerName: "Name", width: 150,
         renderCell: (params: GridRenderCellParams) => (
-            <Typography>{ params.row.name }</Typography>
+            <Typography color='primary'>{ params.row.name }</Typography>
         )
     },
-    { field: "price", headerName: "Price", width: 150 },
+    { field: "symbol", headerName: "Symbol", width: 150 },
+    { field: "circulating_supply", headerName: "Price", width: 150 },
 ];
 
-const DataGridCmp = () => {
+const DataGridCmp = ({ data }: DataGridCmpProps) => {
 
     return (
         <>
             <div style={ { marginTop: 40 } }></div>
             <DataGrid
                 autoHeight
-                rows={ rows }
+                rows={ data }
                 columns={ columns }
             />
         </>

@@ -38,7 +38,7 @@ function TabPanel(props: TabPanelProps) {
 
 const LoginHeader = () => {
     const { userToken, success } = useAppSelector((state) => state.auth);
-    const [open, setOpen] = useState<boolean>(true);
+    const [open, setOpen] = useState<boolean>(false);
     const [value, setValue] = React.useState<number>(0);
     const [openSnackBar, set0penSnackBar] = useState<boolean>(true);
 

@@ -8,7 +8,10 @@ const NavHeader = () => {
         <>
             <Box sx={ { display: 'flex', alignItems: 'center' } }>
                 <DiamondIcon style={ { height: 32, width: 32, marginRight: 5 } } />
-                <Typography sx={ { fontWeight: 600, letterSpacing: '-1px' } } variant="h6">The Count of Money
+                <Typography sx={ { fontWeight: 600, letterSpacing: '-1px' } }
+                            variant="h6"
+                >
+                    The Count of Money
                 </Typography>
             </Box>
             <Box>

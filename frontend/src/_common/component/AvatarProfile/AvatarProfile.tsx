@@ -15,15 +15,15 @@ interface UserInfo {
 
 const AvatarProfile = () => {
     const { userInfo } = useAppSelector((state) => state.user);
+    const appDispatch = useAppDispatch();
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
     const [user, setUser] = useState<UserInfo>({
         email: '',
         username: '',
         _id: '',
         roles: null,
     });
-    const appDispatch = useAppDispatch();
-    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);

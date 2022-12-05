@@ -26,7 +26,6 @@ function App() {
 
 const BoxStyled = styled(Box)(() => ({
     background: 'linear-gradient(rgb(243 248 255) 0%, rgba(248, 250, 253, 0) 413px)',
-    height: '1200px'
 }));
 
 export default App;
