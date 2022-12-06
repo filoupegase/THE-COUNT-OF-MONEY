@@ -5,12 +5,13 @@ import {
     FormControl,
     InputLabel,
     OutlinedInput,
-    styled,
+    styled, Typography,
 } from "@mui/material";
 
 
 const SignUpForm = () => {
     const [usernameValue, setUsernameValue] = useState<string>('');
+    const [helperText, setHelperText] = useState<string>('saltu pute');
 
     const handleChangeUsername: ChangeEventHandler<HTMLInputElement> = (e) => {
         setUsernameValue(e.target.value);
@@ -34,6 +35,11 @@ const SignUpForm = () => {
                     type='text'
                     margin='normal'
                 />
+                {
+                    //inputError &&
+                    <Typography color='error' sx={ { mt: 1, fontWeight: 300, fontSize: '0.90rem' } }
+                    >{ helperText }</Typography>
+                }
             </form>
         </>
     )
