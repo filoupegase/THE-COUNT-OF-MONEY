@@ -1,4 +1,4 @@
-import React, { FormEvent } from "react";
+import React, { useState, FormEvent, ChangeEventHandler } from "react";
 import {
     Box,
     TextField,
@@ -10,6 +10,11 @@ import {
 
 
 const SignUpForm = () => {
+    const [usernameValue, setUsernameValue] = useState<string>('');
+
+    const handleChangeUsername: ChangeEventHandler<HTMLInputElement> = (e) => {
+        setUsernameValue(e.target.value);
+    }
 
     const handleLoginSubmit = (event: FormEvent) => {
         event.preventDefault();
@@ -19,13 +24,13 @@ const SignUpForm = () => {
         <>
             <form onSubmit={ handleLoginSubmit }>
                 <CustomTextField
-                    //error={ inputError }
+                    error={ false }
                     fullWidth
-                    //onChange={ handleChangeDescription }
-                    id="email"
+                    onChange={ handleChangeUsername }
+                    id="username-input"
                     label='username'
                     variant="outlined"
-                    //value={ emailValue }
+                    value={ usernameValue }
                     type='text'
                     margin='normal'
                 />

@@ -39,7 +39,7 @@ const LogInForm = () => {
         showPassword: false,
     });
 
-    const handleChangeDescription: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    const handleChangeEmail: React.ChangeEventHandler<HTMLInputElement> = (e) => {
         setEmailValue(e.target.value);
         setInputError(false);
     };
@@ -80,7 +80,7 @@ const LogInForm = () => {
                 <CustomTextField
                     error={ inputError }
                     fullWidth
-                    onChange={ handleChangeDescription }
+                    onChange={ handleChangeEmail }
                     id="email"
                     label={ inputError ? 'Error' : "Email Address" }
                     variant="outlined"
