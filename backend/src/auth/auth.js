@@ -1,5 +1,8 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const GoogleStrategy = require('passport-google-oauth2').Strategy;
+const JWTstrategy = require('passport-jwt').Strategy;
+const ExtractJWT = require('passport-jwt').ExtractJwt;
 const UserModel = require('../models/user');
 
 passport.use('signup',
@@ -20,6 +23,9 @@ passport.use('signup',
         // Verify if the username is already in use
         if (await UserModel.findOne({username: req.body.username}))
           throw new Error("Username is already in use")
+
+        if (password.length < 8)
+          throw new Error("Password is too short 8 characters minimum")
 
         const user = await UserModel.create({
           email,
@@ -59,9 +65,6 @@ passport.use('login',
   )
 );
 
-const JWTstrategy = require('passport-jwt').Strategy;
-const ExtractJWT = require('passport-jwt').ExtractJwt;
-
 passport.use(
   new JWTstrategy(
     {
@@ -81,3 +84,4 @@ passport.use(
     }
   )
 );
+
