@@ -15,7 +15,7 @@ const StackNameCrypto = ({ id, name, symbol }: StackNameCryptoProps) => {
                  style={ { cursor: 'pointer' } }
             />
             <Typography variant='subtitle1'>{ name }</Typography>
-            <Typography variant="subtitle2">{ symbol }</Typography>
+            <Typography sx={ { color: 'rgb(128, 138, 157)' } } variant="subtitle2">{ symbol }</Typography>
         </Stack>
     )
 }

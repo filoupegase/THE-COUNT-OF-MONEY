@@ -19,6 +19,9 @@ const theme = createTheme({
         fontFamily: [
             'Inter', '-apple-system', 'BlinkMacSystemFont', 'segoe ui', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'
         ].join(','),
+        subtitle1: {
+            fontWeight: 500
+        },
         button: {
             textTransform: 'capitalize'
         },

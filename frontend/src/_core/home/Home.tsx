@@ -4,6 +4,7 @@ import DataGrid from "../../_common/component/DataGrid/DataGrid";
 //import { useAppDispatch, useAppSelector } from "../_store/store";
 //import { getCrypto } from "../_store/services/crypto/slice";
 import { NoFetch } from "./Nofetch";
+import { Typography } from "@mui/material";
 
 function Home() {
     //const { cryptoData } = useAppSelector((state) => state.crypto)
@@ -16,6 +17,9 @@ function Home() {
 
     return (
         <>
+            <Typography sx={ { fontWeight: 700, mb: 1 } } variant='h5'>
+                { "Today's Cryptocurrency Prices by Count of Money" }
+            </Typography>
             <DataGrid data={ NoFetch } />
         </>
     )
