@@ -3,7 +3,7 @@ import { Typography, Box } from '@mui/material';
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 
 type DataGridCmpProps = {
-    data: any;
+    data: object[];
 }
 
 const columns: GridColDef[] = [

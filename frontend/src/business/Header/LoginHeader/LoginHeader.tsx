@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, PropsWithChildren } from 'react';
 import { Box, DialogContent, Divider, Tabs, Tab, Typography, styled, Alert } from "@mui/material";
 import Button from "../../../_common/component/Button";
 import DialogLayout from "../../../_common/component/Dialog/DialogLayout";
@@ -10,11 +10,10 @@ import ButtonLogInExtern from "../../../_common/component/Button/ButtonLogInExte
 import Snackbar from '@mui/material/Snackbar';
 
 
-interface TabPanelProps {
-    children?: React.ReactNode;
+type TabPanelProps = PropsWithChildren<{
     index: number;
     value: number;
-}
+}>
 
 function TabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
@@ -39,7 +38,7 @@ function TabPanel(props: TabPanelProps) {
 const LoginHeader = () => {
     const { userToken, success } = useAppSelector((state) => state.auth);
     const [open, setOpen] = useState<boolean>(false);
-    const [value, setValue] = React.useState<number>(0);
+    const [value, setValue] = useState<number>(0);
     const [openSnackBar, set0penSnackBar] = useState<boolean>(true);
 
     const handleClickLogin = () => {
