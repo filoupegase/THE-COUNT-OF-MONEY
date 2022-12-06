@@ -11,9 +11,14 @@ import {
 
 const SignUpForm = () => {
     const [usernameValue, setUsernameValue] = useState<string>('');
-    const [helperText, setHelperText] = useState<string>('saltu pute');
+    const [emailValue, setEmailValue] = useState<string>('');
+    const [helperText, setHelperText] = useState<string>('');
 
     const handleChangeUsername: ChangeEventHandler<HTMLInputElement> = (e) => {
+        setUsernameValue(e.target.value);
+    }
+
+    const handleChangeEmail: ChangeEventHandler<HTMLInputElement> = (e) => {
         setUsernameValue(e.target.value);
     }
 
@@ -33,6 +38,17 @@ const SignUpForm = () => {
                     variant="outlined"
                     value={ usernameValue }
                     type='text'
+                    margin='normal'
+                />
+                <CustomTextField
+                    error={ false }
+                    fullWidth
+                    onChange={ handleChangeEmail }
+                    id="email-input"
+                    label='email'
+                    variant="outlined"
+                    value={ emailValue }
+                    type='email'
                     margin='normal'
                 />
                 {
