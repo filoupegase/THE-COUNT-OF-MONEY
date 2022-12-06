@@ -16,8 +16,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useAppDispatch, useAppSelector } from "../../../_core/_store/store";
 import { LoginFormInterface } from '../../../_core/domaine/domaine';
 import { logIn } from '../../../_core/_store/services/auth/slice';
-import { Simulate } from "react-dom/test-utils";
-import load = Simulate.load;
+
 
 interface State {
     amount: string;
@@ -27,7 +26,7 @@ interface State {
     showPassword: boolean;
 }
 
-const LoginForm = () => {
+const LogInForm = () => {
     const { loading, error } = useAppSelector((state) => state.auth);
     const appDispatch = useAppDispatch();
     const [inputError, setInputError] = useState<boolean>(false);
@@ -153,4 +152,4 @@ const CustomMuiButton = styled(LoadingButton)(() => ({
     fontSize: 18
 }));
 
-export default LoginForm;
+export default LogInForm;

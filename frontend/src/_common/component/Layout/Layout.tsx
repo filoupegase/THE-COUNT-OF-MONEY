@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import Container from '@mui/material/Container';
 import Header from "../Header";
 import Footer from "../Footer";
-import LoginHeader from "../../../business/Header/LoginHeader";
+import AuthHeader from "../../../business/Header/AuthHeader";
 import NavHeader from "../../../business/Header/NavHeader";
 
 
@@ -10,7 +10,7 @@ const Layout = ({ children }: PropsWithChildren) => {
     return (
         <>
             <Header>
-                <LoginHeader />
+                <AuthHeader />
             </Header>
             <Header>
                 <NavHeader />

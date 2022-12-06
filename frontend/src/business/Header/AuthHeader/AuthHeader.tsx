@@ -1,13 +1,14 @@
 import React, { useState, PropsWithChildren } from 'react';
-import { Box, DialogContent, Divider, Tabs, Tab, Typography, styled, Alert } from "@mui/material";
+import { Box, DialogContent, Divider, Tabs, Tab, styled, Alert } from "@mui/material";
 import Button from "../../../_common/component/Button";
 import DialogLayout from "../../../_common/component/Dialog/DialogLayout";
 import DialogActions from "../../../_common/component/Dialog/DialogActions";
-import LoginForm from "../../Dialog/LogInForm";
+import LogInForm from "../../Dialog/LogInForm";
 import { useAppSelector } from "../../../_core/_store/store";
 import AvatarProfile from "../../../_common/component/AvatarProfile";
 import ButtonLogInExtern from "../../../_common/component/Button/ButtonLogInExtern";
 import Snackbar from '@mui/material/Snackbar';
+import SignUpForm from "../../Dialog/SignUpForm";
 
 
 type TabPanelProps = PropsWithChildren<{
@@ -35,10 +36,10 @@ function TabPanel(props: TabPanelProps) {
     );
 }
 
-const LoginHeader = () => {
+const AuthHeader = () => {
     const { userToken, success } = useAppSelector((state) => state.auth);
-    const [open, setOpen] = useState<boolean>(false);
-    const [value, setValue] = useState<number>(0);
+    const [open, setOpen] = useState<boolean>(true);
+    const [value, setValue] = useState<number>(1);
     const [openSnackBar, set0penSnackBar] = useState<boolean>(true);
 
     const handleClickLogin = () => {
@@ -85,11 +86,17 @@ const LoginHeader = () => {
                     <>
                         <AvatarProfile />
                         { openSnackBar && success &&
-                            <Snackbar open={ openSnackBar } autoHideDuration={ 3000 } onClose={ handleClose }>
+                            <StyledSnackbar
+                                anchorOrigin={ {
+                                    vertical: 'top',
+                                    horizontal: 'center'
+                                } }
+                                open={ openSnackBar }
+                                autoHideDuration={ 4000 } onClose={ handleClose }>
                                 <Alert severity="success" sx={ { width: '100%' } }>
-                                    This is a success message!
+                                    You are now connected !
                                 </Alert>
-                            </Snackbar>
+                            </StyledSnackbar>
                         }
                     </>
                 }
@@ -103,15 +110,20 @@ const LoginHeader = () => {
                             <StyledTab label="Sign Up" />
                         </Tabs>
                         <TabPanel value={ value } index={ 0 }>
-                            <LoginForm />
+                            <LogInForm />
                         </TabPanel>
                         <TabPanel value={ value } index={ 1 }>
-                            <Typography>Sign Up</Typography>
+                            <SignUpForm />
                         </TabPanel>
-                        <Divider>OR</Divider>
-                        <Box sx={ { pt: 3 } }>
-                            <ButtonLogInExtern />
-                        </Box>
+                        { value === 0 ?
+                            <>
+                                <Divider>OR</Divider>
+                                <Box sx={ { pt: 3 } }>
+                                    <ButtonLogInExtern />
+                                </Box>
+                            </>
+                            : null
+                        }
                     </DialogContent>
                     <DialogActions>
                     </DialogActions>
@@ -127,4 +139,11 @@ const StyledTab = styled(Tab)(() => ({
     fontWeight: 600
 }));
 
-export default LoginHeader;
+const StyledSnackbar = styled(Snackbar)(() => ({
+    '& .MuiPaper-root': {
+        background: '#536954',
+        color: 'white'
+    }
+}))
+
+export default AuthHeader;

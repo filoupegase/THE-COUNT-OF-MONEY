@@ -1,8 +1,9 @@
-import * as React from 'react';
+import React, { lazy } from 'react';
 import { Box, styled } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "../../_common/component/Layout";
-import Home from '../home';
+
+const Home = lazy(() => import('../home'));
 
 function App() {
     return (
