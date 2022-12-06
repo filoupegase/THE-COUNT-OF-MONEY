@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Typography, Box } from '@mui/material';
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
+import StackNameCrypto from "../StackNameCrypto";
 
 type DataGridCmpProps = {
     data: object[];
@@ -9,12 +9,16 @@ type DataGridCmpProps = {
 const columns: GridColDef[] = [
     { field: "id", headerName: "#", hide: false, },
     {
-        field: "name", headerName: "Name", width: 150,
+        field: "name", headerName: "Name", width: 200,
         renderCell: (params: GridRenderCellParams) => (
-            <Typography color='primary'>{ params.row.name }</Typography>
+            <StackNameCrypto
+                name={ params.row.name }
+                id={ params.row.id }
+                symbol={ params.row.symbol }
+            />
         )
     },
-    { field: "symbol", headerName: "Symbol", width: 150 },
+    { field: "symbol", headerName: "Symbol" },
     { field: "circulating_supply", headerName: "Price", width: 150 },
 ];
 
@@ -22,22 +26,19 @@ const DataGridCmp = ({ data }: DataGridCmpProps) => {
 
     return (
         <>
-            <Box>
-                <img
-                    height={ 25 }
-                    width={ 25 }
-                    alt='user logged'
-                    src={ 'https://s2.coinmarketcap.com/static/img/coins/64x64/1.png' }
-                    style={ { cursor: 'pointer' } }
-                />
-                <Typography>Bitcon</Typography>
-                <Typography>BTC</Typography>
-            </Box>
             <div style={ { marginTop: 40 } }></div>
             <DataGrid
                 autoHeight
                 rows={ data }
                 columns={ columns }
+                sx={ {
+                    '& .MuiDataGrid-cell': {
+                        '& :hover': {
+                            color: 'primary.main',
+                        },
+                    }
+                }
+                }
             />
         </>
     )

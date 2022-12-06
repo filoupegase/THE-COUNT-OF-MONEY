@@ -15,7 +15,7 @@ const Layout = ({ children }: PropsWithChildren) => {
             <Header>
                 <NavHeader />
             </Header>
-            <Container>
+            <Container sx={ { width: 1200 } }>
                 <div>
                     { children }
                 </div>
