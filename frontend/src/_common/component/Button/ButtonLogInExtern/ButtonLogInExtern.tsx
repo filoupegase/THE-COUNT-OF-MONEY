@@ -12,7 +12,7 @@ const ButtonLogInExtern = () => {
 
 const CustomLogInExtern = styled(Button)(({ theme }) => ({
     width: "100%",
-    padding: '11px 20px',
+    padding: '9px 20px',
     fontSize: 20,
     color: theme.palette.common.black,
     border: `solid 0.1rem ${ theme.palette.common.black }`,

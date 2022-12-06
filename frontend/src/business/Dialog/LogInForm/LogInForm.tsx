@@ -18,7 +18,7 @@ import { LoginFormInterface } from '../../../_core/domaine/domaine';
 import { logIn } from '../../../_core/_store/services/auth/slice';
 
 
-interface State {
+export interface State {
     amount: string;
     password: string;
     weight: string;
