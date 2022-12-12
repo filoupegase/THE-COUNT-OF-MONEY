@@ -1,20 +1,26 @@
-import React, { useState, FormEvent, ChangeEventHandler } from "react";
+import React, { useState, FormEvent, ChangeEventHandler, useEffect } from "react";
 import {
-    Box,
     TextField,
     FormControl,
     InputLabel,
     OutlinedInput,
-    styled, Typography, InputAdornment, IconButton,
+    styled, Typography, InputAdornment, IconButton, Box,
 } from "@mui/material";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import { State } from '../LogInForm';
+import { LoadingButton } from "@mui/lab";
+import { useAppDispatch, useAppSelector } from "../../../_core/_store/store";
+import { SignUp } from "../../../_core/_store/services/register/slice";
+import { SignUpFormInterface } from "../../../_core/domaine/domaine";
 
 
 const SignUpForm = () => {
+    const { error } = useAppSelector((state) => state.register);
+    const appDispatch = useAppDispatch();
     const [usernameValue, setUsernameValue] = useState<string>('');
     const [emailValue, setEmailValue] = useState<string>('');
+    const [inputError, setInputError] = useState<boolean>(false);
     const [helperText, setHelperText] = useState<string>('');
     const [valuesPassword, setValuesPassword] = useState<State>({
         amount: '',
@@ -26,6 +32,7 @@ const SignUpForm = () => {
 
     const handleChangeUsername: ChangeEventHandler<HTMLInputElement> = (e) => {
         setUsernameValue(e.target.value);
+        setInputError(false);
     };
 
     const handleChangeEmail: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -47,15 +54,32 @@ const SignUpForm = () => {
         });
     };
 
+    useEffect(() => {
+        if (error) {
+            setInputError(true);
+            setHelperText(error);
+        }
+    }, [error]);
+
     const handleLoginSubmit = (event: FormEvent) => {
         event.preventDefault();
+        if (usernameValue.length <= 0 || usernameValue.length <= 0) {
+            setHelperText('Please fill in all the fields');
+            setInputError(true);
+        } else {
+            appDispatch(SignUp({
+                email: emailValue,
+                password: valuesPassword.password,
+                username: usernameValue
+            } as SignUpFormInterface));
+        }
     };
 
     return (
         <>
             <form onSubmit={ handleLoginSubmit }>
                 <CustomTextField
-                    error={ false }
+                    error={ inputError }
                     fullWidth
                     onChange={ handleChangeUsername }
                     id="username-input"
@@ -66,7 +90,7 @@ const SignUpForm = () => {
                     margin='normal'
                 />
                 <CustomTextField
-                    error={ false }
+                    error={ inputError }
                     fullWidth
                     onChange={ handleChangeEmail }
                     id="email-input"
@@ -79,7 +103,7 @@ const SignUpForm = () => {
                 <FormControl sx={ { width: '100%', mt: 1 } } variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                     <CustomOutlinedInput
-                        error={ false }
+                        error={ inputError }
                         id="password-input"
                         type={ valuesPassword.showPassword ? 'text' : 'password' }
                         value={ valuesPassword.password }
@@ -100,12 +124,21 @@ const SignUpForm = () => {
                         fullWidth
                     />
                 </FormControl>
-
                 {
-                    //inputError &&
+                    inputError &&
                     <Typography color='error' sx={ { mt: 1, fontWeight: 300, fontSize: '0.90rem' } }
                     >{ helperText }</Typography>
                 }
+                <Box sx={ { mt: 3 } }>
+                    <CustomMuiButton
+                        type='submit'
+                        variant="contained"
+                        disableElevation
+                        //loading={ loading }
+                    >
+                        Sign Up
+                    </CustomMuiButton>
+                </Box>
             </form>
         </>
     )
@@ -124,6 +157,12 @@ const CustomOutlinedInput = styled(OutlinedInput)(({ theme }) => ({
     '&.Mui-error': {
         backgroundColor: `${ theme.palette.error.light }`,
     }
+}));
+
+const CustomMuiButton = styled(LoadingButton)(() => ({
+    width: "100%",
+    padding: '11px 20px',
+    fontSize: 18
 }));
 
 export default SignUpForm;

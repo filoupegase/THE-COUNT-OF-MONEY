@@ -4,7 +4,13 @@ export interface User {
     username: string;
 }
 
-export interface LoginFormInterface {
+export interface LogInFormInterface {
     email: string;
     password: string;
+}
+
+export interface SignUpFormInterface {
+    email: string;
+    password: string;
+    username: string;
 }

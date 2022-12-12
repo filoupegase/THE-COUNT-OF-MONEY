@@ -14,7 +14,7 @@ import { LoadingButton } from '@mui/lab'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useAppDispatch, useAppSelector } from "../../../_core/_store/store";
-import { LoginFormInterface } from '../../../_core/domaine/domaine';
+import { LogInFormInterface } from '../../../_core/domaine/domaine';
 import { logIn } from '../../../_core/_store/services/auth/slice';
 
 
@@ -26,11 +26,16 @@ export interface State {
     showPassword: boolean;
 }
 
-const LogInForm = () => {
+export type LogInFormProps = {
+    userEmail: string;
+}
+
+const LogInForm = ({ userEmail }: LogInFormProps) => {
     const { loading, error } = useAppSelector((state) => state.auth);
     const appDispatch = useAppDispatch();
     const [inputError, setInputError] = useState<boolean>(false);
-    const [emailValue, setEmailValue] = useState<string>('');
+    // @ts-ignore
+    const [emailValue, setEmailValue] = useState<string>(userEmail ? userEmail : '');
     const [values, setValues] = useState<State>({
         amount: '',
         password: '',
@@ -65,7 +70,7 @@ const LogInForm = () => {
         appDispatch(logIn({
             email: emailValue,
             password: values.password
-        } as LoginFormInterface));
+        } as LogInFormInterface));
     };
 
     useEffect(() => {

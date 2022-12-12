@@ -10,6 +10,8 @@ import {
 import { authSlice } from './services/auth/slice';
 import { userSlice } from './services/user/slice';
 import { cryptoSlice } from "./services/crypto/slice";
+import { registerSlice } from "./services/register/slice";
+
 
 const listenerMiddlewareInstance = createListenerMiddleware({
     onError: () => console.error,
@@ -18,6 +20,7 @@ const listenerMiddlewareInstance = createListenerMiddleware({
 const store = configureStore({
     reducer: {
         [authSlice.name]: authSlice.reducer,
+        [registerSlice.name]: registerSlice.reducer,
         [userSlice.name]: userSlice.reducer,
         [cryptoSlice.name]: cryptoSlice.reducer
     },

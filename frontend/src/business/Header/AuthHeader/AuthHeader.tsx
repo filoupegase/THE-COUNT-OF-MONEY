@@ -1,4 +1,4 @@
-import React, { useState, PropsWithChildren } from 'react';
+import React, { useState, PropsWithChildren, useEffect } from 'react';
 import { Box, DialogContent, Divider, Tabs, Tab, styled, Alert } from "@mui/material";
 import Button from "../../../_common/component/Button";
 import DialogLayout from "../../../_common/component/Dialog/DialogLayout";
@@ -38,8 +38,9 @@ function TabPanel(props: TabPanelProps) {
 
 const AuthHeader = () => {
     const { userToken, success } = useAppSelector((state) => state.auth);
-    const [open, setOpen] = useState<boolean>(true);
-    const [value, setValue] = useState<number>(1);
+    const { userEmail } = useAppSelector((state) => state.register);
+    const [open, setOpen] = useState<boolean>(false);
+    const [value, setValue] = useState<number>(0);
     const [openSnackBar, set0penSnackBar] = useState<boolean>(true);
 
     const handleClickLogin = () => {
@@ -62,6 +63,12 @@ const AuthHeader = () => {
         }
         set0penSnackBar(false);
     };
+
+    useEffect(() => {
+        if (userEmail) {
+            setValue(0);
+        }
+    }, [userEmail]);
 
 
     return (
@@ -110,7 +117,7 @@ const AuthHeader = () => {
                             <StyledTab label="Sign Up" />
                         </Tabs>
                         <TabPanel value={ value } index={ 0 }>
-                            <LogInForm />
+                            <LogInForm userEmail={ userEmail } />
                         </TabPanel>
                         <TabPanel value={ value } index={ 1 }>
                             <SignUpForm />

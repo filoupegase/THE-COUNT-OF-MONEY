@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { axiosClient } from "../../../axios";
 import qs from 'qs';
-import { LoginFormInterface } from "../../../domaine/domaine";
+import { LogInFormInterface } from "../../../domaine/domaine";
+
 
 const userToken = localStorage.getItem('userToken')
     ? localStorage.getItem('userToken')
@@ -16,7 +17,7 @@ export const initialState = {
 }
 
 export const logIn = createAsyncThunk('auth/login',
-    async ({ email, password }: LoginFormInterface,
+    async ({ email, password }: LogInFormInterface,
            { rejectWithValue }) => {
         try {
             const { data } = await axiosClient.post(

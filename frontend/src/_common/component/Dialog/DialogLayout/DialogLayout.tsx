@@ -75,7 +75,7 @@ const DialogLayout = ({ title, onClose, open, children }: DialogLayoutProps) => 
 };
 
 const CustomDialog = styled(Dialog)(() => ({
-    '& .MuiPaper-root': { height: 'auto', minWidth: 480, minHeight: 420 },
+    '& .MuiPaper-root': { minWidth: 480 },
     '& .MuiDialogContent-root': { padding: '15px 45px 6px 45px' },
     '& .MuiDialogActions-root': { padding: '20px 45px 25px 45px' },
 }));
