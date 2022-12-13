@@ -1,12 +1,22 @@
 import * as React from 'react';
 import { styled, Button } from "@mui/material";
+import authGoogle from "../../../../_core/services/GoogleAuth/googleAuth";
 
 
 const ButtonLogInExtern = () => {
+
+    const handleClick = () => {
+        authGoogle()
+            .then((res) => {
+                console.log('res', res)
+            })
+            .catch()
+    }
+
     return (
-        <CustomLogInExtern startIcon={ <img alt='icone Google for authentication'
-                                            src="https://cdn.icon-icons.com/icons2/729/PNG/512/google_icon-icons.com_62736.png"
-                                            style={ { height: 24 } } /> } variant='outlined'
+        <CustomLogInExtern onClick={ handleClick } startIcon={ <img alt='icone Google for authentication'
+                                                                    src="https://cdn.icon-icons.com/icons2/729/PNG/512/google_icon-icons.com_62736.png"
+                                                                    style={ { height: 24 } } /> } variant='outlined'
                            type='text'>Google</CustomLogInExtern>
     )
 };

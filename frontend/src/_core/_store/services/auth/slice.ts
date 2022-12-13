@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { axiosClient } from "../../../axios";
+import { axiosClient } from "../../../services/axios";
 import qs from 'qs';
 import { LogInFormInterface } from "../../../domaine/domaine";
 

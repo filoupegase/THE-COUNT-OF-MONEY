@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { SignUpFormInterface } from "../../../domaine/domaine";
-import { axiosClient } from "../../../axios";
+import { axiosClient } from "../../../services/axios";
 import qs from "qs";
 
 
 export const initialRegisterState = {
     loading: false,
     userEmail: '',
+    userName: '',
     error: null,
     success: false,
 }
@@ -46,6 +47,7 @@ export const registerSlice = createSlice({
             state.success = true
             // @ts-ignore
             state.userEmail = payload.user.email
+            state.userName = payload.user.username
         });
         builder.addCase(SignUp.rejected, (state, { payload }) => {
             state.loading = false

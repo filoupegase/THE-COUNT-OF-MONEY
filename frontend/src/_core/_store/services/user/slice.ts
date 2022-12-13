@@ -2,7 +2,7 @@ import {
     createAsyncThunk,
     createSlice
 } from '@reduxjs/toolkit';
-import { axiosClient } from "../../../axios";
+import { axiosClient } from "../../../services/axios";
 
 export const initialState = {
     loading: false,

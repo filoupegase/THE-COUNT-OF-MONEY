@@ -38,7 +38,7 @@ function TabPanel(props: TabPanelProps) {
 
 const AuthHeader = () => {
     const { userToken, success } = useAppSelector((state) => state.auth);
-    const { userEmail } = useAppSelector((state) => state.register);
+    const { userEmail, userName } = useAppSelector((state) => state.register);
     const [open, setOpen] = useState<boolean>(false);
     const [value, setValue] = useState<number>(0);
     const [openSnackBar, set0penSnackBar] = useState<boolean>(true);
@@ -108,6 +108,19 @@ const AuthHeader = () => {
                     </>
                 }
             </Box>
+            { userName && userEmail &&
+                <StyledSnackbar
+                    anchorOrigin={ {
+                        vertical: 'top',
+                        horizontal: 'center'
+                    } }
+                    open={ openSnackBar }
+                    autoHideDuration={ 4000 } onClose={ handleClose }>
+                    <Alert severity="success" sx={ { width: '100%' } }>
+                        Thanks { userName } ! You can know register :)
+                    </Alert>
+                </StyledSnackbar>
+            }
             {
                 open && !userToken &&
                 <DialogLayout open={ open } onClose={ handleClickLogin }>

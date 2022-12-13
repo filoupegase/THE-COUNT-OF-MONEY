@@ -2,6 +2,7 @@ import * as React from 'react';
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import StackNameCrypto from "../StackNameCrypto";
 
+
 type DataGridCmpProps = {
     data: object[];
 }
