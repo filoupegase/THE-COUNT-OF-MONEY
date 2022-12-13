@@ -11,6 +11,9 @@ router.use('/', require("./routes/unprotected/default")); // Default routes TODO
 router.use('/crypto', require("./routes/crypto")); // Crypto routes accessable by everyone
 router.use('/rss', require("./routes/rss")); // RSS routes accessable by everyone')
 
+// Google OAuth routes
+router.use('/auth/google', require("./routes/auth/google"));
+
 // User protected routes, just check the jwt
 router.use('/user', passport.authenticate('jwt', {session: false}), require('./routes/user'));
 
