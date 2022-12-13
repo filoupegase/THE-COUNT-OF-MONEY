@@ -103,7 +103,10 @@ const AvatarProfile = () => {
                     </ListItemIcon>
                     Profile
                 </MenuItem>
-                <MenuItem onClick={ () => appDispatch(logout()) }>
+                <MenuItem onClick={ () => {
+                    appDispatch(logout())
+                    window.location.reload();
+                } }>
                     <ListItemIcon>
                         <Logout fontSize="small" />
                     </ListItemIcon>

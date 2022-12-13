@@ -41,6 +41,7 @@ const AuthHeader = () => {
     const { userEmail, userName } = useAppSelector((state) => state.register);
     const [open, setOpen] = useState<boolean>(false);
     const [value, setValue] = useState<number>(0);
+    const [openSnackBarLog, set0penSnackBarLog] = useState<boolean>(false);
     const [openSnackBar, set0penSnackBar] = useState<boolean>(true);
 
     const handleClickLogin = () => {
@@ -67,6 +68,8 @@ const AuthHeader = () => {
     useEffect(() => {
         if (userEmail) {
             setValue(0);
+            set0penSnackBarLog(true);
+            console.log('heeere');
         }
     }, [userEmail]);
 
@@ -108,14 +111,14 @@ const AuthHeader = () => {
                     </>
                 }
             </Box>
-            { userName && userEmail &&
+            { openSnackBarLog && userEmail &&
                 <StyledSnackbar
                     anchorOrigin={ {
                         vertical: 'top',
                         horizontal: 'center'
                     } }
-                    open={ openSnackBar }
-                    autoHideDuration={ 4000 } onClose={ handleClose }>
+                    open={ openSnackBarLog }
+                    autoHideDuration={ 2500 } onClose={ handleClose }>
                     <Alert severity="success" sx={ { width: '100%' } }>
                         Thanks { userName } ! You can know register :)
                     </Alert>

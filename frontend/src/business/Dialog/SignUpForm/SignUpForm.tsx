@@ -100,7 +100,7 @@ const SignUpForm = () => {
                     type='email'
                     margin='normal'
                 />
-                <FormControl sx={ { width: '100%', mt: 1 } } variant="outlined">
+                <FormControl sx={ { width: '100%', mt: 2, mb: 1 } } variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                     <CustomOutlinedInput
                         error={ inputError }
