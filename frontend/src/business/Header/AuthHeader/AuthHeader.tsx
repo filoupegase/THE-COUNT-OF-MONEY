@@ -38,10 +38,9 @@ function TabPanel(props: TabPanelProps) {
 
 const AuthHeader = () => {
     const { userToken, success } = useAppSelector((state) => state.auth);
-    const { userEmail, userName } = useAppSelector((state) => state.register);
+    const { userEmail } = useAppSelector((state) => state.register);
     const [open, setOpen] = useState<boolean>(false);
     const [value, setValue] = useState<number>(0);
-    const [openSnackBarLog, set0penSnackBarLog] = useState<boolean>(false);
     const [openSnackBar, set0penSnackBar] = useState<boolean>(true);
 
     const handleClickLogin = () => {
@@ -68,8 +67,6 @@ const AuthHeader = () => {
     useEffect(() => {
         if (userEmail) {
             setValue(0);
-            set0penSnackBarLog(true);
-            console.log('heeere');
         }
     }, [userEmail]);
 
@@ -102,7 +99,7 @@ const AuthHeader = () => {
                                     horizontal: 'center'
                                 } }
                                 open={ openSnackBar }
-                                autoHideDuration={ 4000 } onClose={ handleClose }>
+                                autoHideDuration={ 3700 } onClose={ handleClose }>
                                 <Alert severity="success" sx={ { width: '100%' } }>
                                     You are now connected !
                                 </Alert>
@@ -111,19 +108,6 @@ const AuthHeader = () => {
                     </>
                 }
             </Box>
-            { openSnackBarLog && userEmail &&
-                <StyledSnackbar
-                    anchorOrigin={ {
-                        vertical: 'top',
-                        horizontal: 'center'
-                    } }
-                    open={ openSnackBarLog }
-                    autoHideDuration={ 2500 } onClose={ handleClose }>
-                    <Alert severity="success" sx={ { width: '100%' } }>
-                        Thanks { userName } ! You can know register :)
-                    </Alert>
-                </StyledSnackbar>
-            }
             {
                 open && !userToken &&
                 <DialogLayout open={ open } onClose={ handleClickLogin }>

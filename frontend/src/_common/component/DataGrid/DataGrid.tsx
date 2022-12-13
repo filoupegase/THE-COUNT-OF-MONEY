@@ -8,7 +8,7 @@ type DataGridCmpProps = {
 }
 
 const columns: GridColDef[] = [
-    { field: "id", headerName: "#", hide: false, },
+    { field: "id", headerName: "#" },
     {
         field: "name", headerName: "Name", width: 200,
         renderCell: (params: GridRenderCellParams) => (

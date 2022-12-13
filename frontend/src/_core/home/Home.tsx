@@ -3,7 +3,6 @@ import DataGrid from "../../_common/component/DataGrid/DataGrid";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../_store/store";
 import { getCrypto } from "../_store/services/crypto/slice";
-//import { NoFetch } from "./Nofetch";
 import { Typography } from "@mui/material";
 
 
@@ -13,7 +12,6 @@ function Home() {
 
     useEffect(() => {
         appDispatch(getCrypto());
-        console.log('fetch crypto');
     }, []);
 
     return (
