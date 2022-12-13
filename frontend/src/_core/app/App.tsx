@@ -1,27 +1,17 @@
-import React, { lazy } from 'react';
+import * as React from 'react';
+import { RouterProvider } from "react-router";
 import { Box, styled } from '@mui/material';
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "../../_common/component/Layout";
+import router from "../router/router";
 
-const Home = lazy(() => import('../home'));
 
 function App() {
     return (
-        <>
-            <BoxStyled>
-                <Router>
-                    <Layout>
-                        <Routes>
-                            <Route path="/" element={
-                                <Home /> } />
-
-                            <Route path="*" element={
-                                <Navigate to="/" /> } />
-                        </Routes>
-                    </Layout>
-                </Router>
-            </BoxStyled>
-        </>
+        <BoxStyled>
+            <Layout>
+                <RouterProvider router={ router } />
+            </Layout>
+        </BoxStyled>
     );
 }
 
