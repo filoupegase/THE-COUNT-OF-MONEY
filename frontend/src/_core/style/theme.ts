@@ -56,7 +56,7 @@ const theme = createTheme({
                     padding: '5px 20px'
                 },
                 startIcon: {
-                    marginRight: 6
+                    marginRight: 12
                 }
             },
         },

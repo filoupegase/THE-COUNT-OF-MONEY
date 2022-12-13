@@ -1,23 +1,24 @@
 import * as React from 'react';
 import { styled, Button } from "@mui/material";
-import GitHubIcon from '@mui/icons-material/GitHub';
 
 
 const ButtonLogInExtern = () => {
     return (
-        <CustomLogInExtern startIcon={ <GitHubIcon style={ { fontSize: 24 } } /> } variant='outlined'
-                           type='text'>Github</CustomLogInExtern>
+        <CustomLogInExtern startIcon={ <img alt='icone Google for authentication'
+                                            src="https://cdn.icon-icons.com/icons2/729/PNG/512/google_icon-icons.com_62736.png"
+                                            style={ { height: 24 } } /> } variant='outlined'
+                           type='text'>Google</CustomLogInExtern>
     )
 };
 
-const CustomLogInExtern = styled(Button)(({ theme }) => ({
+const CustomLogInExtern = styled(Button)(() => ({
     width: "100%",
     padding: '9px 20px',
     fontSize: 20,
-    color: theme.palette.common.black,
-    border: `solid 0.1rem ${ theme.palette.common.black }`,
+    color: '#0F71F2',
+    border: `solid 0.1rem #0F71F2`,
     '&:hover': {
-        border: `solid 0.1rem ${ theme.palette.common.black }`,
+        border: `solid 0.1rem #0F71F2`,
     }
 }));
 
