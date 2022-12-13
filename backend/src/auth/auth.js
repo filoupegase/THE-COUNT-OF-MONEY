@@ -1,5 +1,8 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const JWTstrategy = require('passport-jwt').Strategy;
+const ExtractJWT = require('passport-jwt').ExtractJwt;
 const UserModel = require('../models/user');
 
 passport.use('signup',
@@ -20,6 +23,9 @@ passport.use('signup',
         // Verify if the username is already in use
         if (await UserModel.findOne({username: req.body.username}))
           throw new Error("Username is already in use")
+
+        if (password.length < 8)
+          throw new Error("Password is too short 8 characters minimum")
 
         const user = await UserModel.create({
           email,
@@ -59,9 +65,6 @@ passport.use('login',
   )
 );
 
-const JWTstrategy = require('passport-jwt').Strategy;
-const ExtractJWT = require('passport-jwt').ExtractJwt;
-
 passport.use(
   new JWTstrategy(
     {
@@ -75,6 +78,48 @@ passport.use(
           return done(null, false, {message: 'User not found'});
         }
         return done(null, token.user);
+      } catch (error) {
+        done(error);
+      }
+    }
+  )
+);
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_SECRET,
+      callbackURL: 'http://localhost:4000/api/auth/google/callback',
+      scope: ['profile', 'email'],
+      passReqToCallback: true
+    }, async (req, accessToken, refreshToken, profile, done) => {
+      try {
+        // Find user by google id or email
+        const user = await UserModel.findOne({
+          $or: [
+            {googleId: profile.id},
+            {email: profile.emails[0].value}
+          ]
+        });
+
+        if (!user) {
+          // Create a new user
+          const newUser = await UserModel.create({
+            googleId: profile.id,
+            email: profile.emails[0].value,
+            username: profile.displayName,
+            password: Math.random().toString(36).substring(-10)
+          });
+          console.log(newUser);
+          return done(null, newUser);
+        }
+        // If the user exist verify if the googleId is set
+        if (!user.googleId) {
+          user.googleId = profile.id;
+          await user.save();
+        }
+        return done(null, user);
       } catch (error) {
         done(error);
       }
