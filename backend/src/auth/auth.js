@@ -111,7 +111,6 @@ passport.use(
             username: profile.displayName,
             password: Math.random().toString(36).substring(-10)
           });
-          console.log(newUser);
           return done(null, newUser);
         }
         // If the user exist verify if the googleId is set
