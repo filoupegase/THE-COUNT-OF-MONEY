@@ -29,9 +29,7 @@ router.post('/auth/login/', async (req, res, next) => {
         }
         req.login(user, {session: false}, async (error) => {
             if (error) return next(error);
-            const body = {_id: user._id, email: user.email, username: user.username,  roles: user.roles};
-            const token = jwt.sign({user: body}, process.env.JWT_SECRET);
-            return res.json({token});
+            return res.json({token: user.generateJWT()});
           }
         );
       } catch (error) {
