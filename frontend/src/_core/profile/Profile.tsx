@@ -11,7 +11,7 @@ const Profile = () => {
     });
 
     useEffect(() => {
-        console.log('saluts');
+        //console.log('saluts');
     });
 
     return (
