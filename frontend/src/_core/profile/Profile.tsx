@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Navigate } from "react-router-dom";
 import { useAppSelector } from "../_store/store";
 import { UserInfo } from '../domaine/domaine';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 
 const Profile = () => {
@@ -11,27 +12,29 @@ const Profile = () => {
     });
 
     useEffect(() => {
-        //console.log('saluts');
+        if (userInfo) {
+            setUser(userInfo);
+        }
     });
 
+    if (!userInfo) {
+        return <Navigate to={ '/' } />
+    }
     return (
         <>
-            <Box
-                sx={ { position: 'relative' } }>
+            <Box sx={ { position: 'relative' } }>
                 <img
                     height={ 100 }
                     width={ 100 }
                     alt='user avatar profile'
                     src={ 'https://s3.coinmarketcap.com/static/img/portraits/633520129b613d3454890380.png' }
                 />
-                <Box sx={ {
-                    position: 'absolute', top: -37, left: 27
-                } }>
-                    <p
-                        style={ { fontSize: 44 } }
-                    >👽</p>
+                <Box sx={ { position: 'absolute', top: -37, left: 27 } }>
+                    <p style={ { fontSize: 44 } }>👽</p>
                 </Box>
             </Box>
+            <Typography variant='h6'> @{ user.username } </Typography>
+            <Typography variant='body2'> { user.email } </Typography>
         </>
     )
 };
