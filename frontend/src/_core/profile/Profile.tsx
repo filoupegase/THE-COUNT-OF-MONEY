@@ -19,7 +19,11 @@ const Profile = () => {
         }
     });
 
-    if (!user) {
+    if (user) {
+        console.log('la', user);
+    }
+
+    if (!user || user.username === '') {
         return <Navigate to={ '/' } />
     }
     return (
@@ -41,7 +45,8 @@ const Profile = () => {
                     <Typography variant='body2'> { user.email } </Typography>
                 </Box>
             </Box>
-            <ButtonBasicIcon icon={ <EditIcon sx={ (theme) => ({ color: theme.palette.grey[700] }) } /> } label='Edit' />
+            <ButtonBasicIcon icon={ <EditIcon sx={ (theme) => ({ color: theme.palette.grey[700] }) } /> }
+                             label='Edit' />
         </>
     )
 };
