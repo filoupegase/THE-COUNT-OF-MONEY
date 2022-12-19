@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 
-//  This file have the routes of the google authentication
-
 router.get('/', passport.authenticate('google', {scope: ['profile', 'email']}));
 
 router.get('/callback',
@@ -12,7 +10,7 @@ router.get('/callback',
     session: false,
   }),
   (req, res) => {
-    res.json({token: req.user.generateJWT()});
+    res.redirect(`http://localhost:3000?token=${req.user.generateJWT()}`);
   },
 );
 
