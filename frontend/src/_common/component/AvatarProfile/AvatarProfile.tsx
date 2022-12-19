@@ -6,14 +6,8 @@ import Logout from '@mui/icons-material/Logout';
 import { useAppDispatch, useAppSelector } from "../../../_core/_store/store";
 import { logout } from "../../../_core/_store/services/auth/slice";
 import { fetchUserProfile } from "../../../_core/_store/services/user/slice";
+import { UserInfo } from '../../../_core/domaine/domaine';
 
-
-interface UserInfo {
-    email: string;
-    username: string;
-    _id: string;
-    roles: null;
-}
 
 const AvatarProfile = () => {
     const { userInfo } = useAppSelector((state) => state.user);

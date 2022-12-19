@@ -14,3 +14,10 @@ export interface SignUpFormInterface {
     password: string;
     username: string;
 }
+
+export interface UserInfo {
+    email: string;
+    username: string;
+    _id: string;
+    roles: null;
+}

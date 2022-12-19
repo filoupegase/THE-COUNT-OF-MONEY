@@ -16,6 +16,14 @@ Use a better box model (opinionated).
 }
 
 /**
+ */
+
+a:-webkit-any-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+/**
 1. Correct the line height in all browsers.
 2. Prevent adjustments of font size after orientation changes in iOS.
 3. Use a more readable tab size (opinionated).
