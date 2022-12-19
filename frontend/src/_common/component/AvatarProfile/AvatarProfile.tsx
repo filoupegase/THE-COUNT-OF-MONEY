@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, MenuItem, Divider, ListItemIcon, Box, Typography } from '@mui/material';
+import { Link } from "react-router-dom";
 import Person from '@mui/icons-material/Person';
 import Logout from '@mui/icons-material/Logout';
 import { useAppDispatch, useAppSelector } from "../../../_core/_store/store";
@@ -97,12 +98,14 @@ const AvatarProfile = () => {
                     </Box>
                 </MenuItem>
                 <Divider />
-                <MenuItem>
-                    <ListItemIcon>
-                        <Person fontSize="small" />
-                    </ListItemIcon>
-                    Profile
-                </MenuItem>
+                <Link to="/profile">
+                    <MenuItem>
+                        <ListItemIcon>
+                            <Person fontSize="small" />
+                        </ListItemIcon>
+                        Profile
+                    </MenuItem>
+                </Link>
                 <MenuItem onClick={ () => {
                     appDispatch(logout())
                     window.location.reload();

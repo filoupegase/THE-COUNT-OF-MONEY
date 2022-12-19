@@ -1,15 +1,19 @@
 import * as React from 'react';
-import { RouterProvider } from "react-router";
+import { Routes, Route } from "react-router-dom";
 import { Box, styled } from '@mui/material';
 import Layout from "../../_common/component/Layout";
-import router from "../router/router";
+import Home from '../home';
+import Profile from '../profile';
 
 
 function App() {
     return (
         <BoxStyled>
             <Layout>
-                <RouterProvider router={ router } />
+                <Routes>
+                    <Route path={ '/' } element={ <Home /> } />
+                    <Route path={ '/profile' } element={ <Profile /> } />
+                </Routes>
             </Layout>
         </BoxStyled>
     );

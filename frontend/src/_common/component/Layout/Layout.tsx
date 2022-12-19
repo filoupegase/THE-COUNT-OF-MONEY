@@ -4,6 +4,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 import AuthHeader from "../../../business/Header/AuthHeader";
 import NavHeader from "../../../business/Header/NavHeader";
+import { Outlet } from "react-router-dom";
 
 
 const Layout = ({ children }: PropsWithChildren) => {
@@ -19,6 +20,11 @@ const Layout = ({ children }: PropsWithChildren) => {
                 { children }
             </Container>
             <Footer />
+
+            {/* An <Outlet> renders whatever child route is currently active,
+                so you can think about this <Outlet> as a placeholder for
+                the child routes we defined above. */ }
+            <Outlet />
         </>
     )
 };

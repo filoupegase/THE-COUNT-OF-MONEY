@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './_core/app';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './_core/style/theme';
 import { Provider } from 'react-redux';
@@ -17,7 +18,9 @@ root.render(
     <React.StrictMode>
         <ThemeProvider theme={ theme }>
             <Provider store={ store }>
-                <App />
+                <BrowserRouter>
+                    <App />
+                </BrowserRouter>
             </Provider>
         </ThemeProvider>
     </React.StrictMode>
