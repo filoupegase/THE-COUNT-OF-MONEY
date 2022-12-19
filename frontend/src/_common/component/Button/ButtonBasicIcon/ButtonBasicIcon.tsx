@@ -1,15 +1,17 @@
 import * as React from 'react';
 import { Button as MuiButton, styled } from "@mui/material";
-import StarIcon from '@mui/icons-material/Star';
 
 
-const ButtonBasicIcon = () => {
+type ButtonBasicIconProps = {
+    label: string;
+    icon: JSX.Element
+}
+
+const ButtonBasicIcon = ({ label, icon }: ButtonBasicIconProps) => {
     return (
-        <CustomBasicButton startIcon={ <StarIcon
-            sx={ (theme) => ({
-                color: '#a6b0c3'
-            }) } />
-        }>Watchlist</CustomBasicButton>
+        <CustomBasicButton startIcon={
+            icon
+        }>{ label }</CustomBasicButton>
     )
 };
 

@@ -2,6 +2,8 @@ import * as React from 'react';
 import DiamondIcon from '@mui/icons-material/Diamond';
 import { Box, Typography } from "@mui/material";
 import ButtonBasicIcon from "../../../_common/component/Button/ButtonBasicIcon";
+import StarIcon from "@mui/icons-material/Star";
+
 
 const NavHeader = () => {
     return (
@@ -15,7 +17,10 @@ const NavHeader = () => {
                 </Typography>
             </Box>
             <Box>
-                <ButtonBasicIcon />
+                <ButtonBasicIcon icon={ <StarIcon
+                    sx={ (theme) => ({
+                        color: '#a6b0c3'
+                    }) } /> } label='Watchlist' />
             </Box>
         </>
     )

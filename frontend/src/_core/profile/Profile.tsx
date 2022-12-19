@@ -3,6 +3,8 @@ import { Navigate } from "react-router-dom";
 import { useAppSelector } from "../_store/store";
 import { UserInfo } from '../domaine/domaine';
 import { Box, Typography } from '@mui/material';
+import ButtonBasicIcon from "../../_common/component/Button/ButtonBasicIcon";
+import EditIcon from '@mui/icons-material/Edit';
 
 
 const Profile = () => {
@@ -39,6 +41,7 @@ const Profile = () => {
                     <Typography variant='body2'> { user.email } </Typography>
                 </Box>
             </Box>
+            <ButtonBasicIcon icon={ <EditIcon sx={ (theme) => ({ color: theme.palette.grey[700] }) } /> } label='Edit' />
         </>
     )
 };
