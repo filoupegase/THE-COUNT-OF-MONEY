@@ -1,13 +1,9 @@
-import { axiosClient } from "../axios";
-
-
 async function authGoogle() {
     try {
-        // @ts-ignore
-        const response = await axiosClient.get('crypto/popular');
-        if (response) {
-            return response.data;
-        }
+        window.open(
+            `http://localhost:4000/api/auth/google`,
+            "_self"
+        );
     } catch (error) {
         console.error(error);
     }
