@@ -2,10 +2,16 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-// TODO: Complete this schema
-
 const cryptoSchema = new Schema({
     name: {
+        type: String,
+        required: true
+    },
+    symbol: {
+        type: String,
+        required: true
+    },
+    cmcId: {
         type: String,
         required: true
     },
@@ -15,3 +21,7 @@ const cryptoSchema = new Schema({
         default: true
     }
 });
+
+const Crypto = mongoose.model('Crypto', cryptoSchema);
+
+module.exports = Crypto;
