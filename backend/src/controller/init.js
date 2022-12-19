@@ -1,8 +1,8 @@
 const UserModel = require("../models/user");
 const RssModel = require("../models/rss");
 const SettingsModel = require("../models/settings");
+const CryptoModel = require("../models/crypto");
 
-// Settings
 SettingsModel.findOne({}, (err, settings) => {
   if (err) {
     console.log(err);
@@ -13,7 +13,6 @@ SettingsModel.findOne({}, (err, settings) => {
   }
 });
 
-// users
 UserModel.countDocuments({}, (err, count) => {
   if (err) {
     console.log(err);
@@ -36,10 +35,27 @@ UserModel.countDocuments({}, (err, count) => {
   }
 });
 
-// crypto
-
-
-// rss
+CryptoModel.countDocuments({}, (err, count) => {
+  if (err) {
+    console.log(err);
+  } else if (count === 0) {
+    const crypto = new CryptoModel({
+      name: 'Bitcoin',
+      symbol: 'BTC',
+      cmcId: '1',
+      state: true
+    });
+    const crypto2 = new CryptoModel({
+      name: 'Ethereum',
+      symbol: 'ETH',
+      cmcId: '1027',
+      state: true
+    });
+    crypto.save();
+    crypto2.save();
+    console.log("=> Crypto initialized");
+  }
+});
 
 RssModel.find({}, (err, rssFeeds) => {
   if (err) {
