@@ -11,7 +11,7 @@ function Home() {
     const appDispatch = useAppDispatch();
 
     useEffect(() => {
-        //appDispatch(getCrypto());
+        appDispatch(getCrypto());
     }, []);
 
     return (

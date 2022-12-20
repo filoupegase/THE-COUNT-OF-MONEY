@@ -9,6 +9,7 @@ import EditIcon from '@mui/icons-material/Edit';
 
 const Profile = () => {
     const { userInfo } = useAppSelector((state) => state.user);
+    const { userToken } = useAppSelector((state) => state.auth);
     const [user, setUser] = useState<UserInfo>({
         email: '', username: '', _id: '', roles: null,
     });
@@ -19,11 +20,7 @@ const Profile = () => {
         }
     });
 
-    if (user) {
-        console.log('la', user);
-    }
-
-    if (!user || user.username === '') {
+    if (!userToken) {
         return <Navigate to={ '/' } />
     }
     return (
