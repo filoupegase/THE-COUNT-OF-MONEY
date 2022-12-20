@@ -6,11 +6,12 @@ router.get('/', passport.authenticate('google', {scope: ['profile', 'email']}));
 
 router.get('/callback',
   passport.authenticate('google', {
-    failureRedirect: '/',
+
+    failureRedirect: `http://localhost:${process.env.PORT_FRONTEND}`,
     session: false,
   }),
   (req, res) => {
-    res.redirect(`http://localhost:3000?token=${req.user.generateJWT()}`);
+    res.redirect(`http://localhost:${process.env.PORT_FRONTEND}?token=${req.user.generateJWT()}`);
   },
 );
 
