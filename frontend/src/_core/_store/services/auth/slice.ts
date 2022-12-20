@@ -10,10 +10,10 @@ const userToken = localStorage.getItem('userToken')
 
 export const initialState = {
     loading: false,
-    userInfo: null,
     userToken,
     error: null,
     success: false,
+    googleSuccess: false
 }
 
 export const logIn = createAsyncThunk('auth/login',
@@ -27,7 +27,7 @@ export const logIn = createAsyncThunk('auth/login',
             return data;
         } catch (error) {
             // @ts-ignore
-            if (error.response && error.response.data.message) {
+            if (error && error.response.data.message) {
                 // @ts-ignore
                 return rejectWithValue(error.response.data.message)
             } else {
@@ -45,21 +45,25 @@ export const authSlice = createSlice({
         logout: (state) => {
             localStorage.removeItem('userToken');
             state.loading = false;
-            state.userInfo = null;
             state.userToken = null;
             state.error = null;
+        },
+        updateTokenAuthWithGoogle: (state, { payload }) => {
+            if (payload && payload.search !== "") {
+                state.userToken = payload.search.slice(7);
+                state.googleSuccess = true;
+            }
         }
     },
     extraReducers: (builder) => {
         builder.addCase(logIn.pending, (state) => {
-            state.loading = true
-            state.error = null
+            state.loading = true;
+            state.error = null;
         });
         builder.addCase(logIn.fulfilled, (state, { payload }) => {
-            state.loading = false
-            state.success = true
-            state.userInfo = payload
-            state.userToken = payload.token
+            state.loading = false;
+            state.success = true;
+            state.userToken = payload.token;
         });
         builder.addCase(logIn.rejected, (state, { payload }) => {
             state.loading = false
@@ -69,4 +73,4 @@ export const authSlice = createSlice({
     }
 });
 
-export const { logout } = authSlice.actions;
+export const { logout, updateTokenAuthWithGoogle } = authSlice.actions;

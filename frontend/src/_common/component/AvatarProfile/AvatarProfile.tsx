@@ -5,7 +5,7 @@ import Person from '@mui/icons-material/Person';
 import Logout from '@mui/icons-material/Logout';
 import { useAppDispatch, useAppSelector } from "../../../_core/_store/store";
 import { logout } from "../../../_core/_store/services/auth/slice";
-import { fetchUserProfile } from "../../../_core/_store/services/user/slice";
+import { getUser } from "../../../_core/_store/services/user/slice";
 import { UserInfo } from '../../../_core/domaine/domaine';
 
 
@@ -30,7 +30,7 @@ const AvatarProfile = () => {
     };
 
     useEffect(() => {
-        appDispatch(fetchUserProfile());
+        appDispatch(getUser());
     }, [appDispatch]);
 
     useEffect(() => {

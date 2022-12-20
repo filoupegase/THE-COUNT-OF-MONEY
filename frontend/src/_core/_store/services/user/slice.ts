@@ -13,7 +13,7 @@ export const initialState = {
     success: false,
 }
 
-export const fetchUserProfile = createAsyncThunk('user/profile',
+export const getUser = createAsyncThunk('user/profile',
     async (arg, { getState, rejectWithValue }) => {
         try {
             // @ts-ignores
@@ -43,19 +43,18 @@ export const userSlice = createSlice({
     initialState: initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(fetchUserProfile.pending, (state) => {
-            state.loading = true
-            state.error = null
+        builder.addCase(getUser.pending, (state) => {
+            state.loading = true;
+            state.error = null;
         });
-        builder.addCase(fetchUserProfile.fulfilled, (state, { payload }) => {
-            state.loading = false
-            state.userInfo = payload
-            console.log(state.userInfo);
+        builder.addCase(getUser.fulfilled, (state, { payload }) => {
+            state.loading = false;
+            state.userInfo = payload;
         });
-        builder.addCase(fetchUserProfile.rejected, (state, { payload }) => {
-            state.loading = false
+        builder.addCase(getUser.rejected, (state, { payload }) => {
+            state.loading = false;
             // @ts-ignore
-            state.error = payload
+            state.error = payload;
         });
     }
 });
