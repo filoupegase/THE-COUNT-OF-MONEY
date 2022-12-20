@@ -92,7 +92,7 @@ const AvatarProfile = () => {
                     </Box>
                 </MenuItem>
                 <Divider />
-                <Link to="/profile">
+                <Link to={ "/profile" }>
                     <MenuItem>
                         <ListItemIcon>
                             <Person fontSize="small" />
