@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from "react-router-dom";
-import { useAppSelector } from "../_store/store";
-import { UserInfo } from '../domaine/domaine';
+import { useAppSelector } from "../../../_core/_store/store";
+import { UserInfo } from '../../../_core/domaine/domaine';
 import { Box, Typography } from '@mui/material';
-import ButtonBasicIcon from "../../_common/component/Button/ButtonBasicIcon";
+import ButtonBasicIcon from "../../../_common/component/Button/ButtonBasicIcon";
 import EditIcon from '@mui/icons-material/Edit';
 
 

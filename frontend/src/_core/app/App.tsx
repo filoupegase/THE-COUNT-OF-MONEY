@@ -1,20 +1,26 @@
 import * as React from 'react';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Box, styled } from '@mui/material';
 import Layout from "../../_common/component/Layout";
-import Home from '../home';
-import Profile from '../profile';
+import Home from '../../business/pages/home';
+import Profile from '../../business/pages/profile';
+import Footer from "../../_common/component/Footer";
+import Articles from '../../business/pages/articles';
 
 
 function App() {
+    const location = useLocation();
+
     return (
         <BoxStyled>
             <Layout>
                 <Routes>
                     <Route path={ '/' } element={ <Home /> } />
                     <Route path={ '/profile' } element={ <Profile /> } />
+                    <Route path={ '/articles' } element={ <Articles /> } />
                 </Routes>
             </Layout>
+            { location.pathname === '/' ? <Footer /> : null }
         </BoxStyled>
     );
 }

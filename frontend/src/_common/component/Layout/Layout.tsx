@@ -1,7 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import Container from '@mui/material/Container';
 import Header from "../Header";
-import Footer from "../Footer";
 import AuthHeader from "../../../business/Header/AuthHeader";
 import NavHeader from "../../../business/Header/NavHeader";
 import { Outlet } from "react-router-dom";
@@ -19,7 +18,6 @@ const Layout = ({ children }: PropsWithChildren) => {
             <Container sx={ { width: 1200, marginTop: 4 } }>
                 { children }
             </Container>
-            <Footer />
 
             {/* An <Outlet> renders whatever child route is currently active,
                 so you can think about this <Outlet> as a placeholder for

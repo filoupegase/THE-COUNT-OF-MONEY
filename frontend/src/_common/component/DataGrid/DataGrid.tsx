@@ -27,7 +27,6 @@ const DataGridCmp = ({ data }: DataGridCmpProps) => {
 
     return (
         <>
-            <div style={ { marginTop: 40 } }></div>
             <DataGrid
                 autoHeight
                 rows={ data }
