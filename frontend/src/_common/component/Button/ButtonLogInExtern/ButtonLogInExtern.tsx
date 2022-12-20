@@ -8,10 +8,12 @@ const ButtonLogInExtern = () => {
     const handleClick = () => {
         authGoogle()
             .then((res) => {
-                console.log('res', res)
+                console.log(res);
             })
-            .catch()
-    }
+            .catch((error) => {
+                console.log(error);
+            })
+    };
 
     return (
         <CustomLogInExtern onClick={ handleClick } startIcon={ <img alt='icone Google for authentication'

@@ -50,6 +50,7 @@ export const userSlice = createSlice({
         builder.addCase(fetchUserProfile.fulfilled, (state, { payload }) => {
             state.loading = false
             state.userInfo = payload
+            console.log(state.userInfo);
         });
         builder.addCase(fetchUserProfile.rejected, (state, { payload }) => {
             state.loading = false

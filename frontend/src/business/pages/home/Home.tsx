@@ -1,19 +1,26 @@
 import * as React from 'react';
-import DataGrid from "../../../_common/component/DataGrid/DataGrid";
 import { useEffect } from "react";
+import DataGrid from "../../../_common/component/DataGrid/DataGrid";
 import { useAppDispatch, useAppSelector } from "../../../_core/_store/store";
-import { getCrypto } from "../../../_core/_store/services/crypto/slice";
 import { Box, Typography, Stack } from "@mui/material";
 import ButtonBasicFocus from "../../../_common/component/Button/ButtonBasicFocus";
+import { useLocation } from "react-router-dom";
+import { getParams } from "../../../_core/services/GoogleAuth/googleAuth";
 
 
 function Home() {
-    const { cryptoData } = useAppSelector((state) => state.crypto)
+    const location = useLocation();
+    const { cryptoData } = useAppSelector((state) => state.crypto);
     const appDispatch = useAppDispatch();
 
     useEffect(() => {
-        appDispatch(getCrypto());
+        getParams(location);
+    }, [location]);
+
+    useEffect(() => {
+        //appDispatch(getCrypto());
     }, []);
+
 
     return (
         <>
