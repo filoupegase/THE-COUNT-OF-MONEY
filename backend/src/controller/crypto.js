@@ -53,24 +53,35 @@ exports.getCryptoCmcId = () => {
 }
 
 //FIXME
-exports.addCrypto = async (list) => {
-  const existentId = await this.getCryptoCmcId();
-  const listArray = list.split(',');
-  listArray.forEach((id, index) => {
-    if (existentId.includes(id)) {
-      listArray.splice(index, 1);
-    }
-  });
-  const data = await coinMarketCap.getCoinmarketcapData('/v1/cryptocurrency/info?id=' + listArray);
-  const cryptoList = [];
-  for (let i in data.data) {
-    cryptoList.push({
-      name: data.data[i].name,
-      symbol: data.data[i].symbol,
-      cmcId: data.data[i].id,
-      state: true
-    });
-  }
-  // Add the list of crypto to the database
-  await Crypto.insertMany(cryptoList);
-}
+// exports.addCrypto = async (cmcid) => {
+//   const existentId = await this.getCryptoCmcId();
+//   if (!Array.isArray(list)) {
+//     // Make the list an array delimited by comma
+//     list = list.split(',');
+//   }
+//   console.log("List: " + list);
+//   console.log("Existent id: " + existentId);
+//   // Remove from list the crypto that already exist in existentId array
+//   // make the array
+//   for (let i = 0; i < list.length; i++) {
+//     console.log("List" + i + ": " + list[i]);
+//     if (existentId.includes(list[i])) {
+//       console.log("Remove: " + list[i]);
+//       list.splice(i, 1);
+//     }
+//   }
+//   console.log("New list: " + list);
+//   // return
+//   const data = await coinMarketCap.getCoinmarketcapData('/v1/cryptocurrency/info?id=' + list);
+//   const cryptoList = [];
+//   for (let i in data.data) {
+//     cryptoList.push({
+//       name: data.data[i].name,
+//       symbol: data.data[i].symbol,
+//       cmcId: data.data[i].id,
+//       state: true
+//     });
+//   }
+//   // Add the list of crypto to the database
+//   await Crypto.insertMany(cryptoList);
+// }
