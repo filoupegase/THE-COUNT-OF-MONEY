@@ -13,6 +13,9 @@ const EditProfile = () => {
     const { userInfo } = useAppSelector((state) => state.user);
     const { userToken } = useAppSelector((state) => state.auth);
     const [disabled, setDisabled] = useState<boolean>(true);
+    const [initialForm, setInitialForm] = useState<any>({
+        email: '', username: ''
+    });
     const [user, setUser] = useState<UserInfo>({
         email: '', username: '', _id: '', roles: null
     });
@@ -26,8 +29,18 @@ const EditProfile = () => {
     useEffect(() => {
         if (userInfo) {
             setUser(userInfo);
+            // @ts-ignore
+            setInitialForm({ email: userInfo.email, username: userInfo.username });
         }
     }, [userInfo]);
+
+    useEffect(() => {
+        if (user.email !== initialForm.email || user.username !== initialForm.username) {
+            setDisabled(false);
+        } else {
+            setDisabled(true);
+        }
+    });
 
     if (!userToken) {
         return <Navigate to={ '/' } />
@@ -51,15 +64,19 @@ const EditProfile = () => {
                     } }
                     autoComplete="off"
                 >
+                    <label htmlFor="username">Username</label>
                     <TextField
                         id="username"
+                        name="username"
                         type='text'
                         variant="outlined"
                         value={ user.username }
                         onChange={ (e) => handleChangeInput(e) }
                     />
+                    <label htmlFor="email">Email</label>
                     <TextField
                         id="email"
+                        name='email'
                         type='email'
                         variant="outlined"
                         value={ user.email }
