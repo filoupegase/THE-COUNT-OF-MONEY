@@ -17,11 +17,17 @@ const EditProfile = () => {
         email: '', username: '', _id: '', roles: null
     });
 
+    const handleChangeInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        e.target.id === 'username'
+            ? setUser({ ...user, username: e.target.value })
+            : setUser({ ...user, email: e.target.value })
+    };
+
     useEffect(() => {
         if (userInfo) {
             setUser(userInfo);
         }
-    });
+    }, [userInfo]);
 
     if (!userToken) {
         return <Navigate to={ '/' } />
@@ -38,9 +44,9 @@ const EditProfile = () => {
                 <Divider />
                 <Box
                     component="form"
+                    onSubmit={ () => console.log() }
                     sx={ {
-                        mt: 2,
-                        mb: 2,
+                        mt: 2, mb: 2,
                         '& > :not(style)': { mt: 2, mb: 2, width: '100%' }
                     } }
                     autoComplete="off"
@@ -50,17 +56,20 @@ const EditProfile = () => {
                         type='text'
                         variant="outlined"
                         value={ user.username }
+                        onChange={ (e) => handleChangeInput(e) }
                     />
                     <TextField
                         id="email"
                         type='email'
                         variant="outlined"
                         value={ user.email }
+                        onChange={ (e) => handleChangeInput(e) }
                     />
                     <Box
                         sx={ { display: 'flex', justifyContent: 'flex-end' } }
                     >
                         <DoubleButtonAction
+                            typeBtn={ 'submit' }
                             onClickCancel={ () => console.log() }
                             onSubmit={ () => console.log() }
                             disabled={ disabled }
