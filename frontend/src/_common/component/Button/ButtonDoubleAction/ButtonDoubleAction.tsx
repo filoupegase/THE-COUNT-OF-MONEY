@@ -1,20 +1,22 @@
 import React from "react";
 import { Button, styled } from "@mui/material";
+import { Link } from "react-router-dom";
 
 
 type DoubleButtonAction = {
-    onClickCancel: () => void;
     onSubmit: () => void;
     disabled?: boolean;
     typeBtn?: string | 'text';
 };
 
-const DoubleButtonAction = ({ onClickCancel, onSubmit, disabled, typeBtn }: DoubleButtonAction) => {
+const DoubleButtonAction = ({ onSubmit, disabled, typeBtn }: DoubleButtonAction) => {
     return (
         <>
-            <CustomBtnCancel onClick={ onClickCancel } sx={ { mr: 2 } } disableElevation>
-                Cancel
-            </CustomBtnCancel>
+            <Link to={ "/profile" }>
+                <CustomBtnCancel sx={ { mr: 2 } } disableElevation>
+                    Cancel
+                </CustomBtnCancel>
+            </Link>
             <CustomBtnValid type={ typeBtn } disabled={ disabled } onClick={ onSubmit } color='primary'
                             variant="contained"
                             disableElevation>

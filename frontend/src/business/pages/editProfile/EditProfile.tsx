@@ -26,6 +26,10 @@ const EditProfile = () => {
             : setUser({ ...user, email: e.target.value })
     };
 
+    const handleSubmit = () => {
+        console.log('submit');
+    };
+
     useEffect(() => {
         if (userInfo) {
             setUser(userInfo);
@@ -50,16 +54,16 @@ const EditProfile = () => {
             <Box sx={ { p: 5, background: 'white' } }>
                 <Box sx={ { pt: 1, pb: 2 } }>
                     <StyledBackButton href={ '/profile' }>
-                        <KeyboardArrowLeft sx={ { fontSize: 25 } } />
+                        <KeyboardArrowLeft sx={ { fontSize: 28 } } />
                         <Typography variant='h5'>Profile</Typography>
                     </StyledBackButton>
                 </Box>
                 <Divider />
                 <Box
                     component="form"
-                    onSubmit={ () => console.log() }
+                    onSubmit={ handleSubmit }
                     sx={ {
-                        mt: 2, mb: 2,
+                        mt: 4, mb: 2,
                         '& > :not(style)': { mt: 2, mb: 2, width: '100%' }
                     } }
                     autoComplete="off"
@@ -73,6 +77,7 @@ const EditProfile = () => {
                         value={ user.username }
                         onChange={ (e) => handleChangeInput(e) }
                     />
+                    <Box sx={ { mt: 1 } }></Box>
                     <label htmlFor="email">Email</label>
                     <TextField
                         id="email"
@@ -87,7 +92,6 @@ const EditProfile = () => {
                     >
                         <DoubleButtonAction
                             typeBtn={ 'submit' }
-                            onClickCancel={ () => console.log() }
                             onSubmit={ () => console.log() }
                             disabled={ disabled }
                         />
@@ -100,7 +104,7 @@ const EditProfile = () => {
 
 const StyledBackButton = styled(Button)(() => ({
         padding: '1px 10px 1px 0',
-        textTransform: 'none',
+        textTransform: 'none'
     }
 ));
 
