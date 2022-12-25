@@ -17,7 +17,8 @@ export const initialState = {
 export const getUser = createAsyncThunk('user/profile',
     async (arg, { getState, rejectWithValue }) => {
         try {
-            const token = (getState() as RootState).auth.userToken
+            const token = (getState() as RootState).auth.userToken;
+            console.log('getUser');
             if (token) {
                 const config = {
                     headers: {

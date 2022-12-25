@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import { useAppSelector } from "../../../_core/_store/store";
 import { UserInfo } from '../../../_core/domaine/domaine';
 import { Box, Typography } from '@mui/material';
@@ -8,10 +8,11 @@ import EditIcon from '@mui/icons-material/Edit';
 
 
 const Profile = () => {
+    // TODO : MAKE A CLEAN HOOK TO GET USER
     const { userInfo } = useAppSelector((state) => state.user);
     const { userToken } = useAppSelector((state) => state.auth);
     const [user, setUser] = useState<UserInfo>({
-        email: '', username: '', _id: '', roles: null,
+        email: '', username: '', _id: '', roles: null
     });
 
     useEffect(() => {
@@ -42,8 +43,16 @@ const Profile = () => {
                     <Typography variant='body2'> { user.email } </Typography>
                 </Box>
             </Box>
-            <ButtonBasicIcon icon={ <EditIcon sx={ (theme) => ({ color: theme.palette.grey[700] }) } /> }
-                             label='Edit' />
+            <Link to={ "/edit-profile" }>
+                <ButtonBasicIcon
+                    icon={ <EditIcon
+                        sx={ (theme) => ({
+                            color: theme.palette.grey[600]
+                        }) }
+                    /> }
+                    label='Edit'
+                />
+            </Link>
         </>
     )
 };

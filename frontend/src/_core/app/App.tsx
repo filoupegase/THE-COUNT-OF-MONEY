@@ -2,10 +2,11 @@ import * as React from 'react';
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Box, styled } from '@mui/material';
 import Layout from "../../_common/component/Layout";
+import Footer from "../../_common/component/Footer";
 import Home from '../../business/pages/home';
 import Profile from '../../business/pages/profile';
-import Footer from "../../_common/component/Footer";
-import Articles from '../../business/pages/articles';
+//import Articles from '../../business/pages/articles/Articles';
+import EditProfile from "../../business/pages/editProfile";
 
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
                 <Routes>
                     <Route path={ '/' } element={ <Home /> } />
                     <Route path={ '/profile' } element={ <Profile /> } />
-                    <Route path={ '/articles' } element={ <Articles /> } />
+                    <Route path={ '/edit-profile' } element={ <EditProfile /> } />
+                    {/*<Route path={ '/articles' } element={ <Articles /> } />*/ }
                 </Routes>
             </Layout>
             { location.pathname === '/' ? <Footer /> : null }

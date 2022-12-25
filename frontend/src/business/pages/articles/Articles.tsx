@@ -138,13 +138,13 @@ const Articles = () => {
 
     return (
         <div>
-            {data.map((article, index) => (
-                <div key={index}>
-                    <h2>{article.title}</h2>
-                    <p>{article.creator} - {article.pubDate}</p>
-                    <p>{article.content}</p>
+            { data.map((article, index) => (
+                <div key={ index }>
+                    <h2>{ article.title }</h2>
+                    <p>{ article.creator } - { article.pubDate }</p>
+                    <p>{ article.content }</p>
                 </div>
-            ))}
+            )) }
         </div>
     );
 };

@@ -9,18 +9,22 @@ type ButtonBasicIconProps = {
 
 const ButtonBasicIcon = ({ label, icon }: ButtonBasicIconProps) => {
     return (
-        <CustomBasicButton startIcon={
-            icon
-        }>{ label }</CustomBasicButton>
+        <CustomBasicButton
+            startIcon={ icon }
+        >
+            { label }
+        </CustomBasicButton>
     )
 };
 
 const CustomBasicButton = styled(MuiButton)(({ theme }) => ({
         '&:hover': {
-            backgroundColor: theme.palette.grey[100]
+            backgroundColor: "rgb(240, 246, 255)",
+            color: theme.palette.primary.main,
+            border: `solid 1px ${ theme.palette.grey[200] }`
         },
         border: `solid 1px ${ theme.palette.grey[300] }`,
-        fontWeight: 300,
+        fontWeight: 400,
         background: 'transparent',
         color: 'black',
         padding: "6px 16px",
