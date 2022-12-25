@@ -5,25 +5,23 @@ import { useAppDispatch, useAppSelector } from "../../../_core/_store/store";
 import { Box, Typography, Stack } from "@mui/material";
 import ButtonBasicFocus from "../../../_common/component/Button/ButtonBasicFocus";
 import { useLocation } from "react-router-dom";
-import { updateTokenAuthWithGoogle } from "../../../_core/_store/services/auth/slice";
+import { AuthWithGoogle } from "../../../_core/_store/services/auth/slice";
 
 
 function Home() {
     const location = useLocation();
     const { cryptoData } = useAppSelector((state) => state.crypto);
-    const { userToken, googleSuccess } = useAppSelector((state) => state.auth);
     const appDispatch = useAppDispatch();
 
-    console.log(googleSuccess);
-
     useEffect(() => {
-        appDispatch(updateTokenAuthWithGoogle(location));
+        if (location.search) {
+            appDispatch(AuthWithGoogle(location.search));
+        }
     }, []);
 
     useEffect(() => {
         //appDispatch(getCrypto());
     }, []);
-
 
     return (
         <>

@@ -1,7 +1,8 @@
 import {
     createAsyncThunk,
-    createSlice
+    createSlice,
 } from '@reduxjs/toolkit';
+import { RootState } from '../../store';
 import { axiosClient } from "../../../services/axios";
 
 
@@ -16,15 +17,16 @@ export const initialState = {
 export const getUser = createAsyncThunk('user/profile',
     async (arg, { getState, rejectWithValue }) => {
         try {
-            // @ts-ignores
-            const { auth } = getState();
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${ auth.userToken }`,
-                },
+            const token = (getState() as RootState).auth.userToken
+            if (token) {
+                const config = {
+                    headers: {
+                        Authorization: `Bearer ${ token }`
+                    }
+                }
+                const { data } = await axiosClient.get('user/profile', config)
+                return data;
             }
-            const { data } = await axiosClient.get('user/profile', config)
-            return data;
         } catch (error) {
             // @ts-ignore
             if (error.response && error.response.data.message) {

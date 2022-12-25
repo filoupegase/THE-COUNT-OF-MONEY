@@ -23,7 +23,7 @@ export const logIn = createAsyncThunk('auth/login',
             const { data } = await axiosClient.post(
                 'auth/login',
                 qs.stringify({ email, password }));
-            localStorage.setItem('userToken', data.token)
+            localStorage.setItem('userToken', data.token);
             return data;
         } catch (error) {
             // @ts-ignore
@@ -47,10 +47,13 @@ export const authSlice = createSlice({
             state.loading = false;
             state.userToken = null;
             state.error = null;
+            state.googleSuccess = false;
         },
-        updateTokenAuthWithGoogle: (state, { payload }) => {
-            if (payload && payload.search !== "") {
-                state.userToken = payload.search.slice(7);
+        AuthWithGoogle: (state, { payload }) => {
+            if (payload && payload !== '') {
+                const tokenClean = payload.slice(7);
+                localStorage.setItem('userToken', tokenClean);
+                state.userToken = tokenClean;
                 state.googleSuccess = true;
             }
         }
@@ -73,4 +76,4 @@ export const authSlice = createSlice({
     }
 });
 
-export const { logout, updateTokenAuthWithGoogle } = authSlice.actions;
+export const { logout, AuthWithGoogle } = authSlice.actions;
