@@ -1,15 +1,16 @@
-import * as React from 'react';
+import React, { FormEvent, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { useAppSelector } from "../../../_core/_store/store";
-import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../../_core/_store/store";
 import { UserInfo } from "../../../_core/domaine/domaine";
 import { Box, Divider, Typography, Button, styled, TextField } from '@mui/material';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import DoubleButtonAction from "../../../_common/component/Button/ButtonDoubleAction/ButtonDoubleAction";
+import { updateUser } from '../../../_core/_store/services/user/slice';
 
 
 const EditProfile = () => {
     // TODO : MAKE A CLEAN HOOK TO GET USER
+    const appDispatch = useAppDispatch();
     const { userInfo } = useAppSelector((state) => state.user);
     const { userToken } = useAppSelector((state) => state.auth);
     const [disabled, setDisabled] = useState<boolean>(true);
@@ -26,8 +27,18 @@ const EditProfile = () => {
             : setUser({ ...user, email: e.target.value })
     };
 
-    const handleSubmit = () => {
-        console.log('submit');
+    const handleSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+        const resultAction = await appDispatch(updateUser({
+                    email: user.email,
+                    username: user.username
+                }
+            )
+        )
+        // TODO : Ca marche bien sauf qu'il manque,
+        // la sauvegarde du user info dans le store et cree carrement un nouveau
+        // service reducer mec
+        console.log('result', resultAction.payload);
     };
 
     useEffect(() => {

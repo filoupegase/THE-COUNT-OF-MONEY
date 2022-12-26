@@ -4,6 +4,8 @@ import {
 } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
 import { axiosClient } from "../../../services/axios";
+import thunk from "redux-thunk";
+import qs from "qs";
 
 
 export const initialState = {
@@ -14,11 +16,23 @@ export const initialState = {
     success: false,
 }
 
+interface MyKnownError {
+    errorMessage: string
+}
+
+interface UserAttributes {
+    username: string
+    email: string
+}
+
+interface MyData {
+    data: null
+}
+
 export const getUser = createAsyncThunk('user/profile',
     async (arg, { getState, rejectWithValue }) => {
         try {
             const token = (getState() as RootState).auth.userToken;
-            console.log('getUser');
             if (token) {
                 const config = {
                     headers: {
@@ -37,6 +51,27 @@ export const getUser = createAsyncThunk('user/profile',
                 // @ts-ignore
                 return rejectWithValue(error.message)
             }
+        }
+    }
+);
+
+export const updateUser = createAsyncThunk('user/update',
+    async ({ email, username }: UserAttributes,
+           { getState, rejectWithValue }) => {
+        try {
+            const token = (getState() as RootState).auth.userToken;
+            if (token) {
+                const config = {
+                    headers: { Authorization: `Bearer ${ token }` }
+                };
+                const { data } = await axiosClient.post(
+                    'user/', qs.stringify({ email, username }),
+                    config
+                )
+                return data;
+            }
+        } catch (error) {
+            console.error(error);
         }
     }
 );
