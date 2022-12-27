@@ -142,12 +142,16 @@ const Articles = () => {
             <h2>Last press articles</h2>
             {data.map((article, index) => (
                 <div key={index}>
-                    {/*Display the article.title in and h3, set the margin bottom to 5 px*/}
-                    <h3 style={{marginBottom: 5}}>{article.title}</h3>
-                    <small style={{color: 'grey'}}>
-                        {article.creator} - {article.pubDate.slice(0, -6)}
-                    </small>
-                    <p style={{textAlign: 'justify'}}>{article.contentencodedSnippet}</p>
+                    <div>
+                        <h3 style={{marginBottom: '5px', color: '#3f51b5'}}>{article.title}</h3>
+                        <small style={{color: 'grey'}}>
+                            {article.creator} - {article.pubDate.slice(0, -6)}
+                        </small>
+                    </div>
+                    <div style={{width: '80%', margin: 'auto'}}>
+                        <div style={{textAlign: 'justify' }} dangerouslySetInnerHTML={{__html: article.contentencoded}}/>
+
+                    </div>
                     {index !== data.length - 1 && <hr/>}
                 </div>
             ))}
