@@ -2,27 +2,17 @@ const Crypto = require("../models/crypto");
 const coinMarketCap = require("../crypto/coinmarketcap");
 
 // Get all the crypto
-exports.getCrypto = (req, res, next) => {
-  Crypto.find({})
-    .then(crypto => {
-      res.status(200).send(crypto);
-    })
-    .catch(err => {
-      res.status(500);
-      return next(err);
-    });
+exports.getCrypto = () => {
+  return Crypto.find({})
 }
 
 // Get all crypto where the state is true
-exports.getCryptoStateTrue = (req, res, next) => {
-  Crypto.find({state: true})
-    .then(crypto => {
-      res.status(200).send(crypto);
-    })
-    .catch(err => {
-      res.status(500);
-      return next(err);
-    });
+exports.getCryptoStateTrue = () => {
+  return Crypto.find({state: true})
+}
+// Get all crypto where the state is false
+exports.getCryptoStateFalse = (req, res, next) => {
+  return Crypto.find({state: false})
 }
 
 exports.getCryptoCmcIdStateTrue = () => {
