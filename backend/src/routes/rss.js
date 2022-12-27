@@ -28,6 +28,17 @@ router.get('/', async (req, res, next) => {
   const articles = rssArticles.map(rssArticle => rssArticle.items).flat();
   articles.sort((a, b) => new Date(b.isoDate) - new Date(a.isoDate));
 
+  articles.forEach(article => {
+    Object.keys(article).forEach(key => {
+      if (key.includes(':')) {
+        const newKey = key.replace(':', '');
+        article[newKey] = article[key];
+        delete article[key];
+      }
+    });
+  });
+
+
   res.status(200).send(articles.slice(0, limit));
 });
 
