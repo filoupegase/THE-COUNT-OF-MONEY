@@ -1,5 +1,5 @@
 import React, { FormEvent, useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../_core/_store/store";
 import { UserInfo } from "../../../_core/domaine/domaine";
 import { Box, Divider, Typography, Button, styled, TextField } from '@mui/material';
@@ -20,6 +20,7 @@ const EditProfile = () => {
     const [user, setUser] = useState<UserInfo>({
         email: '', username: '', _id: '', roles: null
     });
+    const navigate = useNavigate();
 
     const handleChangeInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         e.target.id === 'username'
@@ -29,7 +30,8 @@ const EditProfile = () => {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        const resultAction = await appDispatch(updateUser({
+        const resultAction = await appDispatch(
+            updateUser({
                     email: user.email,
                     username: user.username
                 }
@@ -38,7 +40,9 @@ const EditProfile = () => {
         // TODO : Ca marche bien sauf qu'il manque,
         // la sauvegarde du user info dans le store et cree carrement un nouveau
         // service reducer mec
-        console.log('result', resultAction.payload);
+        if (resultAction.payload) {
+            return navigate(-1)
+        }
     };
 
     useEffect(() => {
@@ -64,10 +68,12 @@ const EditProfile = () => {
         <>
             <Box sx={ { p: 5, background: 'white' } }>
                 <Box sx={ { pt: 1, pb: 2 } }>
-                    <StyledBackButton href={ '/profile' }>
-                        <KeyboardArrowLeft sx={ { fontSize: 28 } } />
-                        <Typography variant='h5'>Profile</Typography>
-                    </StyledBackButton>
+                    <Link to={ "/profile" }>
+                        <StyledBackButton>
+                            <KeyboardArrowLeft sx={ { fontSize: 28 } } />
+                            <Typography variant='h5'>Profile</Typography>
+                        </StyledBackButton>
+                    </Link>
                 </Box>
                 <Divider />
                 <Box
@@ -103,7 +109,6 @@ const EditProfile = () => {
                     >
                         <DoubleButtonAction
                             typeBtn={ 'submit' }
-                            onSubmit={ () => console.log() }
                             disabled={ disabled }
                         />
                     </Box>
@@ -115,7 +120,8 @@ const EditProfile = () => {
 
 const StyledBackButton = styled(Button)(() => ({
         padding: '1px 10px 1px 0',
-        textTransform: 'none'
+        textTransform: 'none',
+        color: "black"
     }
 ));
 

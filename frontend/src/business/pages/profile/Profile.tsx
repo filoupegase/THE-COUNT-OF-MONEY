@@ -21,6 +21,18 @@ const Profile = () => {
         }
     });
 
+    // TODO: KEEP IT AND USE IT
+    // useEffect(() => {
+    //     const fetchUser = async () => {
+    //         const data = await appDispatch(
+    //             getUser()
+    //         );
+    //         console.log('profile', data.payload);
+    //     }
+    //     fetchUser()
+    //         .catch(console.error)
+    // }, []);
+
     if (!userToken) {
         return <Navigate to={ '/' } />
     }

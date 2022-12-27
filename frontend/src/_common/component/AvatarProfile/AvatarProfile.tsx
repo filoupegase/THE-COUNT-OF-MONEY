@@ -31,7 +31,7 @@ const AvatarProfile = () => {
 
     useEffect(() => {
         appDispatch(getUser());
-    }, [appDispatch]);
+    }, []);
 
     useEffect(() => {
         if (userInfo) {

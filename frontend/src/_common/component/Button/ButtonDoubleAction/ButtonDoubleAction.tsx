@@ -4,12 +4,11 @@ import { Link } from "react-router-dom";
 
 
 type DoubleButtonAction = {
-    onSubmit: () => void;
     disabled?: boolean;
     typeBtn?: string | 'text';
 };
 
-const DoubleButtonAction = ({ onSubmit, disabled, typeBtn }: DoubleButtonAction) => {
+const DoubleButtonAction = ({ disabled, typeBtn }: DoubleButtonAction) => {
     return (
         <>
             <Link to={ "/profile" }>
@@ -17,7 +16,7 @@ const DoubleButtonAction = ({ onSubmit, disabled, typeBtn }: DoubleButtonAction)
                     Cancel
                 </CustomBtnCancel>
             </Link>
-            <CustomBtnValid type={ typeBtn } disabled={ disabled } onClick={ onSubmit } color='primary'
+            <CustomBtnValid type={ typeBtn } disabled={ disabled } color='primary'
                             variant="contained"
                             disableElevation>
                 Save

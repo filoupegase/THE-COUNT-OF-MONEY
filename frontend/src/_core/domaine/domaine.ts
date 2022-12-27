@@ -20,4 +20,5 @@ export interface UserInfo {
     username: string;
     _id: string;
     roles: null;
+    //googleId: string | undefined;
 }

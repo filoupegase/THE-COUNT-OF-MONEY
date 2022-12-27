@@ -4,11 +4,10 @@ import {
 } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
 import { axiosClient } from "../../../services/axios";
-import thunk from "redux-thunk";
 import qs from "qs";
 
 
-export const initialState = {
+const initialState = {
     loading: false,
     userInfo: null,
     userToken: null,
@@ -16,29 +15,12 @@ export const initialState = {
     success: false,
 }
 
-interface MyKnownError {
-    errorMessage: string
-}
-
-interface UserAttributes {
-    username: string
-    email: string
-}
-
-interface MyData {
-    data: null
-}
-
 export const getUser = createAsyncThunk('user/profile',
     async (arg, { getState, rejectWithValue }) => {
         try {
             const token = (getState() as RootState).auth.userToken;
             if (token) {
-                const config = {
-                    headers: {
-                        Authorization: `Bearer ${ token }`
-                    }
-                }
+                const config = { headers: { Authorization: `Bearer ${ token }` } }
                 const { data } = await axiosClient.get('user/profile', config)
                 return data;
             }
@@ -54,6 +36,12 @@ export const getUser = createAsyncThunk('user/profile',
         }
     }
 );
+
+interface UserAttributes {
+    username: string
+    email: string
+}
+
 
 export const updateUser = createAsyncThunk('user/update',
     async ({ email, username }: UserAttributes,
@@ -78,7 +66,7 @@ export const updateUser = createAsyncThunk('user/update',
 
 export const userSlice = createSlice({
     name: 'user',
-    initialState: initialState,
+    initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(getUser.pending, (state) => {
