@@ -5,7 +5,7 @@ import Layout from "../../_common/component/Layout";
 import Footer from "../../_common/component/Footer";
 import Home from '../../business/pages/home';
 import Profile from '../../business/pages/profile';
-//import Articles from '../../business/pages/articles/Articles';
+import Articles from '../../business/pages/articles/Articles';
 import EditProfile from "../../business/pages/editProfile";
 
 
@@ -19,7 +19,7 @@ function App() {
                     <Route path={ '/' } element={ <Home /> } />
                     <Route path={ '/profile' } element={ <Profile /> } />
                     <Route path={ '/edit-profile' } element={ <EditProfile /> } />
-                    {/*<Route path={ '/articles' } element={ <Articles /> } />*/ }
+                    <Route path={ '/articles' } element={ <Articles /> } />
                 </Routes>
             </Layout>
             { location.pathname === '/' ? <Footer /> : null }
