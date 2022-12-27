@@ -27,6 +27,7 @@ router.use('/user', passport.authenticate('jwt', {session: false}), require('./r
 router.use('/admin', passport.authenticate('jwt', {session: false}), isAdmin, require('./routes/admin/admin'));
 router.use('/admin/rss', passport.authenticate('jwt', {session: false}), isAdmin, require('./routes/admin/rss'));
 router.use('/admin/crypto', passport.authenticate('jwt', {session: false}), isAdmin, require('./routes/admin/crypto'));
+router.use('/admin/users', passport.authenticate('jwt', {session: false}), isAdmin, require('./routes/admin/users'));
 router.use('/settings', passport.authenticate('jwt', {session: false}), isAdmin, require('./routes/settings'));
 
 module.exports = router;
