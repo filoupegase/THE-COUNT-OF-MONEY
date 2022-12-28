@@ -11,6 +11,7 @@ import { updateUser } from '../../../_core/_store/services/user/slice';
 const EditProfile = () => {
     // TODO : MAKE A CLEAN HOOK TO GET USER
     const appDispatch = useAppDispatch();
+    const navigate = useNavigate();
     const { userInfo } = useAppSelector((state) => state.user);
     const { userToken } = useAppSelector((state) => state.auth);
     const [disabled, setDisabled] = useState<boolean>(true);
@@ -20,7 +21,6 @@ const EditProfile = () => {
     const [user, setUser] = useState<UserInfo>({
         email: '', username: '', _id: '', roles: null
     });
-    const navigate = useNavigate();
 
     const handleChangeInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         e.target.id === 'username'
@@ -37,9 +37,6 @@ const EditProfile = () => {
                 }
             )
         )
-        // TODO : Ca marche bien sauf qu'il manque,
-        // la sauvegarde du user info dans le store et cree carrement un nouveau
-        // service reducer mec
         if (resultAction.payload) {
             return navigate(-1)
         }

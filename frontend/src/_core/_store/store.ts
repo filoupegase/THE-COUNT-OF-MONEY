@@ -11,7 +11,6 @@ import { authSlice } from './services/auth/slice';
 import { userSlice } from './services/user/slice';
 import { cryptoSlice } from "./services/crypto/slice";
 import { registerSlice } from "./services/register/slice";
-import { userUpdateSlice } from "./services/userUpdate/slice";
 
 
 const listenerMiddlewareInstance = createListenerMiddleware({
@@ -20,7 +19,6 @@ const listenerMiddlewareInstance = createListenerMiddleware({
 
 const store = configureStore({
     reducer: {
-        [userUpdateSlice.name]: userUpdateSlice.reducer,
         [authSlice.name]: authSlice.reducer,
         [registerSlice.name]: registerSlice.reducer,
         [userSlice.name]: userSlice.reducer,

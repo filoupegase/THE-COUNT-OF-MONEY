@@ -82,5 +82,9 @@ export const userSlice = createSlice({
             // @ts-ignore
             state.error = payload;
         });
+        builder.addCase(updateUser.fulfilled, (state, { payload }) => {
+            state.loading = false;
+            state.userInfo = payload;
+        });
     }
 });
