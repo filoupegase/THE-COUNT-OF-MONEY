@@ -18,20 +18,12 @@ function App() {
     const { userInfo } = useAppSelector((state) => state.user);
     const [data, setData] = useState([]);
 
-    //console.log(userInfo && userInfo.roles[1]);
-
     useEffect(() => {
         appDispatch(getCrypto());
         if (cryptoData) {
             setData(cryptoData);
         }
     }, []);
-
-    // useEffect(() => {
-    //     if (cryptoData) {
-    //         setData(cryptoData);
-    //     }
-    // });
 
     return (
         <BoxStyled>
