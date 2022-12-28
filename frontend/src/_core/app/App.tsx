@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Box, styled } from '@mui/material';
 import Layout from "../../_common/component/Layout";
@@ -7,7 +7,6 @@ import Home from '../../business/pages/home';
 import Profile from '../../business/pages/profile';
 import Articles from '../../business/pages/articles/Articles';
 import EditProfile from "../../business/pages/editProfile";
-import { useEffect, useState } from "react";
 import { getCrypto } from "../_store/services/crypto/slice";
 import { useAppDispatch, useAppSelector } from "../_store/store";
 
