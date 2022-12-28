@@ -21,10 +21,13 @@ function App() {
 
     useEffect(() => {
         appDispatch(getCrypto());
+    }, []);
+
+    useEffect(() => {
         if (cryptoData) {
             setData(cryptoData);
         }
-    }, []);
+    });
 
     return (
         <BoxStyled>
