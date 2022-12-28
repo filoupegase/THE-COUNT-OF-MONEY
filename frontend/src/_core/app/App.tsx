@@ -15,24 +15,34 @@ function App() {
     const location = useLocation();
     const appDispatch = useAppDispatch();
     const { cryptoData } = useAppSelector((state) => state.crypto);
+    const { userInfo } = useAppSelector((state) => state.user);
     const [data, setData] = useState([]);
+
+    //console.log(userInfo && userInfo.roles[1]);
 
     useEffect(() => {
         appDispatch(getCrypto());
-    }, []);
-
-    useEffect(() => {
         if (cryptoData) {
             setData(cryptoData);
         }
-    });
+    }, []);
 
+    // useEffect(() => {
+    //     if (cryptoData) {
+    //         setData(cryptoData);
+    //     }
+    // });
 
     return (
         <BoxStyled>
             <Layout>
                 <Routes>
-                    <Route path={ '/' } element={ <Home data={ data } /> } />
+                    <Route path={ '/' } element={
+                        // @ts-ignore
+                        userInfo && userInfo.roles[1] === 'admin'
+                            ? <p>admin</p>
+                            : <Home data={ data } />
+                    } />
                     <Route path={ '/profile' } element={ <Profile /> } />
                     <Route path={ '/edit-profile' } element={ <EditProfile /> } />
                     <Route path={ '/articles' } element={ <Articles /> } />
