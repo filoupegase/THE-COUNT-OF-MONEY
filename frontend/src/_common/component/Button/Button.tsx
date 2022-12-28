@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button as MuiButton, styled } from "@mui/material";
 
-type Button = {
+
+type ButtonProps = {
     onClick?: () => void,
     label: string;
     disabled?: boolean;
@@ -9,7 +10,7 @@ type Button = {
     type: string;
 };
 
-const Button = ({ label, variant, onClick, type }: Button) => {
+const Button = ({ label, variant, onClick, type }: ButtonProps) => {
     return (
         <CustomButton type={ type } onClick={ onClick } variant={ variant } disableElevation>
             { label }
