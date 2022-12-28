@@ -38,33 +38,39 @@ const Profile = () => {
     }
     return (
         <>
-            <Box sx={ { display: 'flex' } }>
-                <Box sx={ { position: 'relative' } }>
-                    <img
-                        height={ 100 }
-                        width={ 100 }
-                        alt='user avatar profile'
-                        src={ 'https://s3.coinmarketcap.com/static/img/portraits/633520129b613d3454890380.png' }
-                    />
-                    <Box sx={ { position: 'absolute', top: -37, left: 27 } }>
-                        <p style={ { fontSize: 44 } }>👽</p>
+            <Box sx={ {
+                p: 5,
+                background: 'white',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center'
+            } }>
+                <Box sx={ { display: 'flex', alignItems: 'center' } }>
+                    <Box sx={ { position: 'relative' } }>
+                        <img
+                            height={ 100 }
+                            width={ 100 }
+                            alt='user avatar profile'
+                            src={ 'https://s3.coinmarketcap.com/static/img/portraits/633520129b613d3454890380.png' }
+                        />
+                        <Box sx={ { position: 'absolute', top: -37, left: 27 } }>
+                            <p style={ { fontSize: 44 } }>👽</p>
+                        </Box>
+                    </Box>
+                    <Box>
+                        <Typography variant='h6'> @{ user.username } </Typography>
+                        <Typography variant='body2'> { user.email } </Typography>
                     </Box>
                 </Box>
-                <Box>
-                    <Typography variant='h6'> @{ user.username } </Typography>
-                    <Typography variant='body2'> { user.email } </Typography>
-                </Box>
+                <Link to={ "/edit-profile" }>
+                    <ButtonBasicIcon
+                        icon={ <EditIcon
+                            sx={ (theme) => ({
+                                color: theme.palette.grey[600]
+                            }) } /> } label='Edit'
+                    />
+                </Link>
             </Box>
-            <Link to={ "/edit-profile" }>
-                <ButtonBasicIcon
-                    icon={ <EditIcon
-                        sx={ (theme) => ({
-                            color: theme.palette.grey[600]
-                        }) }
-                    /> }
-                    label='Edit'
-                />
-            </Link>
         </>
     )
 };

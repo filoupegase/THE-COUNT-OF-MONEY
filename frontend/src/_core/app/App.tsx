@@ -7,16 +7,33 @@ import Home from '../../business/pages/home';
 import Profile from '../../business/pages/profile';
 import Articles from '../../business/pages/articles/Articles';
 import EditProfile from "../../business/pages/editProfile";
+import { useEffect, useState } from "react";
+import { getCrypto } from "../_store/services/crypto/slice";
+import { useAppDispatch, useAppSelector } from "../_store/store";
 
 
 function App() {
     const location = useLocation();
+    const appDispatch = useAppDispatch();
+    const { cryptoData } = useAppSelector((state) => state.crypto);
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        appDispatch(getCrypto());
+    }, []);
+
+    useEffect(() => {
+        if (cryptoData) {
+            setData(cryptoData);
+        }
+    });
+
 
     return (
         <BoxStyled>
             <Layout>
                 <Routes>
-                    <Route path={ '/' } element={ <Home /> } />
+                    <Route path={ '/' } element={ <Home data={ data } /> } />
                     <Route path={ '/profile' } element={ <Profile /> } />
                     <Route path={ '/edit-profile' } element={ <EditProfile /> } />
                     <Route path={ '/articles' } element={ <Articles /> } />
