@@ -11,7 +11,7 @@ const NavHeader = () => {
                 <Link to={ "/" }>
                     <Box sx={ { display: 'flex', alignItems: 'center', marginRight: 4 } }>
                         <DiamondIcon style={ { height: 32, width: 32, marginRight: 2 } } />
-                        <Typography sx={ { fontWeight: 600, letterSpacing: '-1px' } }
+                        <Typography sx={ { fontWeight: 600, fontSize: 20, letterSpacing: '-1px' } }
                                     variant="h5"
                         >
                             The Count of Money
