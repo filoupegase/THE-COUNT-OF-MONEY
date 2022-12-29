@@ -23,6 +23,22 @@ router.get('/:id', rssController.getRssFeed);
 // Add a new rss feed
 router.post('/', rssController.createRssFeed)
 
+router.put('/state/:id', async (req, res, next) => {
+  const id = req.params.id;
+  const state = req.query.state;
+
+  try {
+    const data = await rssController.changeRssState(id, state);
+    if (!data) {
+      throw Error('Rss not found');
+    }
+    res.status(200).send(data);
+  } catch (err) {
+    res.status(500);
+    return next(err);
+  }
+});
+
 // Update an rss feed state
 router.put('/:id', rssController.changeRssFeedState);
 

@@ -57,6 +57,10 @@ exports.createRssFeed = (req, res, next) => {
   });
 }
 
+exports.changeRssState = (id, state) => {
+  return Rss.findOneAndUpdate({_id: id}, {state: state}, {new: true})
+}
+
 // Change the state of an rss feed
 exports.changeRssFeedState = (req, res, next) => {
   Rss.findByIdAndUpdate(req.params.id, {state: req.body.state}, {new: true}, (err, updatedRssFeed) => {
