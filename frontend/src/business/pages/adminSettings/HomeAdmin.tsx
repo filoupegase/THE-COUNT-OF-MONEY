@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from 'react';
-import { Box, Tabs, Tab } from "@mui/material";
+import { Box, Tabs, Tab, styled } from "@mui/material";
+import TabPanelCrypto from "../../TabPanel/TabPanelCrypto";
 
 
 type AdminSettingsProps = {
@@ -11,14 +12,14 @@ type TabPanelProps = PropsWithChildren<{
     value: number;
 }>
 
-const AdminSettings = ({ title = 'salut admin' }: AdminSettingsProps) => {
+const HomeAdmin = ({ title = 'salut admin' }: AdminSettingsProps) => {
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
 
-    function TabPanel(props: TabPanelProps) {
+    const TabPanel = (props: TabPanelProps) => {
         const { children, value, index, ...other } = props;
         return (
             <Box
@@ -37,6 +38,10 @@ const AdminSettings = ({ title = 'salut admin' }: AdminSettingsProps) => {
         );
     }
 
+    const StyledTabPanel = styled(TabPanel)(() => (
+        { padding: '11px 30px' }
+    ));
+
     return (
         <>
             <Box sx={ { pt: 5, pb: 5, bgcolor: 'background.paper' } }>
@@ -46,19 +51,20 @@ const AdminSettings = ({ title = 'salut admin' }: AdminSettingsProps) => {
                         <Tab label="Articles" />
                         <Tab label="Users" />
                     </Tabs>
-                    <TabPanel value={ value } index={ 0 }>
-                        <p>Crypto</p>
-                    </TabPanel>
-                    <TabPanel value={ value } index={ 1 }>
+                    <StyledTabPanel value={ value } index={ 0 }>
+                        <TabPanelCrypto />
+                    </StyledTabPanel>
+                    <StyledTabPanel value={ value } index={ 1 }>
                         <p>Articles</p>
-                    </TabPanel>
-                    <TabPanel value={ value } index={ 2 }>
+                    </StyledTabPanel>
+                    <StyledTabPanel value={ value } index={ 2 }>
                         <p>Users</p>
-                    </TabPanel>
+                    </StyledTabPanel>
                 </Box>
             </Box>
         </>
     )
 };
 
-export default AdminSettings;
+
+export default HomeAdmin;

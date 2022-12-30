@@ -1,2 +1,2 @@
-export * from "./AdminSettings";
-export { default } from "./AdminSettings";
+export * from "./HomeAdmin";
+export { default } from "./HomeAdmin";

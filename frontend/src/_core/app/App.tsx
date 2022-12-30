@@ -7,7 +7,7 @@ import Home from '../../business/pages/home';
 import Profile from '../../business/pages/profile';
 import Articles from '../../business/pages/articles/Articles';
 import EditProfile from "../../business/pages/editProfile";
-import AdminSettings from '../../business/pages/adminSettings';
+import HomeAdmin from '../../business/pages/adminSettings';
 import { getCrypto } from "../_store/services/crypto/slice";
 import { useAppDispatch, useAppSelector } from "../_store/store";
 
@@ -36,7 +36,7 @@ function App() {
                     <Route path={ '/' } element={
                         // @ts-ignore
                         userInfo && userInfo.roles[1] === 'admin'
-                            ? <AdminSettings />
+                            ? <HomeAdmin />
                             : <Home data={ data } />
                     } />
                     <Route path={ '/profile' } element={ <Profile /> } />
