@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy } from 'react';
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Box, styled } from '@mui/material';
 import Layout from "../../_common/component/Layout";
 import Footer from "../../_common/component/Footer";
-import Home from '../../business/pages/home';
+//import Home from '../../business/pages/home';
 import Profile from '../../business/pages/profile';
 import Articles from '../../business/pages/articles/Articles';
 import EditProfile from "../../business/pages/editProfile";
@@ -11,6 +11,8 @@ import HomeAdmin from '../../business/pages/adminSettings';
 import { getCrypto } from "../_store/services/crypto/slice";
 import { useAppDispatch, useAppSelector } from "../_store/store";
 
+
+const Home = lazy(() => import('../../business/pages/home'));
 
 function App() {
     const location = useLocation();
