@@ -2,12 +2,12 @@ import * as React from 'react';
 import SettingsRssCrypto from "../../../_common/component/SettingsRssCrypto";
 
 
-const TabPanelCrypto = () => {
+const TabPanelRss = () => {
     return (
         <>
-            <SettingsRssCrypto crypto />
+            <SettingsRssCrypto rss />
         </>
     )
 }
 
-export default TabPanelCrypto;
+export default TabPanelRss;

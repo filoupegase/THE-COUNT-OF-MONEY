@@ -1,6 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import { Box, Tabs, Tab, styled } from "@mui/material";
 import TabPanelCrypto from "../../TabPanel/TabPanelCrypto";
+import TabPanelRss from "../../TabPanel/TabPanelRss";
 
 
 type AdminSettingsProps = {
@@ -55,7 +56,7 @@ const HomeAdmin = ({ title = 'salut admin' }: AdminSettingsProps) => {
                         <TabPanelCrypto />
                     </StyledTabPanel>
                     <StyledTabPanel value={ value } index={ 1 }>
-                        <p>Articles</p>
+                        <TabPanelRss />
                     </StyledTabPanel>
                     <StyledTabPanel value={ value } index={ 2 }>
                         <p>Users</p>

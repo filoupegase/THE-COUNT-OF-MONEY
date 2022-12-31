@@ -34,7 +34,6 @@ const LogInForm = ({ userEmail }: LogInFormProps) => {
     const { loading, error } = useAppSelector((state) => state.auth);
     const appDispatch = useAppDispatch();
     const [inputError, setInputError] = useState<boolean>(false);
-    // @ts-ignore
     const [emailValue, setEmailValue] = useState<string>(userEmail ? userEmail : '');
     const [values, setValues] = useState<State>({
         amount: '',
