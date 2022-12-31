@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { getAppSettings } from '../../../_core/apiServices/AppSettings';
+import React, { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from "../../../_core/_store/store";
+import { getAppSettings } from "../../../_core/_store/services/appSettings/slice";
 
 
 const SettingsRssCrypto = () => {
-    const [dataApp, setDataApp] = useState<any>({
-        popularCryptos: '', popularRss: ''
-    });
+    const appDispatch = useAppDispatch();
+    const { popularCryptos, popularRss } = useAppSelector((state) => state.appSettings);
 
     useEffect(() => {
         const res = async () => {
-            const data = await getAppSettings();
-            if (data) {
-                setDataApp(data)
-            }
+            await appDispatch(
+                getAppSettings()
+            )
         }
-        res().catch(console.error);
+        res().catch(error => console.error(error));
     }, []);
+
 
     return (
         <>
-            <p> popularCryptos : { dataApp.popularCryptos }</p>
-            <p> popularRss : { dataApp.popularRss }</p>
+            <p> popularCryptos : { popularCryptos }</p>
+            <p> popularRss : { popularRss }</p>
         </>
     )
 }
