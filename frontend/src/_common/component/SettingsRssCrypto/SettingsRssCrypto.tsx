@@ -94,7 +94,40 @@ const SettingsRssCrypto = ({ crypto, rss }: SettingsRssCryptoProps) => {
             }
             { rss &&
                 <>
-                    <p>Get : { response.popularRss } articles</p>
+                    <Box
+                        sx={ { display: 'flex', flexDirection: 'column' } }
+                    >
+                        <Typography sx={ { fontWeight: 300, mb: 1, fontSize: '1.3rem' } } variant='h5'
+                                    gutterBottom
+                        >
+                            Show { response.popularRss } articles
+                        </Typography>
+                        <label htmlFor="rss"></label>
+                        <Box
+                            sx={ {
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'space-between'
+                            } }
+                        >
+                            <StyledTextField
+                                id="rss"
+                                name="rss"
+                                type="number"
+                                variant="outlined"
+                                value={ valRss }
+                                onChange={ handleChange }
+                                inputProps={ { min: 1, max: 1000 } }
+                            />
+                            <StyledBtnValid
+                                onClick={ handleSubmit }
+                                type={ 'submit' } disabled={ response.popularRss === valRss } color='primary'
+                                variant="contained" disableElevation
+                            >
+                                Update
+                            </StyledBtnValid>
+                        </Box>
+                    </Box>
                 </>
             }
             { openSnackBar &&
