@@ -22,3 +22,8 @@ export interface UserInfo {
     roles: null;
     //googleId: string | undefined;
 }
+
+export interface ResponseAppSettings {
+    popularCryptos: string;
+    popularRss: string;
+}

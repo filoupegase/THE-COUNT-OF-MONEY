@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { FormEvent, ChangeEvent, useEffect, useState } from "react";
 import { Navigate, Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../_core/_store/store";
 import { UserInfo } from "../../../_core/domaine/domaine";
@@ -22,7 +22,7 @@ const EditProfile = () => {
         email: '', username: '', _id: '', roles: null
     });
 
-    const handleChangeInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    const handleChangeInput = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         e.target.id === 'username'
             ? setUser({ ...user, username: e.target.value })
             : setUser({ ...user, email: e.target.value })

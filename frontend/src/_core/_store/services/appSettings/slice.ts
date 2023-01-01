@@ -7,8 +7,10 @@ const initialState = {
     loading: false,
     error: null,
     success: false,
-    popularCryptos: null,
-    popularRss: null
+    response: {
+        popularCryptos: undefined,
+        popularRss: undefined
+    }
 };
 
 interface AppSettings {
@@ -44,9 +46,7 @@ export const appSettings = createSlice({
         builder.addCase(getAppSettings.fulfilled, (state, { payload }) => {
             state.loading = false;
             // @ts-ignore
-            state.popularCryptos = payload.popularCryptos;
-            // @ts-ignore
-            state.popularRss = payload.popularRss
+            state.response = payload;
         });
     }
 });

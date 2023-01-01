@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from "../../../_core/_store/store";
-import { getAppSettings } from "../../../_core/_store/services/appSettings/slice";
+import React, { ChangeEventHandler, useState } from 'react';
+import { useAppSelector } from "../../../_core/_store/store";
 import { TextField, Box, styled } from "@mui/material";
 
 
@@ -10,17 +9,15 @@ type SettingsRssCryptoProps = {
 }
 
 const SettingsRssCrypto = ({ crypto, rss }: SettingsRssCryptoProps) => {
-    const appDispatch = useAppDispatch();
-    const { popularCryptos, popularRss } = useAppSelector((state) => state.appSettings);
+    const { response } = useAppSelector((state) => state.appSettings);
+    const [valCrypto, setValCrypto] = useState<string>(response.popularCryptos ? response.popularCryptos : '');
+    const [valRss, setValRss] = useState<string>(response.popularRss ? response.popularRss : '');
 
-    useEffect(() => {
-        const res = async () => {
-            await appDispatch(
-                getAppSettings()
-            )
-        }
-        res().catch(error => console.error(error));
-    }, []);
+    const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        e.target.id === 'crypto'
+            ? setValCrypto(e.target.value)
+            : setValRss(e.target.value)
+    };
 
     return (
         <>
@@ -29,22 +26,22 @@ const SettingsRssCrypto = ({ crypto, rss }: SettingsRssCryptoProps) => {
                     <Box
                         sx={ { display: 'flex', flexDirection: 'column' } }
                     >
-                        <p>Get { popularCryptos } cryptos</p>
+                        <p>Get { response.popularCryptos } cryptos</p>
                         <label htmlFor="crypto"></label>
                         <StyledTextField
                             id="crypto"
                             name="crypto"
                             type="number"
                             variant="outlined"
-                            value={ popularCryptos }
-                            //onChange={ (e) => handleChangeInput(e) }
+                            value={ valCrypto }
+                            onChange={ handleChange }
                         />
                     </Box>
                 </>
             }
             { rss &&
                 <>
-                    <p> popularRss : { popularRss }</p>
+                    <p>Get : { response.popularRss } articles</p>
                 </>
             }
         </>

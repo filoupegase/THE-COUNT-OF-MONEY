@@ -1,7 +1,9 @@
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useEffect } from 'react';
 import { Box, Tabs, Tab, styled } from "@mui/material";
 import TabPanelCrypto from "../../TabPanel/TabPanelCrypto";
 import TabPanelRss from "../../TabPanel/TabPanelRss";
+import { getAppSettings } from "../../../_core/_store/services/appSettings/slice";
+import { useAppDispatch } from "../../../_core/_store/store";
 
 
 type AdminSettingsProps = {
@@ -14,11 +16,21 @@ type TabPanelProps = PropsWithChildren<{
 }>
 
 const HomeAdmin = ({ title = 'salut admin' }: AdminSettingsProps) => {
+    const appDispatch = useAppDispatch();
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
+
+    useEffect(() => {
+        const res = async () => {
+            await appDispatch(
+                getAppSettings()
+            )
+        }
+        res().catch(error => console.error(error));
+    }, [getAppSettings]);
 
     const TabPanel = (props: TabPanelProps) => {
         const { children, value, index, ...other } = props;
