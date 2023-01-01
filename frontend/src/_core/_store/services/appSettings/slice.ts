@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from '../../store';
 import { axiosClient } from "../../../services/axios";
+import qs from "qs";
 
 
 const initialState = {
@@ -14,8 +15,8 @@ const initialState = {
 };
 
 interface AppSettings {
-    popularCryptos: number;
-    popularRss: number;
+    popularCryptos: string;
+    popularRss: string;
 }
 
 
@@ -30,6 +31,30 @@ export const getAppSettings = createAsyncThunk('appSettings/get',
 
         } catch (err) {
             //return rejectWithValue
+        }
+    }
+);
+
+export const updateAppSettings = createAsyncThunk(
+    'appSettings/post',
+    async ({ popularCryptos, popularRss }: AppSettings,
+           { getState, rejectWithValue }) => {
+        try {
+            const token = (getState() as RootState).auth.userToken;
+
+            if (token) {
+                const config = {
+                    headers: { Authorization: `Bearer ${ token }` }
+                };
+
+                const { data } = await axiosClient.put(
+                    'settings', qs.stringify({ popularCryptos, popularRss }),
+                    config
+                )
+                return data;
+            }
+        } catch (err) {
+            console.error(err);
         }
     }
 )
@@ -48,5 +73,12 @@ export const appSettings = createSlice({
             // @ts-ignore
             state.response = payload;
         });
+        builder.addCase(updateAppSettings.fulfilled, (state, { payload }) => {
+            state.success = true;
+            state.response = payload;
+        });
+        builder.addCase(updateAppSettings.rejected, (state) => {
+            state.success = false;
+        })
     }
 });

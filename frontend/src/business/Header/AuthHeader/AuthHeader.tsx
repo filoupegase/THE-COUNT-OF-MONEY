@@ -151,6 +151,6 @@ const StyledSnackbar = styled(Snackbar)(() => ({
         background: '#536954',
         color: 'white'
     }
-}))
+}));
 
 export default AuthHeader;
