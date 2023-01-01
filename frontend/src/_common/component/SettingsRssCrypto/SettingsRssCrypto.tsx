@@ -1,6 +1,6 @@
 import React, { ChangeEventHandler, useState } from 'react';
 import { useAppSelector } from "../../../_core/_store/store";
-import { TextField, Box, styled } from "@mui/material";
+import { TextField, Box, styled, Button } from "@mui/material";
 
 
 type SettingsRssCryptoProps = {
@@ -26,16 +26,31 @@ const SettingsRssCrypto = ({ crypto, rss }: SettingsRssCryptoProps) => {
                     <Box
                         sx={ { display: 'flex', flexDirection: 'column' } }
                     >
-                        <p>Get { response.popularCryptos } cryptos</p>
+                        <p>Show { response.popularCryptos } popular cryptos</p>
                         <label htmlFor="crypto"></label>
-                        <StyledTextField
-                            id="crypto"
-                            name="crypto"
-                            type="number"
-                            variant="outlined"
-                            value={ valCrypto }
-                            onChange={ handleChange }
-                        />
+                        <Box
+                            sx={ {
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'space-between'
+                            } }
+                        >
+                            <StyledTextField
+                                id="crypto"
+                                name="crypto"
+                                type="number"
+                                variant="outlined"
+                                value={ valCrypto }
+                                onChange={ handleChange }
+                                inputProps={ { min: 5, max: 1000 } }
+                            />
+                            <StyledBtnValid
+                                type={ 'submit' } disabled={ response.popularCryptos === valCrypto } color='primary'
+                                variant="contained" disableElevation
+                            >
+                                Save
+                            </StyledBtnValid>
+                        </Box>
                     </Box>
                 </>
             }
@@ -47,6 +62,17 @@ const SettingsRssCrypto = ({ crypto, rss }: SettingsRssCryptoProps) => {
         </>
     );
 }
+
+const StyledBtnValid = styled(Button)(() => ({
+        padding: "6px 16px",
+        fontSize: '0.875rem',
+        textTransform: 'capitalize',
+        '&.Mui-disabled': {
+            backgroundColor: '#c9d1eb',
+            color: "#878ea8"
+        }
+    })
+);
 
 const StyledTextField = styled(TextField)(() => ({
     width: 300
