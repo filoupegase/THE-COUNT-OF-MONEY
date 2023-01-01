@@ -8,9 +8,9 @@ type DataGridCmpProps = {
 }
 
 const columns: GridColDef[] = [
-    { field: "id", headerName: "#" },
+    { field: "id", headerName: "#", width: 70 },
     {
-        field: "name", headerName: "Name", width: 200,
+        field: "name", headerName: "Name", width: 230,
         renderCell: (params: GridRenderCellParams) => (
             <StackNameCrypto
                 name={ params.row.name }
@@ -19,7 +19,7 @@ const columns: GridColDef[] = [
             />
         )
     },
-    { field: "symbol", headerName: "Symbol" },
+    { field: "symbol", headerName: "Symbol",  width: 110, },
     { field: "circulating_supply", headerName: "Price", width: 150 },
 ];
 
