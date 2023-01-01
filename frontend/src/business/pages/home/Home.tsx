@@ -9,7 +9,7 @@ import { AuthWithGoogle } from "../../../_core/_store/services/auth/slice";
 
 type HomeProps = {
     data: object[]
-}
+};
 
 function Home({ data }: HomeProps) {
     const location = useLocation();
@@ -35,7 +35,7 @@ function Home({ data }: HomeProps) {
                 <DataGrid data={ data } />
             </Box>
         </>
-    )
+    );
 }
 
 export default Home;

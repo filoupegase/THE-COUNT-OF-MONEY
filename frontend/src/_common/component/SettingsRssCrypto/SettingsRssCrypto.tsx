@@ -22,7 +22,6 @@ const SettingsRssCrypto = ({ crypto, rss }: SettingsRssCryptoProps) => {
         res().catch(error => console.error(error));
     }, []);
 
-
     return (
         <>
             { crypto &&
@@ -30,13 +29,14 @@ const SettingsRssCrypto = ({ crypto, rss }: SettingsRssCryptoProps) => {
                     <Box
                         sx={ { display: 'flex', flexDirection: 'column' } }
                     >
-                        <p> popularCryptos : { popularCryptos }</p>
-                        <label htmlFor="crypto">Crypto</label>
+                        <p>Get { popularCryptos } cryptos</p>
+                        <label htmlFor="crypto"></label>
                         <StyledTextField
                             id="crypto"
                             name="crypto"
-                            type='number'
+                            type="number"
                             variant="outlined"
+                            value={ popularCryptos }
                             //onChange={ (e) => handleChangeInput(e) }
                         />
                     </Box>
@@ -48,11 +48,11 @@ const SettingsRssCrypto = ({ crypto, rss }: SettingsRssCryptoProps) => {
                 </>
             }
         </>
-    )
+    );
 }
 
-const StyledTextField = styled(TextField)(({ theme }) => ({
-    width: 100
+const StyledTextField = styled(TextField)(() => ({
+    width: 300
 }));
 
 export default SettingsRssCrypto;

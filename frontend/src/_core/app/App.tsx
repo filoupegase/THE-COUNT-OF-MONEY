@@ -3,7 +3,6 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { Box, styled } from '@mui/material';
 import Layout from "../../_common/component/Layout";
 import Footer from "../../_common/component/Footer";
-//import Home from '../../business/pages/home';
 import Profile from '../../business/pages/profile';
 import Articles from '../../business/pages/articles/Articles';
 import EditProfile from "../../business/pages/editProfile";

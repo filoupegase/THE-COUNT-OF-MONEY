@@ -39,11 +39,8 @@ const Profile = () => {
     return (
         <>
             <Box sx={ {
-                p: 5,
-                background: 'white',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center'
+                p: 5, background: 'white', display: 'flex',
+                justifyContent: 'space-between', alignItems: 'center'
             } }>
                 <Box sx={ { display: 'flex', alignItems: 'center' } }>
                     <Box sx={ { position: 'relative' } }>
@@ -64,10 +61,12 @@ const Profile = () => {
                 </Box>
                 <Link to={ "/edit-profile" }>
                     <ButtonBasicIcon
-                        icon={ <EditIcon
-                            sx={ (theme) => ({
-                                color: theme.palette.grey[600]
-                            }) } /> } label='Edit'
+                        icon={
+                            <EditIcon
+                                sx={ (theme) => ({
+                                    color: theme.palette.grey[600]
+                                }) } /> }
+                        label='Edit'
                     />
                 </Link>
             </Box>
