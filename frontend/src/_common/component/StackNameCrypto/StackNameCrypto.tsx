@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Typography, Stack } from '@mui/material';
 
+
 type StackNameCryptoProps = {
     id: number;
     name: string;
