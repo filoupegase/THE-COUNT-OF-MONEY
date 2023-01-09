@@ -2,6 +2,10 @@
 const axios = require('axios')
 const qs = require('qs')
 
+// Global variables for the tests
+let token = ''
+
+// TEST USER
 test('Create a new user', async () => {
   let data = qs.stringify({
     'email': 'jest@test.com',
@@ -30,6 +34,24 @@ test('Login with the new user', async () => {
     data: data
   };
   let response = await axios(config)
-  // You should get a token
+  // Get the token from the response and save it for the next tests
+  token = response.data.token
   expect(response.status).toBe(200)
 })
+// Get user info, get /api/user/profile use the token for the bearer
+test('Get the user information', async () => {
+  let config = {
+    method: 'get',
+    url: 'http://localhost:4000/api/user/profile',
+    headers: {}
+  };
+  config.headers.Authorization = 'Bearer ' + token
+  let response = await axios(config)
+  expect(response.status).toBe(200)
+})
+
+// TEST ADMIN
+
+// TEST CRYPTO
+
+// TEST RSS
