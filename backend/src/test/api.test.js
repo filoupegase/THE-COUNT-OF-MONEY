@@ -6,6 +6,7 @@ const qs = require('qs')
 let usertoken = ''
 let userid = ''
 let adminToken = ''
+let rssFeedId = ''
 
 // TEST USER
 test('Create a new user', async () => {
@@ -128,7 +129,6 @@ test('Get the list of cryptos', async () => {
   expect(response.status).toBe(200)
 })
 
-// add a new crypto
 test('Add a new crypto', async () => {
   // route /api/admin/crypto/
   let data = qs.stringify({
@@ -161,6 +161,108 @@ test('Delete a crypto', async () => {
   let config = {
     method: 'delete',
     url: 'http://localhost:4000/api/admin/crypto/5994',
+    headers: {}
+  }
+  config.headers.Authorization = 'Bearer ' + adminToken
+  let response = await axios(config)
+  expect(response.status).toBe(200)
+})
+
+// ADMIN - RSS
+test('Get the list of RSS', async () => {
+  let config = {
+    method: 'get',
+    url: 'http://localhost:4000/api/admin/rss/',
+    headers: {}
+  };
+  config.headers.Authorization = 'Bearer ' + adminToken
+  let response = await axios(config)
+  expect(response.status).toBe(200)
+})
+
+test('Add a new RSS', async () => {
+  let data = qs.stringify({
+    'name': 'test',
+    'link': 'https://www.test.com/rss',
+    'state': 'true',
+  });
+  let config = {
+    method: 'post',
+    url: 'http://localhost:4000/api/admin/rss/',
+    headers: {},
+    data: data
+  };
+  config.headers.Authorization = 'Bearer ' + adminToken
+  let response = await axios(config)
+  rssFeedId = response.data._id
+  expect(response.status).toBe(201)
+})
+
+test('Change the state of a RSS', async () => {
+  let config = {
+    method: 'put',
+    url: 'http://localhost:4000/api/admin/rss/state/' + rssFeedId + '?state=false',
+    headers: {}
+  };
+  config.headers.Authorization = 'Bearer ' + adminToken
+  let response = await axios(config)
+  expect(response.status).toBe(200)
+})
+
+test('Get a specific RSS', async () => {
+  // route /api/admin/rss/:id
+  let config = {
+    method: 'get',
+    url: 'http://localhost:4000/api/admin/rss/' + rssFeedId,
+    headers: {}
+  }
+  config.headers.Authorization = 'Bearer ' + adminToken
+  let response = await axios(config)
+  expect(response.status).toBe(200)
+})
+
+test('Delete a RSS', async () => {
+  // route /api/admin/rss/:id
+  let config = {
+    method: 'delete',
+    url: 'http://localhost:4000/api/admin/rss/' + rssFeedId,
+    headers: {}
+  }
+  config.headers.Authorization = 'Bearer ' + adminToken
+  let response = await axios(config)
+  expect(response.status).toBe(200)
+})
+
+// ADMIN - Users
+// List all the user /api/admin/users/
+test('Get the list of users', async () => {
+  let config = {
+    method: 'get',
+    url: 'http://localhost:4000/api/admin/users/',
+    headers: {}
+  }
+  config.headers.Authorization = 'Bearer ' + adminToken
+  let response = await axios(config)
+  expect(response.status).toBe(200)
+})
+
+// Set a user admin
+test('Give a user admin rights', async () => {
+  let config = {
+    method: 'put',
+    url: 'http://localhost:4000/api/admin/users/' + userid,
+    headers: {}
+  }
+  config.headers.Authorization = 'Bearer ' + adminToken
+  let response = await axios(config)
+  expect(response.status).toBe(200)
+})
+
+// Remove a user from admin
+test('Remove a user admin rights', async () => {
+  let config = {
+    method: 'delete',
+    url: 'http://localhost:4000/api/admin/users/' + userid,
     headers: {}
   }
   config.headers.Authorization = 'Bearer ' + adminToken
