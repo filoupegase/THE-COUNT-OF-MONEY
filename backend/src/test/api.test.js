@@ -3,7 +3,9 @@ const axios = require('axios')
 const qs = require('qs')
 
 // Global variables for the tests
-let token = ''
+let usertoken = ''
+let userid = ''
+let adminToken = ''
 
 // TEST USER
 test('Create a new user', async () => {
@@ -35,7 +37,7 @@ test('Login with the new user', async () => {
   };
   let response = await axios(config)
   // Get the token from the response and save it for the next tests
-  token = response.data.token
+  usertoken = response.data.token
   expect(response.status).toBe(200)
 })
 
@@ -45,8 +47,9 @@ test('Get the user information', async () => {
     url: 'http://localhost:4000/api/user/profile',
     headers: {}
   };
-  config.headers.Authorization = 'Bearer ' + token
+  config.headers.Authorization = 'Bearer ' + usertoken
   let response = await axios(config)
+  userid = response.data._id
   expect(response.status).toBe(200)
 })
 
@@ -61,13 +64,36 @@ test('Update the user information', async () => {
     headers: {},
     data: data
   };
-  config.headers.Authorization = 'Bearer ' + token
+  config.headers.Authorization = 'Bearer ' + usertoken
   let response = await axios(config)
   expect(response.status).toBe(200)
 })
 
 // TEST ADMIN
+test('Login as admin', async () => {
+  let data = qs.stringify({
+    'email': 'admin@localhost',
+    'password': 'admin123'
+  });
+  let config = {
+    method: 'post',
+    url: 'http://localhost:4000/api/auth/login/',
+    headers: {},
+    data: data
+  };
+  let response = await axios(config)
+  adminToken = response.data.token
+  expect(response.status).toBe(200)
+})
 
-// TEST CRYPTO
-
-// TEST RSS
+test('Delete the test user', async () => {
+  // /api/admin/users/delete/:id where id is the user id
+  let config = {
+    method: 'delete',
+    url: 'http://localhost:4000/api/admin/users/delete/' + userid,
+    headers: {}
+  };
+  config.headers.Authorization = 'Bearer ' + adminToken
+  let response = await axios(config)
+  expect(response.status).toBe(200)
+})
