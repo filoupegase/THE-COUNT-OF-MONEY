@@ -86,7 +86,7 @@ test('Login as admin', async () => {
   expect(response.status).toBe(200)
 })
 
-// Get /api/settings
+// ADMIN - Settings
 test('Get the settings', async () => {
   let config = {
     method: 'get',
@@ -115,11 +115,60 @@ test('Update the settings', async () => {
   expect(response.status).toBe(200)
 })
 
+// ADMIN - Cryptos
+test('Get the list of cryptos', async () => {
+  // route /api/admin/crypto/
+  let config = {
+    method: 'get',
+    url: 'http://localhost:4000/api/admin/crypto/',
+    headers: {}
+  };
+  config.headers.Authorization = 'Bearer ' + adminToken
+  let response = await axios(config)
+  expect(response.status).toBe(200)
+})
 
+// add a new crypto
+test('Add a new crypto', async () => {
+  // route /api/admin/crypto/
+  let data = qs.stringify({
+    'cmcId': '5994',
+    'state': 'true',
+  });
+  let config = {
+    method: 'post',
+    url: 'http://localhost:4000/api/admin/crypto/',
+    headers: {},
+    data: data
+  };
+  config.headers.Authorization = 'Bearer ' + adminToken
+  let response = await axios(config)
+  expect(response.status).toBe(200)
+})
 
+test('Change the state of a crypto', async () => {
+  let config = {
+    method: 'put',
+    url: 'http://localhost:4000/api/admin/crypto/state/5994?state=false',
+    headers: {}
+  };
+  config.headers.Authorization = 'Bearer ' + adminToken
+  let response = await axios(config)
+  expect(response.status).toBe(200)
+})
+
+test('Delete a crypto', async () => {
+  let config = {
+    method: 'delete',
+    url: 'http://localhost:4000/api/admin/crypto/5994',
+    headers: {}
+  }
+  config.headers.Authorization = 'Bearer ' + adminToken
+  let response = await axios(config)
+  expect(response.status).toBe(200)
+})
 
 test('Delete the test user', async () => {
-  // /api/admin/users/delete/:id where id is the user id
   let config = {
     method: 'delete',
     url: 'http://localhost:4000/api/admin/users/delete/' + userid,
