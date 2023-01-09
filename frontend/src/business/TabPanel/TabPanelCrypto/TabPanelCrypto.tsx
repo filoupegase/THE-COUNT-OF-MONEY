@@ -1,21 +1,15 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import SettingsRssCrypto from "../../../_common/component/SettingsRssCrypto";
-import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import SwitchHandleCrypto from "../../../_common/component/SwitchHandleCrypto";
 import { Box } from '@mui/material';
-
-
-const rows: GridRowsProp = [
-    { id: 1, name: 'Hello', symbol: 'BTC', state: true },
-    { id: 2, name: 'DataGridPro', symbol: 'ETH', state: false },
-    { id: 3, name: 'Awiyouro', symbol: 'AWR', state: true },
-];
+import { useAppDispatch, useAppSelector } from "../../../_core/_store/store";
+import { getAdminCrypto } from '../../../_core/_store/services/adminCrytpo/slice';
 
 
 const columns: GridColDef[] = [
-    { field: "id", headerName: "#" },
     { field: 'name', headerName: 'Name', width: 200 },
-    { field: 'symbol', headerName: 'Symbol', width: 620 },
+    { field: 'symbol', headerName: 'Symbol', width: 744 },
     {
         field: 'state', headerName: 'State', width: 150,
         renderCell: (params) => (
@@ -25,12 +19,26 @@ const columns: GridColDef[] = [
 ];
 
 const TabPanelCrypto = () => {
+    const appDispatch = useAppDispatch();
+    const { adminCryptoData } = useAppSelector((state) => state.adminCrypto);
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        appDispatch(getAdminCrypto());
+    }, [getAdminCrypto]);
+
+    useEffect(() => {
+        if (adminCryptoData) {
+            setData(adminCryptoData);
+        }
+    });
+
     return (
         <>
             <Box sx={ { mb: 3 } }>
                 <SettingsRssCrypto crypto />
             </Box>
-            <DataGrid autoHeight rows={ rows } columns={ columns } />
+            <DataGrid getRowId={ (row) => row._id } autoHeight rows={ data } columns={ columns } />
         </>
     )
 }

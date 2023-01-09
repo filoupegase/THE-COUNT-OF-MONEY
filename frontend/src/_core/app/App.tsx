@@ -21,7 +21,7 @@ function App() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        appDispatch(getCrypto());
+        //appDispatch(getCrypto());
     }, []);
 
     useEffect(() => {
