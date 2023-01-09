@@ -73,6 +73,7 @@ CryptoModel.countDocuments({}, (err, count) => {
     crypto2.save();
     crypto3.save();
     crypto4.save();
+    crypto5.save();
     console.log("=> Crypto initialized");
   }
 });
