@@ -37,7 +37,6 @@ test('Login with the new user', async () => {
     data: data
   };
   let response = await axios(config)
-  // Get the token from the response and save it for the next tests
   usertoken = response.data.token
   expect(response.status).toBe(200)
 })
@@ -70,6 +69,40 @@ test('Update the user information', async () => {
   expect(response.status).toBe(200)
 })
 
+
+// TEST CRYPTO
+test('Get popular crypto', async () => {
+  // route /api/crypto/popular
+  let config = {
+    method: 'get',
+    url: 'http://localhost:4000/api/crypto/popular',
+  };
+  let response = await axios(config)
+  expect(response.status).toBe(200)
+})
+
+// Get the information of the crypto in the db
+test('Get the information of the crypto in the db', async () => {
+  // /api/crypto/info
+  let config = {
+    method: 'get',
+    url: 'http://localhost:4000/api/crypto/info'
+  }
+  let response = await axios(config)
+  expect(response.status).toBe(200)
+})
+
+
+// TEST RSS
+// test('Get the active rss feed article', async () => {
+//   let config = {
+//     method: 'get',
+//     url: 'http://localhost:4000/api/rss/',
+//   };
+//   let response = await axios(config)
+//   expect(response.status).toBe(200)
+// })
+
 // TEST ADMIN
 test('Login as admin', async () => {
   let data = qs.stringify({
@@ -99,7 +132,6 @@ test('Get the settings', async () => {
   expect(response.status).toBe(200)
 })
 
-// Put the setting (popularCryptos and popularRss)
 test('Update the settings', async () => {
   let data = qs.stringify({
     'popularCryptos': 10,
@@ -118,7 +150,6 @@ test('Update the settings', async () => {
 
 // ADMIN - Cryptos
 test('Get the list of cryptos', async () => {
-  // route /api/admin/crypto/
   let config = {
     method: 'get',
     url: 'http://localhost:4000/api/admin/crypto/',
@@ -130,7 +161,6 @@ test('Get the list of cryptos', async () => {
 })
 
 test('Add a new crypto', async () => {
-  // route /api/admin/crypto/
   let data = qs.stringify({
     'cmcId': '5994',
     'state': 'true',
@@ -210,7 +240,6 @@ test('Change the state of a RSS', async () => {
 })
 
 test('Get a specific RSS', async () => {
-  // route /api/admin/rss/:id
   let config = {
     method: 'get',
     url: 'http://localhost:4000/api/admin/rss/' + rssFeedId,
@@ -222,7 +251,6 @@ test('Get a specific RSS', async () => {
 })
 
 test('Delete a RSS', async () => {
-  // route /api/admin/rss/:id
   let config = {
     method: 'delete',
     url: 'http://localhost:4000/api/admin/rss/' + rssFeedId,
@@ -234,7 +262,6 @@ test('Delete a RSS', async () => {
 })
 
 // ADMIN - Users
-// List all the user /api/admin/users/
 test('Get the list of users', async () => {
   let config = {
     method: 'get',
@@ -246,7 +273,6 @@ test('Get the list of users', async () => {
   expect(response.status).toBe(200)
 })
 
-// Set a user admin
 test('Give a user admin rights', async () => {
   let config = {
     method: 'put',
@@ -258,7 +284,6 @@ test('Give a user admin rights', async () => {
   expect(response.status).toBe(200)
 })
 
-// Remove a user from admin
 test('Remove a user admin rights', async () => {
   let config = {
     method: 'delete',
