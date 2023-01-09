@@ -19,6 +19,6 @@ const StackNameCrypto = ({ id, name, symbol }: StackNameCryptoProps) => {
             <Typography sx={ { color: 'rgb(128, 138, 157)' } } variant="subtitle2">{ symbol }</Typography>
         </Stack>
     )
-}
+};
 
 export default StackNameCrypto;

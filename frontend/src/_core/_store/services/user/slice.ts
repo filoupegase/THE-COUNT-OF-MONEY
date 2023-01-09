@@ -84,7 +84,11 @@ export const userSlice = createSlice({
         });
         builder.addCase(updateUser.fulfilled, (state, { payload }) => {
             state.loading = false;
-            state.userInfo = payload;
+            state.userInfo = payload.user;
+            if (payload.token) {
+                localStorage.setItem('userToken', payload.token);
+                state.userToken = payload.token;
+            }
         });
     }
 });

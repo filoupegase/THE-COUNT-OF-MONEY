@@ -12,6 +12,7 @@ import { userSlice } from './services/user/slice';
 import { cryptoSlice } from "./services/crypto/slice";
 import { registerSlice } from "./services/register/slice";
 import { appSettings } from "./services/appSettings/slice";
+import { adminCrypto } from "./services/adminCrytpo/slice";
 
 
 const listenerMiddlewareInstance = createListenerMiddleware({
@@ -20,6 +21,7 @@ const listenerMiddlewareInstance = createListenerMiddleware({
 
 const store = configureStore({
     reducer: {
+        [adminCrypto.name]: adminCrypto.reducer,
         [appSettings.name]: appSettings.reducer,
         [authSlice.name]: authSlice.reducer,
         [registerSlice.name]: registerSlice.reducer,

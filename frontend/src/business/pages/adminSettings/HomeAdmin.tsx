@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Box, Tabs, Tab, styled } from "@mui/material";
 import TabPanelCrypto from "../../TabPanel/TabPanelCrypto";
 import TabPanelRss from "../../TabPanel/TabPanelRss";
@@ -6,10 +6,10 @@ import { getAppSettings } from "../../../_core/_store/services/appSettings/slice
 import { useAppDispatch } from "../../../_core/_store/store";
 
 
-type TabPanelProps = PropsWithChildren<{
+type TabPanelProps = React.PropsWithChildren<{
     index: number;
     value: number;
-}>
+}>;
 
 const HomeAdmin = () => {
     const appDispatch = useAppDispatch();

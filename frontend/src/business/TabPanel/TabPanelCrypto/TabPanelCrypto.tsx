@@ -1,45 +1,44 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import SettingsRssCrypto from "../../../_common/component/SettingsRssCrypto";
-import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import SwitchHandleCrypto from "../../../_common/component/SwitchHandleCrypto";
+import { Box } from '@mui/material';
+import { useAppDispatch, useAppSelector } from "../../../_core/_store/store";
+import { getAdminCrypto } from '../../../_core/_store/services/adminCrytpo/slice';
 
-
-const rows: GridRowsProp = [
-    { id: 1, name: 'Hello', symbol: 'BTC', state: 'true' },
-    { id: 2, name: 'DataGridPro', symbol: 'ETH', state: 'false' },
-    { id: 3, name: 'Awiyouro', symbol: 'AWR', state: 'true' },
-];
-
-// [
-//     {
-//         "id": "63a1b8fcaff69317b2b21827",
-//         "name": "Bitcoin",
-//         "symbol": "BTC",
-//         "cmcId": "1",
-//         "state": true,
-//         "__v": 0
-//     },
-//     {
-//         "id": "63a1b8fcaff69317b2b21828",
-//         "name": "Ethereum",
-//         "symbol": "ETH",
-//         "cmcId": "1027",
-//         "state": true,
-//         "__v": 0
-//     }
-// ]
 
 const columns: GridColDef[] = [
-    { field: "id", headerName: "#" },
     { field: 'name', headerName: 'Name', width: 200 },
-    { field: 'symbol', headerName: 'Symbol', width: 620 },
-    { field: 'state', headerName: 'State', width: 150 },
+    { field: 'symbol', headerName: 'Symbol', width: 744 },
+    {
+        field: 'state', headerName: 'State', width: 150,
+        renderCell: (params) => (
+            <SwitchHandleCrypto state={ params.row.state } id={ params.row.id } />
+        )
+    },
 ];
 
 const TabPanelCrypto = () => {
+    const appDispatch = useAppDispatch();
+    const { adminCryptoData } = useAppSelector((state) => state.adminCrypto);
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        appDispatch(getAdminCrypto());
+    }, [getAdminCrypto]);
+
+    useEffect(() => {
+        if (adminCryptoData) {
+            setData(adminCryptoData);
+        }
+    });
+
     return (
         <>
-            <SettingsRssCrypto crypto />
-            <DataGrid autoHeight rows={ rows } columns={ columns } />
+            <Box sx={ { mb: 3 } }>
+                <SettingsRssCrypto crypto />
+            </Box>
+            <DataGrid getRowId={ (row) => row._id } autoHeight rows={ data } columns={ columns } />
         </>
     )
 }
