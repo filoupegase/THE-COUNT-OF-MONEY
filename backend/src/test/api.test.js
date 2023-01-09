@@ -38,12 +38,28 @@ test('Login with the new user', async () => {
   token = response.data.token
   expect(response.status).toBe(200)
 })
-// Get user info, get /api/user/profile use the token for the bearer
+
 test('Get the user information', async () => {
   let config = {
     method: 'get',
     url: 'http://localhost:4000/api/user/profile',
     headers: {}
+  };
+  config.headers.Authorization = 'Bearer ' + token
+  let response = await axios(config)
+  expect(response.status).toBe(200)
+})
+
+test('Update the user information', async () => {
+  let data = qs.stringify({
+    'email': 'jesty@test.com',
+    'username': 'test1234'
+  });
+  let config = {
+    method: 'post',
+    url: 'http://localhost:4000/api/user',
+    headers: {},
+    data: data
   };
   config.headers.Authorization = 'Bearer ' + token
   let response = await axios(config)
