@@ -140,7 +140,7 @@ const SettingsRssCrypto = ({ crypto, rss }: SettingsRssCryptoProps) => {
                         open={ openSnackBar }
                         autoHideDuration={ 3700 } onClose={ handleClose }>
                         <Alert severity="success" sx={ { width: '100%' } }>
-                            Save With Success :)
+                            Save with success :)
                         </Alert>
                     </Snackbar>
                 </>

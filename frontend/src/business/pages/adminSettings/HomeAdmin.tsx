@@ -6,16 +6,12 @@ import { getAppSettings } from "../../../_core/_store/services/appSettings/slice
 import { useAppDispatch } from "../../../_core/_store/store";
 
 
-type AdminSettingsProps = {
-    title?: string;
-};
-
 type TabPanelProps = PropsWithChildren<{
     index: number;
     value: number;
 }>
 
-const HomeAdmin = ({ title = 'salut admin' }: AdminSettingsProps) => {
+const HomeAdmin = () => {
     const appDispatch = useAppDispatch();
     const [value, setValue] = React.useState(0);
 

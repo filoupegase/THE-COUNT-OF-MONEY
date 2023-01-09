@@ -116,10 +116,11 @@ const EditProfile = () => {
 };
 
 const StyledBackButton = styled(Button)(() => ({
-        padding: '1px 10px 1px 0',
-        textTransform: 'none',
-        color: "black"
-    }
-));
+            padding: '1px 10px 1px 0',
+            textTransform: 'none',
+            color: "black"
+        }
+    )
+);
 
 export default EditProfile;
