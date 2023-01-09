@@ -86,6 +86,38 @@ test('Login as admin', async () => {
   expect(response.status).toBe(200)
 })
 
+// Get /api/settings
+test('Get the settings', async () => {
+  let config = {
+    method: 'get',
+    url: 'http://localhost:4000/api/settings',
+    headers: {}
+  };
+  config.headers.Authorization = 'Bearer ' + adminToken
+  let response = await axios(config)
+  expect(response.status).toBe(200)
+})
+
+// Put the setting (popularCryptos and popularRss)
+test('Update the settings', async () => {
+  let data = qs.stringify({
+    'popularCryptos': 10,
+    'popularRss': 10
+  });
+  let config = {
+    method: 'put',
+    url: 'http://localhost:4000/api/settings',
+    headers: {},
+    data: data
+  };
+  config.headers.Authorization = 'Bearer ' + adminToken
+  let response = await axios(config)
+  expect(response.status).toBe(200)
+})
+
+
+
+
 test('Delete the test user', async () => {
   // /api/admin/users/delete/:id where id is the user id
   let config = {
