@@ -14,7 +14,7 @@ router.post('/', (req, res, next) => {
       res.status(500);
       return next(err);
     }
-    return res.json({token: user.generateJWT()});
+    return res.json({token: user.generateJWT(), user: user});
   });
 });
 
