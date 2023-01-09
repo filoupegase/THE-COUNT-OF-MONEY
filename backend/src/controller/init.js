@@ -51,8 +51,28 @@ CryptoModel.countDocuments({}, (err, count) => {
       cmcId: '1027',
       state: true
     });
+    const crypto3 = new CryptoModel({
+      name: 'Tether',
+      symbol: 'USDT',
+      cmcId: '825',
+      state: true
+    });
+    const crypto4 = new CryptoModel({
+      name: 'BNB',
+      symbol: 'BNB',
+      cmcId: '1839',
+      state: true
+    });
+    const crypto5 = new CryptoModel({
+      name: 'USD Coin',
+      symbol: 'USDC',
+      cmcId: '3408',
+      state: true
+    });
     crypto.save();
     crypto2.save();
+    crypto3.save();
+    crypto4.save();
     console.log("=> Crypto initialized");
   }
 });
