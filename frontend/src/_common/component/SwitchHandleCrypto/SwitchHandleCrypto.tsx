@@ -1,19 +1,26 @@
 import * as React from 'react';
 import Switch from '@mui/material/Switch';
+import { updateStateAdminCrypto } from '../../../_core/_store/services/adminCrytpo/slice';
+import { useAppDispatch } from "../../../_core/_store/store";
 
 
 type SwitchHandleCryptoProps = {
     state: boolean;
-    id: number;
+    cmcId: number;
 };
 
 const label = { inputProps: { 'aria-label': 'Switch Handle Crypto' } };
 
-const SwitchHandleCrypto = ({ state, id }: SwitchHandleCryptoProps) => {
-    const [checked, setChecked] = React.useState(true);
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setChecked(event.target.checked);
+const SwitchHandleCrypto = ({ state, cmcId }: SwitchHandleCryptoProps) => {
+    const appDispatch = useAppDispatch();
+    
+    const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const response = await appDispatch(updateStateAdminCrypto({
+                cryptoState: event.target.checked,
+                crypto_Id: cmcId
+            }
+        ));
+        console.log('la res', response);
     };
 
     return (

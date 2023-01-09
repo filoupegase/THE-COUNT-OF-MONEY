@@ -14,6 +14,11 @@ interface AdminCrypto {
     adminCryptoData: []
 }
 
+interface handleCryptoSate {
+    cryptoState: boolean;
+    crypto_Id: number;
+}
+
 export const getAdminCrypto = createAsyncThunk('get/adminCrypto',
     async (adminCryptoData, { getState, rejectWithValue }): Promise<AdminCrypto> => {
         try {
@@ -28,6 +33,28 @@ export const getAdminCrypto = createAsyncThunk('get/adminCrypto',
         }
     }
 );
+
+export const updateStateAdminCrypto = createAsyncThunk(
+    'users/fetchById',
+    async ({ cryptoState, crypto_Id }: handleCryptoSate,
+           {
+               getState, rejectWithValue
+           }) => {
+        try {
+            const token = (getState() as RootState).auth.userToken;
+            if (token) {
+                const config = {
+                    headers: { Authorization: `Bearer ${ token }` }
+                };
+                const { data } = await axiosClient.put(
+                    `admin/crypto/state/${ crypto_Id }?state=${ cryptoState }`, config);
+                return data;
+            }
+        } catch {
+            return rejectWithValue;
+        }
+    }
+)
 
 export const adminCrypto = createSlice({
     name: 'adminCrypto',
@@ -48,5 +75,7 @@ export const adminCrypto = createSlice({
             // @ts-ignore
             state.error = payload;
         });
+        // builder.addCase(updateStateAdminCrypto.fulfilled, (state, { payload }) => {
+        // })
     }
 });

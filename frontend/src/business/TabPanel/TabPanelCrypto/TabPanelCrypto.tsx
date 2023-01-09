@@ -13,7 +13,7 @@ const columns: GridColDef[] = [
     {
         field: 'state', headerName: 'State', width: 150,
         renderCell: (params) => (
-            <SwitchHandleCrypto state={ params.row.state } id={ params.row.id } />
+            <SwitchHandleCrypto state={ params.row.state } cmcId={ params.row.cmcId } />
         )
     },
 ];

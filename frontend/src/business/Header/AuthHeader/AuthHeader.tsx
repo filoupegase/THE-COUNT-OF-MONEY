@@ -99,7 +99,7 @@ const AuthHeader = () => {
                                     horizontal: 'center'
                                 } }
                                 open={ openSnackBar }
-                                autoHideDuration={ 3700 } onClose={ handleClose }>
+                                autoHideDuration={ 3100 } onClose={ handleClose }>
                                 <Alert severity="success" sx={ { width: '100%' } }>
                                     You are now connected !
                                 </Alert>
