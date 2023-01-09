@@ -1,6 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 import type {} from '@mui/x-data-grid/themeAugmentation';
 
+
 const theme = createTheme({
     palette: {
         common: {
@@ -56,7 +57,7 @@ const theme = createTheme({
                     padding: '5px 20px'
                 },
                 startIcon: {
-                    marginRight: 12
+                    marginRight: 10
                 }
             },
         },
